@@ -36,7 +36,7 @@ public class VideosDAO {
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                Video v = generateConstant(resultSet);
+                Video v = generateVideo(resultSet);
                 videos.add(v);
             }
             resultSet.close();
@@ -51,7 +51,7 @@ public class VideosDAO {
     }
     
     
-    private Video generateConstant(ResultSet resultSet) throws Exception {
+    private Video generateVideo(ResultSet resultSet) throws Exception {
     	String name  = resultSet.getString("name");
     	String URL = resultSet.getString("url");
     	String character = resultSet.getString("character");

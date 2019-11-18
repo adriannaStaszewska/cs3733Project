@@ -15,7 +15,7 @@ public class ListAllVideosHandler implements RequestHandler<Object,AllVideosResp
 	public LambdaLogger logger;
 	
 	List<Video> getAllVideos() throws Exception {
-		logger.log("in getConstants");
+		logger.log("in getAllVideos");
 		VideosDAO dao = new VideosDAO();
 		
 		return dao.getAllVideos();
