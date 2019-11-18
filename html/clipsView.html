@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                margin: 0;
+            }
+        </style>
+
+        <link rel="stylesheet" type="text/css" href="../css/nav.css">
+        <link rel="stylesheet" type="text/css" href="../css/uploadPopUp.css">
+        <link rel="stylesheet" type="text/css" href="../css/modal.css">
+
+        <script type="text/javascript" src="../js/search.js"></script>
+        <script type="text/javascript" src="../js/uploadClip.js"></script>
+    </head>
+
+    <body style="background-color: #1f1f1f;" text="white">
+        <div class="nav" id="topNav">
+            <a href="../html/clipsView.html" class="active">Clips</a>
+            <a href="../html/playlistView.html">Playlists</a>
+        </div>
+
+        <br>
+
+        <form name="search" method="post">
+            <input name="searchBox" value=""/>
+            <input type="button" value="Submit" onClick="JavaScript:handleSearch(this)">
+            <input type="checkbox" name="localCheck" value="1" checked>Local
+            <input type="checkbox" name="remoteCheck" value="2">Remote
+        </form>
+
+        <br>
+		
+		<form name="uploadClip">
+			<input type="button" value="+" onClick="JavaScript:handleModal(this)">
+		</form>
+		
+
+        <div class="fullscreen-modal" id="fullmodal">
+            <div class="Modal" id="uploadModal">
+                <div class="modal-content" id="uploadModalContent">
+                    <form name="modalForm">
+                        <input type="button" id="popUpClose2" value="X" onClick="JavaScript:closeModal(this)"><br>
+                        Name:
+                        <input type="text" name="name"><br>
+                        <input type="button" value="Select video" onClick="JavaScript:selectVideo(this)"><br>
+                        Character:
+                        <input type="text" name="character"><br>
+                        Sentence:
+                        <input type="text" name="sentence"><br>
+                        <input type="button" value="Upload" onClick="JavaScript:handleUploadClip(this)">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+
+
+
+</html>

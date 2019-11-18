@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                margin: 0;
+            }
+        </style>
+
+        <link rel="stylesheet" type="text/css" href="../css/nav.css">
+        <link rel="stylesheet" type="text/css" href="../css/uploadPopUp.css">
+        <link rel="stylesheet" type="text/css" href="../css/modal.css">
+        <link rel="stylesheet" type="text/css" href="../css/videoTable.css">
+        
+        <script type="text/javascript" src="../js/registerRemote.js"></script>
+
+    </head>
+
+    <body style="background-color: #1f1f1f;" text="white">
+        <div class="nav" id="topNav">
+            <a href="../html/admin.html" class="active">Admin</a>
+        </div>
+
+        <br>
+        
+        <button id="registerButton" onClick="JavaScript:handleModal(this)">Register Remote</button>
+
+        <div class="fullscreen-modal" id="fullmodal">
+            <div class="Modal" id="registerModal">
+                <div class="modal-content" id="registerModalContent">
+                    <form name="registerRemoteForm">
+                        <input type="button" id="popUpClose2" value="X" onClick="JavaScript:closeModal(this)"><br>
+                        URL:
+                        <input type="text" name="url"><br>
+                        <input type="button" value="Register" onClick="JavaScript:handleRegisterRemoteSite(this)">
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        
+        <table id="tableId" class="videoTable">
+			 <thead>
+				  <tr>
+					   <th>Video Name</th>
+					   <th>Space</th>
+					   <th><input type="checkbox" /></th>
+					   <th>Remove?</th>
+				  </tr>
+			 </thead>
+			 <tbody>
+				  <tr>
+					   <td>Video 1</td>
+					   <td>Space</td>
+					   <td><input type="checkbox" /></td>
+					   <td>Trash</td>
+				  </tr>
+			 </tbody>
+		</table>
+   </body>
+
+
+
+</html>
