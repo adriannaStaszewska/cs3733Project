@@ -42,7 +42,7 @@
         
         <br>
         
-        <table id="tableId" class="videoTable">
+        <table id="videosTable" class="videoTable">
 			 <thead>
 				  <tr>
 					   <th>Video Name</th>
@@ -60,6 +60,31 @@
 				  </tr>
 			 </tbody>
 		</table>
+		
+		<script>
+			var tempArray = ["Test Video","Space2", true, "Trash"]
+		
+			var table = document.getElementById("videosTable");
+			var tr = table.insertRow(table.rows.length);
+			
+			for(var c = 0; c < tempArray.length; c++){
+				var td = document.createElement("td");
+				td = tr.insertCell(c);
+				if(c==2) {
+					var check = document.createElement("input");
+					check.setAttribute("type", "checkbox");
+					check.setAttribute("value", "1");
+					
+					td.appendChild(check);
+				} else {
+					var element = document.createElement("P");
+					element.innerHTML = tempArray[c];
+					//element.setAttribute("value", tempArray[c]);
+					
+					td.appendChild(element);
+				}
+			}
+		</script>
    </body>
 
 
