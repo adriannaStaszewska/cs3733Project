@@ -1,5 +1,6 @@
 package com.cs3733kakistocrat.group.database;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import com.cs3733kakistocrat.group.model.Playlist;
 
 
 public class PlaylistsDAO {
+	
 	java.sql.Connection conn;
 
     public PlaylistsDAO() {
@@ -43,10 +45,35 @@ public class PlaylistsDAO {
     	}
     }
     
+    public boolean addPlaylist(Playlist playlist) throws Exception {
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM playlist WHERE name = ?;");
+            ps.setString(1, playlist.getName());
+            ResultSet resultSet = ps.executeQuery();
+            
+            // already present?
+            while (resultSet.next()) {
+                Playlist p = generatePlaylist(resultSet);
+                resultSet.close();
+                return false;
+            }
+
+            ps = conn.prepareStatement("INSERT INTO playlist (name) values(?);");
+            ps.setString(1, playlist.getName());
+            ps.execute();
+            return true;
+
+        } catch (Exception e) {
+            throw new Exception("Failed to insert playlist: " + e.getMessage());
+        }
+    }
     
+
     private Playlist generatePlaylist(ResultSet resultSet) throws Exception {
     	String name  = resultSet.getString("name");
     	return new Playlist(name);
     }
+    
+    
 
 }

@@ -29,8 +29,6 @@ public class ListAllPlaylistsHandler implements RequestHandler<Object,AllPlaylis
 
 		AllPlaylistsResponse response;
 		try {
-			// get all user defined constants AND system-defined constants.
-			// Note that user defined constants override system-defined constants.
 			List<Playlist> list = getAllPlaylists();
 			
 			response = new AllPlaylistsResponse(list, 200);
