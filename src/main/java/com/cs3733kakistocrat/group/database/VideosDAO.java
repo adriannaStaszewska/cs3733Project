@@ -32,7 +32,7 @@ public class VideosDAO {
     		List<Video> videos = new ArrayList<>();
     		
     		Statement statement = conn.createStatement();
-            String query = "SELECT * FROM Video";
+            String query = "SELECT * FROM video";
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {

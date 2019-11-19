@@ -25,7 +25,7 @@ public class PlaylistsDAO {
     	try {
     		
     		Statement statement = conn.createStatement();
-            String query = "SELECT * FROM Playlist";
+            String query = "SELECT * FROM playlist";
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
