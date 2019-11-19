@@ -15,9 +15,17 @@
 
         <script type="text/javascript" src="../js/search.js"></script>
         <script type="text/javascript" src="../js/uploadClip.js"></script>
+        <script type="text/javascript" src="../js/api.js"></script>
+        <script type="text/javascript" src="../js/getVideos.js"></script>
+        
+        <script type="text/javascript">
+			function initialize() {  
+				getVideos();
+			}
+		</script>
     </head>
 
-    <body style="background-color: #1f1f1f;" text="white">
+    <body onload="initialize()" style="background-color: #1f1f1f;" text="white">
         <div class="nav" id="topNav">
             <a href="../html/clipsView.html" class="active">Clips</a>
             <a href="../html/playlistView.html">Playlists</a>
