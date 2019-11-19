@@ -59,7 +59,7 @@ public class PlaylistsDAO {
             }
 
             ps = conn.prepareStatement("INSERT INTO playlist (playlistName) values(?);");
-            ps.setString(1, playlist.getName());
+            ps.setString(0, playlist.getName());
             ps.execute();
             return true;
 
