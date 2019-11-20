@@ -1,20 +1,20 @@
 package com.cs3733kakistocrat.group.http;
 
 public class CreatePlaylistRequest {
-	String name;
+	String playlistName;
 	
-	public String getName( ) { return name; }
-	public void setName(String name) { this.name = name; }
+	public String getPlaylistName( ) { return playlistName; }
+	public void setPlaylistName(String playlistName) { this.playlistName = playlistName; }
 	
 	public CreatePlaylistRequest() {
 	}
 	
-	public CreatePlaylistRequest (String name) {
-		this.name = name;
+	public CreatePlaylistRequest (String playlistName) {
+		this.playlistName = playlistName;
 	}
 	
 	public String toString() {
-		return "CreatePlaylist(" + name + ")";
+		return "CreatePlaylist(" + playlistName + ")";
 	}
 
 }

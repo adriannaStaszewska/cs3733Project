@@ -59,7 +59,7 @@ public class PlaylistsDAO {
             }
 
             ps = conn.prepareStatement("INSERT INTO playlist (playlistName) values(?);");
-            ps.setString(0, playlist.getName());
+            ps.setString(1, playlist.getName());
             ps.execute();
             return true;
 
@@ -68,11 +68,47 @@ public class PlaylistsDAO {
         }
     }
     
+    public boolean removePlaylist(Playlist playlist) throws Exception{
+    	 try {
+             PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist WHERE playlistName = ?;");
+             ps.setString(1, playlist.getName());
+             int numAffected = ps.executeUpdate();
+             ps.close();
+             
+             return (numAffected == 1);
+
+         } catch (Exception e) {
+             throw new Exception("Failed to delete playlist: " + e.getMessage());
+         }
+    }
+    
+    public Playlist getPlaylist(String name) throws Exception {
+      
+      try {
+          Playlist playlist = null;
+          PreparedStatement ps = conn.prepareStatement("SELECT * FROM playlist WHERE playlistName=?;");
+          ps.setString(1,  name);
+          ResultSet resultSet = ps.executeQuery();
+          
+          while (resultSet.next()) {
+              playlist = generatePlaylist(resultSet);
+          }
+          resultSet.close();
+          ps.close();
+          
+          return playlist;
+
+      } catch (Exception e) {
+      	e.printStackTrace();
+          throw new Exception("Failed in getting playlist: " + e.getMessage());
+      }
+  }
 
     private Playlist generatePlaylist(ResultSet resultSet) throws Exception {
     	String name  = resultSet.getString("playlistName");
     	return new Playlist(name);
     }
+    
     
     
 
