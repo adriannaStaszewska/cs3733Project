@@ -46,6 +46,7 @@ public class PlaylistsDAO {
     }
     
     public boolean addPlaylist(Playlist playlist) throws Exception {
+    	
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM playlist WHERE playlistName = ?;");
             ps.setString(1, playlist.getName());
@@ -59,7 +60,7 @@ public class PlaylistsDAO {
             }
 
             ps = conn.prepareStatement("INSERT INTO playlist (playlistName) values(?);");
-            ps.setString(0, playlist.getName());
+            ps.setString(1, playlist.getName());
             ps.execute();
             return true;
 
