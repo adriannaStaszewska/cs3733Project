@@ -1,0 +1,30 @@
+.remoteTable {
+	border: 1px solid black;
+	bgcolor: white;
+	background-color: white;
+	border-colapse: collapse;
+}
+
+.remoteTable thead {
+	border: 1px solid black;
+	bg-color: white;
+	background-color: white;
+}
+
+.remoteTable tbody {
+	border: 1px solid black;
+	bg-color: white;
+	background-color: white;
+}
+
+.remoteTable tbody tr:hover {
+	background-color: grey;
+}
+
+.remoteTable th {
+	color: black;
+}
+
+.remoteTable td {
+	color: black;
+}

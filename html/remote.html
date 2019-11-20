@@ -15,12 +15,13 @@
         <link rel="stylesheet" type="text/css" href="../css/videoTable.css">
         <script type="text/javascript" src="../js/api.js"></script>
         <script type="text/javascript" src="../js/getVideos.js"></script>
+        <script type="text/javascript" src="../js/getRemotes.js"></script>
         
         <script type="text/javascript" src="../js/registerRemote.js"></script>
         
         <script type="text/javascript">
 			function initialize() {  
-				getVideos();
+				getRemotes();
 			}
 		</script>
 
@@ -28,12 +29,12 @@
 
     <body onload="initialize()" style="background-color: #1f1f1f;" text="white">
         <div class="nav" id="topNav">
-            <a href="../html/admin.html" class="active">Admin</a>
-            <a href="../html/remote.html">Remotes</a>
+            <a href="../html/admin.html">Admin</a>
+            <a href="../html/remote.html" class="active">Remotes</a>
         </div>
 
         <br>
-        <!--
+        
         <button id="registerButton" onClick="JavaScript:handleModal(this)">Register Remote</button>
 
         <div class="fullscreen-modal" id="fullmodal">
@@ -48,20 +49,17 @@
                 </div>
             </div>
         </div>
-        -->
+        
         <br>
         
-        <table id="videosTable" class="videoTable">
+        <table id="remoteTable" class="remoteTable">
 			 <thead>
 				  <tr>
-					   <th>Name</th>
-					   <th>Character</th>
-					   <th>Sentence</th>
-					   <th><input type="checkbox" /></th>
+					   <th>URL</th>
 					   <th>Remove?</th>
 				  </tr>
 			 </thead>
-			 <tbody id="videosTableBody">
+			 <tbody id="remoteTableBody">
 				  
 			 </tbody>
 		</table>
