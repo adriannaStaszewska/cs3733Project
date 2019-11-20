@@ -13,12 +13,20 @@
         <link rel="stylesheet" type="text/css" href="../css/uploadPopUp.css">
         <link rel="stylesheet" type="text/css" href="../css/modal.css">
         <link rel="stylesheet" type="text/css" href="../css/videoTable.css">
+        <script type="text/javascript" src="../js/api.js"></script>
+        <script type="text/javascript" src="../js/getVideos.js"></script>
         
         <script type="text/javascript" src="../js/registerRemote.js"></script>
+        
+        <script type="text/javascript">
+			function initialize() {  
+				getVideos();
+			}
+		</script>
 
     </head>
 
-    <body style="background-color: #1f1f1f;" text="white">
+    <body onload="initialize()" style="background-color: #1f1f1f;" text="white">
         <div class="nav" id="topNav">
             <a href="../html/admin.html" class="active">Admin</a>
         </div>
@@ -45,46 +53,19 @@
         <table id="videosTable" class="videoTable">
 			 <thead>
 				  <tr>
-					   <th>Video Name</th>
-					   <th>Space</th>
+					   <th>Name</th>
+					   <th>Character</th>
+					   <th>Sentence</th>
 					   <th><input type="checkbox" /></th>
 					   <th>Remove?</th>
 				  </tr>
 			 </thead>
-			 <tbody>
-				  <tr>
-					   <td>Video 1</td>
-					   <td>Space</td>
-					   <td><input type="checkbox" /></td>
-					   <td>Trash</td>
-				  </tr>
+			 <tbody id="videosTableBody">
+				  
 			 </tbody>
 		</table>
 		
-		<script>
-			var tempArray = ["Test Video","Space2", true, "Trash"]
 		
-			var table = document.getElementById("videosTable");
-			var tr = table.insertRow(table.rows.length);
-			
-			for(var c = 0; c < tempArray.length; c++){
-				var td = document.createElement("td");
-				td = tr.insertCell(c);
-				if(c==2) {
-					var check = document.createElement("input");
-					check.setAttribute("type", "checkbox");
-					check.setAttribute("value", "1");
-					
-					td.appendChild(check);
-				} else {
-					var element = document.createElement("P");
-					element.innerHTML = tempArray[c];
-					//element.setAttribute("value", tempArray[c]);
-					
-					td.appendChild(element);
-				}
-			}
-		</script>
    </body>
 
 
