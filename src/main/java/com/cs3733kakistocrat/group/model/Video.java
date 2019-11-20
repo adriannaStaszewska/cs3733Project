@@ -1,20 +1,35 @@
 package com.cs3733kakistocrat.group.model;
 
+import java.util.UUID;
+
 public class Video {
 
 	String name;
 	String url;
 	String character;
 	String sentence;
-	boolean remotelyAccessible;
+	String video_id;
+	boolean remotely_accessible;
+	
 	
 	public Video(String name, String url, String character, String sentence) {
 		this.name = name;
 		this.url = url;
 		this.character = character;
 		this.sentence = sentence;
-		this.remotelyAccessible = false;
+		this.remotely_accessible = false;
+		this.video_id = UUID.randomUUID().toString();
 	}
+	
+	public Video(String name, String video_id) {
+		this.name = name;
+		this.url = "";
+		this.character = "";
+		this.sentence = "";
+		this.remotely_accessible = false;
+		this.video_id = video_id;
+	}
+	
 	
 	public String getName() {
 		return name;
@@ -40,11 +55,22 @@ public class Video {
 	public void setSentence(String sentence) {
 		this.sentence = sentence;
 	}
-	public boolean isRemotelyAccessible() {
-		return remotelyAccessible;
+
+	public String getVideo_id() {
+		return video_id;
 	}
-	public void setRemotelyAccessible(boolean remotelyAccessible) {
-		this.remotelyAccessible = remotelyAccessible;
+
+	public void setVideo_id(String video_id) {
+		this.video_id = video_id;
 	}
+
+	public boolean isRemotely_accessible() {
+		return remotely_accessible;
+	}
+
+	public void setRemotely_accessible(boolean remotely_accessible) {
+		this.remotely_accessible = remotely_accessible;
+	}
+	
 	
 }

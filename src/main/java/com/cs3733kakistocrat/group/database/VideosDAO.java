@@ -1,5 +1,6 @@
 package com.cs3733kakistocrat.group.database;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -56,110 +57,51 @@ public class VideosDAO {
     	String URL = resultSet.getString("url");
     	String character = resultSet.getString("character");
     	String sentence = resultSet.getString("sentence");
-
+    	
     	return new Video (name, URL, character, sentence);
     }
-//    public Constant getConstant(String name) throws Exception {
-//        
-//        try {
-//            Constant constant = null;
-//            PreparedStatement ps = conn.prepareStatement("SELECT * FROM constants WHERE name=?;");
-//            ps.setString(1,  name);
-//            ResultSet resultSet = ps.executeQuery();
-//            
-//            while (resultSet.next()) {
-//                constant = generateConstant(resultSet);
-//            }
-//            resultSet.close();
-//            ps.close();
-//            
-//            return constant;
-//
-//        } catch (Exception e) {
-//        	e.printStackTrace();
-//            throw new Exception("Failed in getting constant: " + e.getMessage());
-//        }
-//    }
-//    
-//    public boolean updateConstant(Constant constant) throws Exception {
-//        try {
-//        	String query = "UPDATE constants SET value=? WHERE name=?;";
-//        	PreparedStatement ps = conn.prepareStatement(query);
-//            ps.setDouble(1, constant.value);
-//            ps.setString(2, constant.name);
-//            int numAffected = ps.executeUpdate();
-//            ps.close();
-//            
-//            return (numAffected == 1);
-//        } catch (Exception e) {
-//            throw new Exception("Failed to update report: " + e.getMessage());
-//        }
-//    }
-//    
-//    public boolean deleteConstant(Constant constant) throws Exception {
-//        try {
-//            PreparedStatement ps = conn.prepareStatement("DELETE FROM constants WHERE name = ?;");
-//            ps.setString(1, constant.name);
-//            int numAffected = ps.executeUpdate();
-//            ps.close();
-//            
-//            return (numAffected == 1);
-//
-//        } catch (Exception e) {
-//            throw new Exception("Failed to insert constant: " + e.getMessage());
-//        }
-//    }
-//
-//
-//    public boolean addConstant(Constant constant) throws Exception {
-//        try {
-//            PreparedStatement ps = conn.prepareStatement("SELECT * FROM constants WHERE name = ?;");
-//            ps.setString(1, constant.name);
-//            ResultSet resultSet = ps.executeQuery();
-//            
-//            // already present?
-//            while (resultSet.next()) {
-//                Constant c = generateConstant(resultSet);
-//                resultSet.close();
-//                return false;
-//            }
-//
-//            ps = conn.prepareStatement("INSERT INTO constants (name,value) values(?,?);");
-//            ps.setString(1,  constant.name);
-//            ps.setDouble(2,  constant.value);
-//            ps.execute();
-//            return true;
-//
-//        } catch (Exception e) {
-//            throw new Exception("Failed to insert constant: " + e.getMessage());
-//        }
-//    }
-//
-//    public List<Constant> getAllConstants() throws Exception {
-//        
-//        List<Constant> allConstants = new ArrayList<>();
-//        try {
-//            Statement statement = conn.createStatement();
-//            String query = "SELECT * FROM constants";
-//            ResultSet resultSet = statement.executeQuery(query);
-//
-//            while (resultSet.next()) {
-//                Constant c = generateConstant(resultSet);
-//                allConstants.add(c);
-//            }
-//            resultSet.close();
-//            statement.close();
-//            return allConstants;
-//
-//        } catch (Exception e) {
-//            throw new Exception("Failed in getting books: " + e.getMessage());
-//        }
-//    }
-//    
-//    private Constant generateConstant(ResultSet resultSet) throws Exception {
-//        String name  = resultSet.getString("name");
-//        Double value = resultSet.getDouble("value");
-//        return new Constant (name, value);
-//    }
+
+    public boolean deleteVideo(Video video) throws Exception {
+        try {
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM video WHERE video_id = ?;");
+            ps.setString(1, video.getVideo_id());
+            int numAffected = ps.executeUpdate();
+            ps.close();
+            
+            return (numAffected == 1);
+
+        } catch (Exception e) {
+            throw new Exception("Failed to delete video: " + e.getMessage());
+        }
+    }
+    
+    public boolean addVideo(Video video) throws Exception {
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM video WHERE video_id = ?;");
+            ps.setString(1, video.getVideo_id());
+            ResultSet resultSet = ps.executeQuery();
+            
+            // already present?
+            while (resultSet.next()) {
+                Video v = generateVideo(resultSet);
+                resultSet.close();
+                return false;
+            }
+
+            ps = conn.prepareStatement("INSERT INTO video (video_id, name, character, sentence, url, remotely_accessible) values(?,?,?,?,??);");
+            ps.setString(1,  video.getVideo_id());
+            ps.setString(2,  video.getName());
+            ps.setString(3,  video.getCharacter());
+            ps.setString(4,  video.getSentence());
+            ps.setString(5,  video.getUrl());
+            ps.setBoolean(6, video.isRemotely_accessible());
+            
+            ps.execute();
+            return true;
+
+        } catch (Exception e) {
+            throw new Exception("Failed to add video: " + e.getMessage());
+        }
+    }
 
 }
