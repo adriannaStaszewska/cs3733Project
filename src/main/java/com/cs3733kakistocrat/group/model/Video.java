@@ -30,6 +30,15 @@ public class Video {
 		this.video_id = video_id;
 	}
 	
+	public Video(String name, String character, String sentence) {
+		this.name = name;
+		this.url = "";
+		this.character = character;
+		this.sentence = sentence;
+		this.remotely_accessible = false;
+		this.video_id = UUID.randomUUID().toString();
+	}
+	
 	
 	public String getName() {
 		return name;
