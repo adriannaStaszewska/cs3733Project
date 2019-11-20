@@ -26,7 +26,7 @@ public class CreatePlaylistHandler implements RequestHandler<CreatePlaylistReque
 				response = new CreatePlaylistResponse(input.getPlaylistName(), 422);
 			}
 		}catch (Exception e) {
-			response = new CreatePlaylistResponse("Unable to create playlist: " + input.getPlaylistName() + " (" + e.getMessage() + ")", 400);
+			response = new CreatePlaylistResponse("Unable to create playlist: " + input.getPlaylistName()+ " (" + e.getMessage() + ")", 400);
 		}
 		return response;
 	}
@@ -36,13 +36,13 @@ public class CreatePlaylistHandler implements RequestHandler<CreatePlaylistReque
 		PlaylistsDAO dao = new PlaylistsDAO();
 		
 		// check if present
-		//Playlist exist = dao.getPlaylist(name);
+		Playlist exist = dao.getPlaylist(name);
 		Playlist playlist = new Playlist(name);
-		//if (exist == null) {
+		if (exist == null) {
 			return dao.addPlaylist(playlist);
-		/*} else {
+		} else {
 			return false;
-		}*/
+		}
 	}
 	
 	
