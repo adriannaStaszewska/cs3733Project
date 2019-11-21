@@ -7,7 +7,6 @@ public class UploadVideoRequest {
 	String sentence;
 	
 	public UploadVideoRequest(String name, String base64EncodedFile, String character, String sentence) {
-
 		this.name = name;
 		this.base64EncodedFile = base64EncodedFile;
 		this.character = character;

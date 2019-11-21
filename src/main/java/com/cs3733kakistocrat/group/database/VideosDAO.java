@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.cs3733kakistocrat.group.model.Video;
 
+
 /**
  * Note that CAPITALIZATION matters regarding the table name. If you create with 
  * a capital "Constants" then it must be "Constants" in the SQL queries.
@@ -101,6 +102,27 @@ public class VideosDAO {
 
         } catch (Exception e) {
             throw new Exception("Failed to add video: " + e.getMessage());
+        }
+    }
+    
+    public Video getVideo(String video_id) throws Exception {
+    	try {
+            Video video = null;
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM video WHERE video_id=?;");
+            ps.setString(1,  video_id);
+            ResultSet resultSet = ps.executeQuery();
+            
+            while (resultSet.next()) {
+                video = generateVideo(resultSet);
+            }
+            resultSet.close();
+            ps.close();
+            
+            return video;
+
+        } catch (Exception e) {
+        	e.printStackTrace();
+            throw new Exception("Failed in getting video: " + e.getMessage());
         }
     }
 
