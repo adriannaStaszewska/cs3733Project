@@ -84,26 +84,26 @@ public class PlaylistsDAO {
     }
     
     public Playlist getPlaylist(String name) throws Exception {
-      
-      try {
-          Playlist playlist = null;
-          PreparedStatement ps = conn.prepareStatement("SELECT * FROM playlist WHERE playlistName=?;");
-          ps.setString(1,  name);
-          ResultSet resultSet = ps.executeQuery();
-          
-          while (resultSet.next()) {
-              playlist = generatePlaylist(resultSet);
-          }
-          resultSet.close();
-          ps.close();
-          
-          return playlist;
 
-      } catch (Exception e) {
-      	e.printStackTrace();
-          throw new Exception("Failed in getting playlist: " + e.getMessage());
-      }
-  }
+    	try {
+    		Playlist playlist = null;
+    		PreparedStatement ps = conn.prepareStatement("SELECT * FROM playlist WHERE playlistName=?;");
+    		ps.setString(1,  name);
+    		ResultSet resultSet = ps.executeQuery();
+	      
+    		while (resultSet.next()) {
+    			playlist = generatePlaylist(resultSet);
+    		}
+    		resultSet.close();
+    		ps.close();
+	      
+    		return playlist;
+	
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		throw new Exception("Failed in getting playlist: " + e.getMessage());
+    	}
+    }
 
     private Playlist generatePlaylist(ResultSet resultSet) throws Exception {
     	String name  = resultSet.getString("playlistName");

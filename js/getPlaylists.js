@@ -1,6 +1,7 @@
-function getRemotes() {
+function getPlaylists() {
 	var xhr = new XMLHttpRequest();
-   xhr.open("GET", getRemotesURL, true);
+	console.log(getPlaylistsURL);
+   xhr.open("GET", getPlaylistsURL, true);
    xhr.send();
 	   
    console.log("sent remote URLs request");
@@ -8,28 +9,28 @@ function getRemotes() {
    xhr.onloadend = function () {
 	   if (xhr.readyState == XMLHttpRequest.DONE) {
 		   console.log ("XHR:" + xhr.responseText);
-		   processRemoteList(xhr.responseText);
+		   processPlaylistList(xhr.responseText);
 	   } else {
 		   processVideoList("N/A");
 	   }
    };
 }
 
-function processRemoteList(result) {
+function processPlaylistList(result) {
 	console.log("res:" + result);
 	var js = JSON.parse(result);
 	
 	for (var i = 0; i < js.list.length; i++) {
 		var constantJson = js.list[i];
 	    console.log(constantJson);
-	    insertRemoteRow(constantJson["url"]);
+	    insertPlaylistRow(constantJson["name"]);
 	}
 	
 	
 }
 
-function insertRemoteRow(rowInput) {
-	var table = document.getElementById("remoteTableBody");
+function insertPlaylistRow(rowInput) {
+	var table = document.getElementById("playlistTableBody");
 	var tr = table.insertRow(table.rows.length);
 	
 	var td = document.createElement("td");

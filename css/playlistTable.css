@@ -1,0 +1,30 @@
+.playlistTable {
+	border: 1px solid black;
+	bgcolor: white;
+	background-color: white;
+	border-colapse: collapse;
+}
+
+.playlistTable thead {
+	border: 1px solid black;
+	bg-color: white;
+	background-color: white;
+}
+
+.playlistTable tbody {
+	border: 1px solid black;
+	bg-color: white;
+	background-color: white;
+}
+
+.playlistTable tbody tr:hover {
+	background-color: grey;
+}
+
+.playlistTable th {
+	color: black;
+}
+
+.playlistTable td {
+	color: black;
+}

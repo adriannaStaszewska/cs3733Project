@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            margin: 0;
-        }
-    </style>
-
-    <link rel="stylesheet" type="text/css" href="../css/nav.css">
-</head>
-
-<body style="background-color: #1f1f1f;">
-<div class="nav" id="topNav">
-    <a href="../html/clipsView.html">Clips</a>
-    <a href="../html/playlistView.html" class="active">Playlists</a>
-</div>
-</body>
-
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <style>
+	        body {
+	            margin: 0;
+	        }
+	    </style>
+	
+	    <link rel="stylesheet" type="text/css" href="../css/nav.css">
+	    <link rel="stylesheet" type="text/css" href="../css/playlistTable.css">
+	    
+	    <script type="text/javascript" src="../js/api.js"></script>
+	    <script type="text/javascript" src="../js/getPlaylists.js"></script>
+	    
+	    <script type="text/javascript">
+			function initialize() {  
+				getPlaylists();
+			}
+		</script>
+	</head>
+	
+	<body onload="initialize()" style="background-color: #1f1f1f;">
+		<div class="nav" id="topNav">
+		    <a href="../html/clipsView.html">Clips</a>
+		    <a href="../html/playlistView.html" class="active">Playlists</a>
+		</div>
+		
+		<table id="playlistsTable" class="playlistTable">
+			<thead>
+				<tr>
+					<th>Name</th>
+				</tr>
+		 	</thead>
+		 	<tbody id="playlistTableBody">
+			  
+		 	</tbody>
+	</table>
+	</body>
 
 </html>
