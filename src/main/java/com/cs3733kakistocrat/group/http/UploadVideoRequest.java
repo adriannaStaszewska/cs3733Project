@@ -5,7 +5,6 @@ public class UploadVideoRequest {
 	String base64EncodedFile;
 	String character;
 	String sentence;
-	boolean remote;
 	
 	public UploadVideoRequest(String name, String base64EncodedFile, String character, String sentence) {
 		this.name = name;

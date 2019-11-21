@@ -29,6 +29,23 @@
 		    <a href="../html/playlistView.html" class="active">Playlists</a>
 		</div>
 		
+		<form name="newPlaylist">
+			<input type="button" value="+" onClick="JavaScript:handlePlaylistModal(this)">
+		</form>
+		
+		<div class="fullscreen-modal" id="fullmodal">
+            <div class="Modal" id="playlistModal">
+                <div class="modal-content" id="playlistModalContent">
+                    <form name="modalForm" id="playlistForm">
+                        <input type="button" id="popUpClose2" value="X" onClick="JavaScript:closeModal(this)"><br>
+                        Name:
+                        <input type="text" name="name" id="playlistName"><br>
+                        <input type="button" value="Create" onClick="JavaScript:handleNewPlaylist(this)">
+                    </form>
+                </div>
+            </div>
+        </div>
+		
 		<table id="playlistsTable" class="playlistTable" style="float:left;">
 			<thead>
 				<tr>

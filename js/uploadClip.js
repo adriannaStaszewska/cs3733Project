@@ -25,7 +25,7 @@ function uploadClip(){
 	data["character"] = document.getElementById("uploadCharacter").value;
 	data["sentence"] = document.getElementById("uploadSentence").value;
 	var segments = document.getElementById('uploadForm').base64Encoding.value.split(',');
-	data["base64EncodedValue"] = segments[1];
+	data["base64EncodedFile"] = segments[1];
 	
 	var js = JSON.stringify(data);
 	console.log(js);

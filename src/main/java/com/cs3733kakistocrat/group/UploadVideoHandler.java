@@ -23,7 +23,6 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 	
 	@Override
 	public UploadVideoResponse handleRequest(UploadVideoRequest input, Context context) {
-		
 		UploadVideoResponse response;
 		
 		try {
