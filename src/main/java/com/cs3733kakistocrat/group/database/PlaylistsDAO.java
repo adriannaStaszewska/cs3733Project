@@ -49,7 +49,7 @@ public class PlaylistsDAO {
     	
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM playlist WHERE playlistName = ?;");
-            ps.setString(1, playlist.getName());
+            ps.setString(1, playlist.getPlaylistName());
             ResultSet resultSet = ps.executeQuery();
             
             // already present?
@@ -60,7 +60,7 @@ public class PlaylistsDAO {
             }
 
             ps = conn.prepareStatement("INSERT INTO playlist (playlistName) values(?);");
-            ps.setString(1, playlist.getName());
+            ps.setString(1, playlist.getPlaylistName());
             ps.execute();
             return true;
 
@@ -72,7 +72,7 @@ public class PlaylistsDAO {
     public boolean removePlaylist(Playlist playlist) throws Exception{
     	 try {
              PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist WHERE playlistName = ?;");
-             ps.setString(1, playlist.getName());
+             ps.setString(1, playlist.getPlaylistName());
              int numAffected = ps.executeUpdate();
              ps.close();
              

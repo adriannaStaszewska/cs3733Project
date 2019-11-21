@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 public class Playlist {
 
-	String name;
+	String playlistName;
 	ArrayList<Video> videos;
 	
-	public Playlist(String name) {
-		this.name = name;
+	public Playlist(String playlistName) {
+		this.playlistName = playlistName;
 	}
 	
-	public String getName() {
-		return name;
+	public String getPlaylistName() {
+		return playlistName;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPlaylistName(String playlistName) {
+		this.playlistName = playlistName;
 	}
 
 

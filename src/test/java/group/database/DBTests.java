@@ -20,8 +20,8 @@ public class DBTests {
 	    	Playlist playlist = new Playlist("Just test");
 	    	boolean p = dao.addPlaylist(playlist);
 	    	System.out.println("add playlist: " + p);
-	    	Playlist p2 = dao.getPlaylist(playlist.getName());
-	    	System.out.println("Playlist:" + p2.getName());
+	    	Playlist p2 = dao.getPlaylist(playlist.getPlaylistName());
+	    	System.out.println("Playlist:" + p2.getPlaylistName());
 	    	assertTrue (dao.removePlaylist(p2));
 	    	
 	    } catch (Exception e) {

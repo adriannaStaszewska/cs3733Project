@@ -94,3 +94,13 @@ function fillPlaylistVideos(row) {
 	console.log(name);
 	getVideosInPlaylist(name)
 }
+
+
+function clearPlaylists(){
+	var tableHeaderRowCount = 1;
+	var table = document.getElementById("playlistsTable");
+	var rowCount = table.rows.length;
+	for (var i = tableHeaderRowCount; i < rowCount; i++) {
+	    table.deleteRow(tableHeaderRowCount);
+	}
+}
