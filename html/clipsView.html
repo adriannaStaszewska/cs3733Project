@@ -52,7 +52,7 @@
         <div class="fullscreen-modal" id="fullmodal">
             <div class="Modal" id="uploadModal">
                 <div class="modal-content" id="uploadModalContent">
-                    <form name="modalForm">
+                    <form name="modalForm" id="uploadForm">
                         <input type="button" id="popUpClose2" value="X" onClick="JavaScript:closeModal(this)"><br>
                         Name:
                         <input type="text" name="name" id="uploadName"><br>
@@ -62,6 +62,7 @@
                         Sentence:
                         <input type="text" name="sentence" id="uploadSentence"><br>
                         <input type="button" value="Upload" onClick="JavaScript:handleUploadClip(this)">
+                    	<input name="base64Encoding" hidden value=""/>
                     </form>
                 </div>
             </div>
@@ -92,6 +93,27 @@
                 </div>
             </div>
         </div>
+        
+        <script>
+	     	// prepares the base64-encoded string and enabled button
+	    	function getBase64(file) {
+		      	var reader = new FileReader();
+		      	reader.readAsDataURL(file);
+		      	
+		      	reader.onload = function () {
+		      	  	document.getElementById("uploadForm").base64Encoding.value = reader.result;
+		      	};
+	        }
+	
+	        // When file is selected, stash base64 value in the encoding field.  
+	        function handleFileSelect(evt) {
+				var files = evt.target.files; 
+				getBase64(files[0]);
+	        }
+	        
+	        // register
+	        document.getElementById('uploadFile').addEventListener('change', handleFileSelect, false);
+        </script>
 		
     </body>
 

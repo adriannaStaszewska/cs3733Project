@@ -5,8 +5,9 @@ public class UploadVideoRequest {
 	String base64EncodedFile;
 	String character;
 	String sentence;
+	boolean remote;
 	
-	public UploadVideoRequest(String name, String base64EncodedFile, String character, String sentence) {
+	public UploadVideoRequest(String name, String base64EncodedFile, String character, String sentence, boolean remote) {
 		this.name = name;
 		this.base64EncodedFile = base64EncodedFile;
 		this.character = character;
@@ -48,5 +49,13 @@ public class UploadVideoRequest {
 
 	public String toString() {
 		return "UploadVideo(" + name + ")";
+	}
+	
+	public void setRemote(boolean remote) {
+		this.remote = remote;
+	}
+	
+	public boolean getRemote() {
+		return this.remote;
 	}
 }
