@@ -18,6 +18,7 @@
         <script type="text/javascript" src="../js/uploadClip.js"></script>
         <script type="text/javascript" src="../js/api.js"></script>
         <script type="text/javascript" src="../js/getVideos.js"></script>
+        <script type="text/javascript" src="../js/handlePlayVideo.js"></script>
         
         <script type="text/javascript">
 			function initialize() {  
@@ -72,7 +73,6 @@
 					   <th>Name</th>
 					   <th>Character</th>
 					   <th>Sentence</th>
-					   <th><input type="checkbox" /></th>
 					   <th>Remove?</th>
 				  </tr>
 			 </thead>
@@ -80,6 +80,20 @@
 				  
 			 </tbody>
 		</table>
+		
+		<div class="fullscreen-modal" id="videoPlayerModal">
+            <div class="Modal" id="playerModal">
+                <div class="modal-content" id="videoModalContent">
+                    <form name="modalForm">
+                        <input type="button" id="popUpClose3" value="X" onClick="JavaScript:closePlayModal(this)"><br>
+                    	<video id="player" width="320" height="240" controls>
+  							<source src="" type="video/ogg">
+						</video>
+                    </form>
+                </div>
+            </div>
+        </div>
+		
     </body>
 
 
