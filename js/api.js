@@ -4,3 +4,4 @@ var getVideosURL = base_url + "/Videos";
 var getPlaylistsURL = base_url + "/Playlists";
 var getRemotesURL = base_url + "/getRemoteURLs";
 var getVideosInPlaylistURL = base_url + "/listOfVideosInPlaylist";
+var uploadClipURL = base_url + "/Video";

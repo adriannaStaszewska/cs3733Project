@@ -55,12 +55,12 @@
                     <form name="modalForm">
                         <input type="button" id="popUpClose2" value="X" onClick="JavaScript:closeModal(this)"><br>
                         Name:
-                        <input type="text" name="name"><br>
-                        <input type="button" value="Select video" onClick="JavaScript:selectVideo(this)"><br>
+                        <input type="text" name="name" id="uploadName"><br>
+                        <input type="file" accept="video/ogg" name="file" id="uploadFile"><br>
                         Character:
-                        <input type="text" name="character"><br>
+                        <input type="text" name="character" id="uploadCharacter"><br>
                         Sentence:
-                        <input type="text" name="sentence"><br>
+                        <input type="text" name="sentence" id="uploadSentence"><br>
                         <input type="button" value="Upload" onClick="JavaScript:handleUploadClip(this)">
                     </form>
                 </div>

@@ -16,4 +16,39 @@ function handleUploadClip(e) {
     document.getElementById("uploadModal").style.visibility = 'hidden';
     document.getElementById("uploadModalContent").style.visibility = 'hidden';
     document.getElementById("fullmodal").style.visibility = 'hidden';
+    uploadClip();
+}
+
+function uploadClip(){
+	var data = {};
+	data["videoName"] = document.getElementById("uploadName").value;
+	data["character"] = document.getElementById("uploadCharacter").value;
+	data["sentence"] = document.getElementById("uploadSentence").value;
+//	data["videoFile"] document.getElementById("file");
+	data["remote"] = true;
+	
+	var js = JSON.stringify(data);
+	console.log(js);
+//	var xhr = new XMLHttpRequest();
+//	xhr.open("POST", uploadClipURL, true);
+//	
+//	xhr.send(js);
+//	
+//	 xhr.onloadend = function () {
+//		    console.log(xhr);
+//		    console.log(xhr.request);
+//		    if (xhr.readyState == XMLHttpRequest.DONE) {
+//		    	 if (xhr.status == 200) {
+//			      console.log ("XHR:" + xhr.responseText);
+//			      //processCreateResponse(xhr.responseText);
+//		    	 } else {
+//		    		 console.log("actual:" + xhr.responseText)
+//					  var js = JSON.parse(xhr.responseText);
+//					  var err = js["response"];
+//					  alert (err);
+//		    	 }
+//		    } else {
+//		      //processCreateResponse("N/A");
+//		    }
+//		  };
 }
