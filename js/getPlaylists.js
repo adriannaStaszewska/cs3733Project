@@ -29,15 +29,68 @@ function processPlaylistList(result) {
 	
 }
 
+function getVideosInPlaylist(name) {
+	var data = {};
+	data["playlistName"] = name;
+	var js = JSON.stringify(data);
+	
+	var xhr = new XMLHttpRequest();
+	console.log(getPlaylistsURL);
+   xhr.open("POST", getVideosInPlaylistURL, true);
+   xhr.send(js);
+	   
+   console.log("sent get videos in playlist request");
+	   
+   xhr.onloadend = function () {
+	   if (xhr.readyState == XMLHttpRequest.DONE) {
+		   console.log ("XHR:" + xhr.responseText);
+		   processPlaylistVideos(xhr.responseText);
+	   } else {
+		   processVideoList("N/A");
+	   }
+   };
+}
+
+function processPlaylistVideos(result) {
+	console.log("res:" + result);
+	var js = JSON.parse(result);
+	
+//	for (var i = 0; i < js.list.length; i++) {
+//		var constantJson = js.list[i];
+//	    console.log(constantJson);
+//	    insertPlaylistRow(constantJson["name"]);
+//	}
+	
+	
+}
+
 function insertPlaylistRow(rowInput) {
 	var table = document.getElementById("playlistTableBody");
 	var tr = table.insertRow(table.rows.length);
 	
 	var td = document.createElement("td");
-	td = tr.insertCell();
+	td = tr.insertCell(0);
+	
+	td.onclick = function (){
+		console.log(this.parentNode.rowIndex);
+		fillPlaylistVideos(this.parentNode.rowIndex - 1);
+	}
 	var element = document.createElement("P");
 	element.innerHTML = rowInput;
-	
 	td.appendChild(element);
 	
+	var td = document.createElement("td");
+	td = tr.insertCell(1);
+	var trash = document.createElement("input");
+	trash.setAttribute("type", "button");
+	trash.setAttribute("value", "Trash");
+	td.appendChild(trash);
+}
+
+
+
+function fillPlaylistVideos(row) {
+	var name = document.getElementById("playlistTableBody").rows[row].cells[0].innerText;
+	console.log(name);
+	getVideosInPlaylist(name)
 }

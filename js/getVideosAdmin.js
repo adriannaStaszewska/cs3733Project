@@ -39,15 +39,16 @@ function insertRow(rowArray) {
 	var table = document.getElementById("videosTableBody"); //"videosTable");
 	var tr = table.insertRow(table.rows.length);
 	
-	tr.onclick = function (){
-		console.log("here");
-		handlePlayModal(this.rowIndex);
-	}
+//	tr.onclick = function (){
+//		console.log("here");
+//		handlePlayModal(this.rowIndex);
+//	}
 	
 	for(var c = 0; c < rowArray.length; c++){
 		var td = document.createElement("td");
 		
 		td = tr.insertCell(c);
+		
 		if(c==3) {
 			var check = document.createElement("input");
 			check.setAttribute("type", "checkbox");
@@ -72,6 +73,11 @@ function insertRow(rowArray) {
 			url.style = "display:none;";
 			td.appendChild(url);
 		} else {
+			
+			td.onclick = function (){
+				handlePlayModal(this.parentNode.rowIndex);
+			}
+			
 			var element = document.createElement("P");
 			element.innerHTML = rowArray[c];
 			//element.setAttribute("value", tempArray[c]);

@@ -1,4 +1,5 @@
 function handlePlayModal(row) {
+
     document.getElementById("videoPlayerModal").style.visibility = 'visible';
     document.getElementById("playerModal").style.visibility = 'visible';
     document.getElementById("videoModalContent").style.visibility = 'visible';

@@ -11,6 +11,7 @@
 	
 	    <link rel="stylesheet" type="text/css" href="../css/nav.css">
 	    <link rel="stylesheet" type="text/css" href="../css/playlistTable.css">
+	    <link rel="stylesheet" type="text/css" href="../css/videoTable.css">
 	    
 	    <script type="text/javascript" src="../js/api.js"></script>
 	    <script type="text/javascript" src="../js/getPlaylists.js"></script>
@@ -28,16 +29,32 @@
 		    <a href="../html/playlistView.html" class="active">Playlists</a>
 		</div>
 		
-		<table id="playlistsTable" class="playlistTable">
+		<table id="playlistsTable" class="playlistTable" style="float:left;">
 			<thead>
 				<tr>
 					<th>Name</th>
+					<th>Remove?</th>
 				</tr>
 		 	</thead>
 		 	<tbody id="playlistTableBody">
 			  
 		 	</tbody>
 	</table>
+	
+	<table id="videosTableP" class="videoTable" style="float:left">
+		 <thead>
+			  <tr>
+				   <th>Name</th>
+				   <th>Character</th>
+				   <th>Sentence</th>
+				   <th>Remove?</th>
+			  </tr>
+		 </thead>
+		 <tbody id="videosTablePBody">
+			  
+		 </tbody>
+	</table>
+	
 	</body>
 
 </html>

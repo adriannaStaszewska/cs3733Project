@@ -38,14 +38,11 @@ function insertRow(rowArray) {
 	var table = document.getElementById("videosTableBody");
 	var tr = table.insertRow(table.rows.length);
 	
-	tr.onclick = function (){
-		handlePlayModal(this.rowIndex);
-	}
-	
 	for(var c = 0; c < rowArray.length; c++){
 		var td = document.createElement("td");
 		
 		td = tr.insertCell(c);
+		
 		if(c==3) {
 			var trash = document.createElement("input");
 			trash.setAttribute("type", "button");
@@ -60,6 +57,11 @@ function insertRow(rowArray) {
 			url.style = "display:none;";
 			td.appendChild(url);
 		} else {
+			
+			td.onclick = function (){
+				handlePlayModal(this.parentNode.rowIndex);
+			}
+			
 			var element = document.createElement("P");
 			element.innerHTML = rowArray[c];
 			//element.setAttribute("value", tempArray[c]);
