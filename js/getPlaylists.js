@@ -84,6 +84,10 @@ function insertPlaylistRow(rowInput) {
 	var trash = document.createElement("input");
 	trash.setAttribute("type", "button");
 	trash.setAttribute("value", "Trash");
+	trash.onclick = function (){
+		var name = document.getElementById("playlistsTable").rows[this.parentNode.parentNode.rowIndex].cells[0].innerText;
+		handleDeletePlaylist(name);
+	}
 	td.appendChild(trash);
 }
 

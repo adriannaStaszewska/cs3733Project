@@ -21,15 +21,13 @@ function handleNewPlaylist(e) {
 }
 
 function createPlaylist(name) {
-	
-	
 	var data = {};
 	data["playlistName"] = name;
 	
 	var js = JSON.stringify(data);
 	console.log(js);
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", createNewPlaylist, true);
+	xhr.open("POST", createNewPlaylistURL, true);
 	
 	xhr.send(js);
 	
@@ -41,7 +39,6 @@ function createPlaylist(name) {
 		      console.log ("XHR:" + xhr.responseText);
 		      clearPlaylists();
 		      getPlaylists();
-		  //processCreateResponse(xhr.responseText);
 		 } else {
 			 console.log("actual:" + xhr.responseText)
 		  var js = JSON.parse(xhr.responseText);
@@ -49,41 +46,6 @@ function createPlaylist(name) {
 				  alert (err);
 			 }
 		} else {
-		  //processCreateResponse("N/A");
 	    }
 	 };
 }
-
-//function uploadClip(){
-//	var data = {};
-//	data["name"] = document.getElementById("uploadName").value;
-//	data["character"] = document.getElementById("uploadCharacter").value;
-//	data["sentence"] = document.getElementById("uploadSentence").value;
-//	var segments = document.getElementById('uploadForm').base64Encoding.value.split(',');
-//	data["base64EncodedValue"] = segments[1];
-//	
-//	var js = JSON.stringify(data);
-//	console.log(js);
-//	var xhr = new XMLHttpRequest();
-//	xhr.open("POST", uploadClipURL, true);
-//	
-//	xhr.send(js);
-//	
-//	 xhr.onloadend = function () {
-//		    console.log(xhr);
-//		    console.log(xhr.request);
-//		    if (xhr.readyState == XMLHttpRequest.DONE) {
-//		    	 if (xhr.status == 200) {
-//			      console.log ("XHR:" + xhr.responseText);
-//			      //processCreateResponse(xhr.responseText);
-//		    	 } else {
-//		    		 console.log("actual:" + xhr.responseText)
-//					  var js = JSON.parse(xhr.responseText);
-//					  var err = js["response"];
-//					  alert (err);
-//		    	 }
-//		    } else {
-//		      //processCreateResponse("N/A");
-//		    }
-//		  };
-//}
