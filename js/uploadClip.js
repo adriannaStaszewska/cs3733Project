@@ -26,7 +26,6 @@ function uploadClip(){
 	data["sentence"] = document.getElementById("uploadSentence").value;
 	var segments = document.getElementById('uploadForm').base64Encoding.value.split(',');
 	data["base64EncodedValue"] = segments[1];
-	data["remote"] = false;
 	
 	var js = JSON.stringify(data);
 	console.log(js);
