@@ -17,8 +17,7 @@ public class ListAllPlaylistsHandler implements RequestHandler<Object,AllPlaylis
 	
 	List<Playlist> getAllPlaylists() throws Exception {
 		logger.log("in getAllPlaylists");
-		PlaylistsDAO dao = new PlaylistsDAO();
-		
+		PlaylistsDAO dao = new PlaylistsDAO();	
 		return dao.getAllPlaylists();
 	}
 	

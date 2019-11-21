@@ -109,8 +109,4 @@ public class PlaylistsDAO {
     	String name  = resultSet.getString("playlistName");
     	return new Playlist(name);
     }
-    
-    
-    
-
 }
