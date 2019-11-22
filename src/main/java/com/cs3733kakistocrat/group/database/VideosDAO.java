@@ -130,5 +130,29 @@ public class VideosDAO {
             throw new Exception("Failed in getting video: " + e.getMessage());
         }
     }
+    
+    public List<Video> searchVideos(String search) throws Exception {
+    	try {
+    		List<Video> videos = new ArrayList<>();
+    		
+    		Statement statement = conn.createStatement();
+    		String query = "SELECT * FROM video";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                Video v = generateVideo(resultSet);
+                if(v.getCharacter().equals(search) || v.getSentence().contains(search)){
+                	videos.add(v);
+                }
+            }
+            resultSet.close();
+            statement.close();
+    		
+    		return videos;
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		throw new Exception("Failed in searching videos: " + e.getMessage());
+    	}
+    }
 
 }
