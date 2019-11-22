@@ -36,7 +36,7 @@ public class DBTests {
 		try {
 			Video video = new Video("Test", "kakistocrat.com", "Me", "This is a sentence.");
 			boolean b = dao.addVideo(video);
-			Video v2 = dao.getVideo(video.getVideo_id());
+			Video v2 = dao.getVideo(video.getVideoID());
 			assertTrue (dao.deleteVideo(v2));
 	    	
 		} catch (Exception e) {

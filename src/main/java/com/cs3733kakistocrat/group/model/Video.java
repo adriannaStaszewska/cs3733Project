@@ -8,7 +8,7 @@ public class Video {
 	String url;
 	String character;
 	String sentence;
-	String video_id;
+	String videoID;
 	boolean remotely_accessible;
 	
 	
@@ -18,16 +18,16 @@ public class Video {
 		this.character = character;
 		this.sentence = sentence;
 		this.remotely_accessible = false;
-		this.video_id = UUID.randomUUID().toString();
+		this.videoID = UUID.randomUUID().toString();
 	}
 	
-	public Video(String name, String video_id) {
+	public Video(String name, String videoID) {
 		this.name = name;
 		this.url = "";
 		this.character = "";
 		this.sentence = "";
 		this.remotely_accessible = false;
-		this.video_id = video_id;
+		this.videoID = videoID;
 	}
 	
 	public Video(String name, String character, String sentence) {
@@ -36,7 +36,7 @@ public class Video {
 		this.character = character;
 		this.sentence = sentence;
 		this.remotely_accessible = false;
-		this.video_id = UUID.randomUUID().toString();
+		this.videoID = UUID.randomUUID().toString();
 	}
 	
 	
@@ -65,12 +65,12 @@ public class Video {
 		this.sentence = sentence;
 	}
 
-	public String getVideo_id() {
-		return video_id;
+	public String getVideoID() {
+		return videoID;
 	}
 
-	public void setVideo_id(String video_id) {
-		this.video_id = video_id;
+	public void setVideoID(String videoID) {
+		this.videoID = videoID;
 	}
 
 	public boolean isRemotely_accessible() {

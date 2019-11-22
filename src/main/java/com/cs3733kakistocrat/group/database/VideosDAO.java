@@ -64,11 +64,13 @@ public class VideosDAO {
 
     public boolean deleteVideo(Video video) throws Exception {
         try {
+        	System.out.println("Delete here1");
             PreparedStatement ps = conn.prepareStatement("DELETE FROM video WHERE video_id = ?;");
-            ps.setString(1, video.getVideo_id());
+            System.out.println("Delete: " + video.getVideoID());
+            ps.setString(1, video.getVideoID());
             int numAffected = ps.executeUpdate();
             ps.close();
-            
+            System.out.println("Delete here3");
             return (numAffected == 1);
 
         } catch (Exception e) {
@@ -78,9 +80,11 @@ public class VideosDAO {
     
     public boolean addVideo(Video video) throws Exception {
         try {
+        	System.out.println("Add here1");
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM video WHERE video_id = ?;");
-            ps.setString(1, video.getVideo_id());
+            ps.setString(1, video.getVideoID());
             ResultSet resultSet = ps.executeQuery();
+            System.out.println("Add: " + video.getVideoID());
             
             // already present?
             while (resultSet.next()) {
@@ -88,15 +92,15 @@ public class VideosDAO {
                 resultSet.close();
                 return false;
             }
-
+            System.out.println("Add here2");
             ps = conn.prepareStatement("INSERT INTO video (video_id, name, character, sentence, url, remotely_accessible) values(?,?,?,?,??);");
-            ps.setString(1,  video.getVideo_id());
+            ps.setString(1,  video.getVideoID());
             ps.setString(2,  video.getName());
             ps.setString(3,  video.getCharacter());
             ps.setString(4,  video.getSentence());
             ps.setString(5,  video.getUrl());
             ps.setBoolean(6, video.isRemotely_accessible());
-            
+            System.out.println("Delete here3");
             ps.execute();
             return true;
 

@@ -28,6 +28,7 @@ function processVideoList(result) {
 	    tempArray.push(constantJson["sentence"]);
 	    tempArray.push("Trash");
 	    tempArray.push(constantJson["url"])
+	    tempArray.push(constantJson["videoID"])
 	    insertRow(tempArray);
 	}
 	
@@ -48,8 +49,7 @@ function insertRow(rowArray) {
 			trash.setAttribute("type", "button");
 			trash.setAttribute("value", "Trash");
 			trash.onclick = function (){
-				var id = "here";
-//				var name = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].cells[0];
+				var id = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].cells[5].getElementsByTagName("p")[0].innerHTML
 				handleDeleteVideo(id);
 			}
 			td.appendChild(trash);
@@ -61,6 +61,14 @@ function insertRow(rowArray) {
 //			url.innerHTML = rowArray[c];
 			url.style = "display:none;";
 			td.appendChild(url);
+		}  else if(c == 5){
+			var id = document.createElement("P");
+			var id2 = document.createTextNode(rowArray[c]);
+			id.append(id2);
+			id.setAttribute("id", "par");
+//			url.innerHTML = rowArray[c];
+			id.style = "display:none;";
+			td.appendChild(id);
 		} else {
 			
 			td.onclick = function (){
