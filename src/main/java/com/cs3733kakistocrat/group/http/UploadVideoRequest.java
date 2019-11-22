@@ -1,12 +1,16 @@
 package com.cs3733kakistocrat.group.http;
 
 public class UploadVideoRequest {
+	
 	String videoName;
 	String videoFile;
 	String character;
 	String sentence;
 	Boolean remote;
 
+	public UploadVideoRequest() {
+	
+	}
 
 	public UploadVideoRequest(String videoName, String videoFile, String character, String sentence, Boolean remote) {
 		this.videoName = videoName;
