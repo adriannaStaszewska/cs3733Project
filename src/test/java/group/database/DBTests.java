@@ -5,8 +5,10 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import com.cs3733kakistocrat.group.database.PlaylistsDAO;
+import com.cs3733kakistocrat.group.database.RemotesDAO;
 import com.cs3733kakistocrat.group.database.VideosDAO;
 import com.cs3733kakistocrat.group.model.Playlist;
+import com.cs3733kakistocrat.group.model.RemoteSite;
 import com.cs3733kakistocrat.group.model.Video;
 
 
@@ -43,7 +45,22 @@ public class DBTests {
 	    	fail ("didn't work:" + e.getMessage());
 	    }
 		
-		
 	}
 
+	@Test
+	public void testCreateRemotes() {
+		RemotesDAO dao = new RemotesDAO();
+		
+		try {
+	    	RemoteSite rs = new RemoteSite("Some test link");
+	    	boolean b = dao.addRemote(rs);
+	    	System.out.println("add remote site: " + b);
+	    	RemoteSite rs2 = dao.getRemote(rs.getUrl());
+	    	System.out.println("Remote:" + rs2.getUrl());
+	    	assertTrue (dao.removeRemote(rs2));
+	    	
+	    } catch (Exception e) {
+	    	fail ("didn't work:" + e.getMessage());
+	    }
+	}
 }
