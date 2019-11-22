@@ -1,34 +1,43 @@
 package com.cs3733kakistocrat.group.http;
 
 public class UploadVideoRequest {
-	String name;
-	String base64EncodedFile;
+	String videoName;
+	String videoFile;
 	String character;
 	String sentence;
-	
-	public UploadVideoRequest(String name, String base64EncodedFile, String character, String sentence) {
-		this.name = name;
-		this.base64EncodedFile = base64EncodedFile;
+	Boolean remote;
+
+
+	public UploadVideoRequest(String videoName, String videoFile, String character, String sentence, Boolean remote) {
+		this.videoName = videoName;
+		this.videoFile = videoFile;
 		this.character = character;
 		this.sentence = sentence;
+		this.remote = remote;
 	}
 
-	public String getName() {
-		return name;
+	public UploadVideoRequest(String videoName, String videoFile, String character, String sentence) {
+		this.videoName = videoName;
+		this.videoFile = videoFile;
+		this.character = character;
+		this.sentence = sentence;
+		this.remote = false;
+	}
+	public String getVideoName() {
+		return videoName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setVideoName(String videoName) {
+		this.videoName = videoName;
 	}
 
-	public String getBase64EncodedFile() {
-		return base64EncodedFile;
+	public String getVideoFile() {
+		return videoFile;
 	}
 
-	public void setBase64EncodedFile(String base64EncodedFile) {
-		this.base64EncodedFile = base64EncodedFile;
+	public void setVideoFile(String videoFile) {
+		this.videoFile = videoFile;
 	}
-
 	public String getCharacter() {
 		return character;
 	}
@@ -45,8 +54,15 @@ public class UploadVideoRequest {
 		this.sentence = sentence;
 	}
 
+	public Boolean getRemote() {
+		return remote;
+	}
+
+	public void setRemote(Boolean remote) {
+		this.remote = remote;
+	}
 
 	public String toString() {
-		return "UploadVideo(" + name + ")";
+		return "UploadVideo(" + videoName + ")";
 	}
 }

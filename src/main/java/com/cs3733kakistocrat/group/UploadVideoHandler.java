@@ -26,15 +26,15 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 		UploadVideoResponse response;
 		
 		try {
-			byte[] encoded = java.util.Base64.getDecoder().decode(input.getBase64EncodedFile());
-			Video video = new Video(input.getName(), input.getCharacter(), input.getSentence());
-			if (uploadVideo(input.getName(), encoded, video)) {
-				response = new UploadVideoResponse(input.getName());
+			byte[] encoded = java.util.Base64.getDecoder().decode(input.getVideoFile());
+			Video video = new Video(input.getVideoName(), input.getCharacter(), input.getSentence());
+			if (uploadVideo(input.getVideoName(), encoded, video)) {
+				response = new UploadVideoResponse(input.getVideoName());
 			} else {
-				response = new UploadVideoResponse(input.getName(), 422);
+				response = new UploadVideoResponse(input.getVideoName(), 422);
 			}
 		}catch (Exception e) {
-			response = new UploadVideoResponse("Unable to upload video: " + input.getName()+ " (" + e.getMessage() + ")", 400);
+			response = new UploadVideoResponse("Unable to upload video: " + input.getVideoName()+ " (" + e.getMessage() + ")", 400);
 		}
 		return response;
 	}
@@ -57,7 +57,7 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 		PutObjectResult res = s3.putObject(new PutObjectRequest("3733kakistocrat", "videos/" + name, bais, omd));
 		
 		//now have to actually upload to database 
-		//!!! might not be the actual url, need to check
+		//!!! might not be the actual url, need to test
 		String url = "3733kakistocrat/videos/" + name + bais + omd;
 		video.setUrl(url);
 		dao.addVideo(video);
