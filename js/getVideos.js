@@ -47,6 +47,11 @@ function insertRow(rowArray) {
 			var trash = document.createElement("input");
 			trash.setAttribute("type", "button");
 			trash.setAttribute("value", "Trash");
+			trash.onclick = function (){
+				var id = "here";
+//				var name = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].cells[0];
+				handleDeleteVideo(id);
+			}
 			td.appendChild(trash);
 		} else if(c == 4){
 			var url = document.createElement("P");
@@ -68,5 +73,14 @@ function insertRow(rowArray) {
 			
 			td.appendChild(element);
 		}
+	}
+}
+
+function clearVideos(){
+	var tableHeaderRowCount = 1;
+	var table = document.getElementById("videosTable");
+	var rowCount = table.rows.length;
+	for (var i = tableHeaderRowCount; i < rowCount; i++) {
+	    table.deleteRow(tableHeaderRowCount);
 	}
 }
