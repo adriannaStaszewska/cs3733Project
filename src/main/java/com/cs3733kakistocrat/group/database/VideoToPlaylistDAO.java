@@ -58,6 +58,22 @@ public class VideoToPlaylistDAO {
         }
     }
     
+    
+    public boolean removeVideo(Video video, Playlist playlist, int position) throws Exception {
+        try {
+        	//this removes all videos with videoID in the playlist
+        	PreparedStatement ps = conn.prepareStatement("DELETE FROM video WHERE video_id = ? AND playlist = ?;");
+            ps.setString(1, video.getVideoID());
+            ps.setString(2,  playlist.getPlaylistName());
+            ps.executeUpdate();
+            ps.close();
+            return true;
+
+        } catch (Exception e) {
+            throw new Exception("Failed to add video to the playlist: " + e.getMessage());
+        }
+    }
+    
     private Video generateVideo(ResultSet resultSet) throws Exception {
     	String video_id = resultSet.getString("video_id");
     	VideosDAO videoDAO = new VideosDAO();

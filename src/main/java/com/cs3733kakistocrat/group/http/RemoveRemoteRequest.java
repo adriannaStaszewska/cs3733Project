@@ -1,7 +1,7 @@
 package com.cs3733kakistocrat.group.http;
 
 public class RemoveRemoteRequest {
-String url;
+	String url;
 	
 	public String getUrl() { return url; }
 	public void setPlaylistName(String playlistName) { this.url = url; }

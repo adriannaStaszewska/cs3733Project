@@ -30,6 +30,15 @@ public class Video {
 		this.videoID = videoID;
 	}
 	
+	public Video(String videoID) {
+		this.name = "";
+		this.url = "";
+		this.character = "";
+		this.sentence = "";
+		this.remotely_accessible = false;
+		this.videoID = videoID;
+	}
+	
 	public Video(String name, String character, String sentence) {
 		this.name = name;
 		this.url = "";
