@@ -93,6 +93,7 @@ public class VideosDAO {
                 return false;
             }
             System.out.println("Add here2");
+            System.out.println(video.getVideoID() + video.getName() + video.getCharacter() + video.getSentence() + video.getUrl() + video.isRemotely_accessible());
             ps = conn.prepareStatement("INSERT INTO video (video_id, name, character, sentence, url, remotely_accessible) values(?,?,?,?,?,?);");
             ps.setString(1,  video.getVideoID());
             ps.setString(2,  video.getName());

@@ -70,7 +70,8 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 		System.out.println("Here6");
 		//now have to actually upload to database 
 		//!!! might not be the actual url, need to test
-		String url = "3733kakistocrat/videos/" + name + bais + omd;
+		System.out.println(name);
+		String url = "https://3733kakistocrat.s3.us-east-2.amazonaws.com/videos/" + name + ".ogg";
 		video.setUrl(url);
 		dao.addVideo(video);
 		
