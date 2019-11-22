@@ -21,11 +21,11 @@ function handleUploadClip(e) {
 
 function uploadClip(){
 	var data = {};
-	data["name"] = document.getElementById("uploadName").value;
+	data["videoName"] = document.getElementById("uploadName").value;
 	data["character"] = document.getElementById("uploadCharacter").value;
 	data["sentence"] = document.getElementById("uploadSentence").value;
 	var segments = document.getElementById('uploadForm').base64Encoding.value.split(',');
-	data["base64EncodedFile"] = segments[1];
+	data["videoFile"] = segments[1];
 	
 	var js = JSON.stringify(data);
 	console.log(js);

@@ -7,3 +7,4 @@ var getVideosInPlaylistURL = base_url + "/listOfVideosInPlaylist";
 var uploadClipURL = base_url + "/Video";
 var createNewPlaylistURL = base_url + "/Playlist";
 var removePlaylistURL = base_url + "/deletePlaylist";
+var deleteVideoURL = base_url + "/deleteVideo";
