@@ -44,6 +44,7 @@ function getVideosInPlaylist(name) {
    xhr.onloadend = function () {
 	   if (xhr.readyState == XMLHttpRequest.DONE) {
 		   console.log ("XHR:" + xhr.responseText);
+		   clearPlaylistVideos();
 		   processPlaylistVideos(xhr.responseText);
 	   } else {
 		   processVideoList("N/A");
@@ -52,16 +53,98 @@ function getVideosInPlaylist(name) {
 }
 
 function processPlaylistVideos(result) {
+	console.log("Process videos in playlist");
 	console.log("res:" + result);
 	var js = JSON.parse(result);
-	
-//	for (var i = 0; i < js.list.length; i++) {
-//		var constantJson = js.list[i];
+//	console.log("Length: " + js.list.length);
+	for (var i = 0; i < js.list.length; i++) {
+		var constantJson = js.list[i];
 //	    console.log(constantJson);
-//	    insertPlaylistRow(constantJson["name"]);
+	    var temp2Array = [];
+	    temp2Array.push(constantJson["name"]);
+	    temp2Array.push(constantJson["character"]);
+	    temp2Array.push(constantJson["sentence"]);
+	    temp2Array.push("Trash");
+	    temp2Array.push(constantJson["url"])
+	    temp2Array.push(constantJson["videoID"])
+//	    console.log(tempArray);
+	    insertVideoPlaylistRow(temp2Array);
+	}
+	
+	
+}
+
+function insertVideoPlaylistRow(inArray) {
+	var table = document.getElementById("videosTablePBody");
+	var tr = table.insertRow(table.rows.length);
+	
+//	var td = document.createElement("td");
+//	td = tr.insertCell(0);
+//	
+//	td.onclick = function (){
+//
 //	}
+//	var element = document.createElement("P");
+//	element.innerHTML = rowInput;
+//	td.appendChild(element);
+//	
+//	var td = document.createElement("td");
+//	td = tr.insertCell(1);
+//	var trash = document.createElement("input");
+//	trash.setAttribute("type", "button");
+//	trash.setAttribute("value", "Trash");
+//	trash.onclick = function (){
+//		var name = document.getElementById("playlistsTable").rows[this.parentNode.parentNode.rowIndex].cells[0].innerText;
+//		handleDeletePlaylist(name);
+//	}
+//	td.appendChild(trash);
+	
+	//--------------------------------------
+	for(var c = 0; c < inArray.length; c++){
+		var td = document.createElement("td");
+		
+		td = tr.insertCell(c);
+		
+		if(c==3) {
+			var trash = document.createElement("input");
+			trash.setAttribute("type", "button");
+			trash.setAttribute("value", "Trash");
+			trash.onclick = function (){
+//				var id = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].cells[5].getElementsByTagName("p")[0].innerHTML
+//				handleDeleteVideo(id);
+			}
+			td.appendChild(trash);
+		} else if(c == 4){
+			var url = document.createElement("P");
+			var url2 = document.createTextNode(inArray[c]);
+			url.append(url2);
+			url.setAttribute("id", "par");
+//			url.innerHTML = rowArray[c];
+			url.style = "display:none;";
+			td.appendChild(url);
+		}  else if(c == 5){
+			var id = document.createElement("P");
+			var id2 = document.createTextNode(inArray[c]);
+			id.append(id2);
+			id.setAttribute("id", "par");
+//			url.innerHTML = rowArray[c];
+			id.style = "display:none;";
+			td.appendChild(id);
+		} else {
+			
+			td.onclick = function (){
+//				handlePlayModal(this.parentNode.rowIndex);
+			}
+			
+			var element = document.createElement("P");
+			element.innerHTML = inArray[c];
+			//element.setAttribute("value", tempArray[c]);
+			
+			td.appendChild(element);
+		}
 	
 	
+	}
 }
 
 function insertPlaylistRow(rowInput) {
@@ -116,6 +199,15 @@ function fillPlaylistVideos(row) {
 function clearPlaylists(){
 	var tableHeaderRowCount = 1;
 	var table = document.getElementById("playlistsTable");
+	var rowCount = table.rows.length;
+	for (var i = tableHeaderRowCount; i < rowCount; i++) {
+	    table.deleteRow(tableHeaderRowCount);
+	}
+}
+
+function clearPlaylistVideos(){
+	var tableHeaderRowCount = 1;
+	var table = document.getElementById("videosTableP");
 	var rowCount = table.rows.length;
 	for (var i = tableHeaderRowCount; i < rowCount; i++) {
 	    table.deleteRow(tableHeaderRowCount);
