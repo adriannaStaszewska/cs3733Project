@@ -18,6 +18,7 @@
 	    <script type="text/javascript" src="../js/getPlaylists.js"></script>
 	    <script type="text/javascript" src="../js/handleCreatePlaylist.js"></script>
 	    <script type="text/javascript" src="../js/handleDeletePlaylist.js"></script>
+	    <script type="text/javascript" src="../js/addVideoToPlaylist.js"></script>
 	    
 	    <script type="text/javascript">
 			function initialize() {  
@@ -74,6 +75,33 @@
 			  
 		 </tbody>
 	</table>
+	
+	<form name="addVideoToPlaylist">
+		<input id="addVideoToPlaylistButton" type="button" value="+" onClick="JavaScript:addVideoToSelectedPlaylist(this)" style="visibility: hidden;">
+	</form>
+	
+	<div class="fullscreen-modal" id="addModal">
+            <div class="Modal" id="playlistAddModal">
+                <div class="modal-content" id="playlistAddModalContent">
+                    <form name="modalForm" id="playlistAddForm">
+                        <input type="button" id="popUpClose2" value="X" onClick="JavaScript:closeAddModal(this)"><br>
+                        <table id="addVideosTableP" class="videoTable" style="float:left">
+		 					<thead>
+			  					<tr>
+				   					<th>Name</th>
+								   	<th>Character</th>
+								   	<th>Sentence</th>
+			  					</tr>
+		 					</thead>
+		 					<tbody id="addVideosTablePBody">
+			  					
+		 					</tbody>
+						</table>
+                        <input type="button" value="Add" onClick="JavaScript:addVideo(this)">
+                    </form>
+                </div>
+            </div>
+        </div>
 	
 	</body>
 

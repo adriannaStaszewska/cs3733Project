@@ -35,7 +35,7 @@ function getVideosInPlaylist(name) {
 	var js = JSON.stringify(data);
 	
 	var xhr = new XMLHttpRequest();
-	console.log(getPlaylistsURL);
+	console.log(getVideosInPlaylistURL);
    xhr.open("POST", getVideosInPlaylistURL, true);
    xhr.send(js);
 	   
@@ -72,8 +72,21 @@ function insertPlaylistRow(rowInput) {
 	td = tr.insertCell(0);
 	
 	td.onclick = function (){
+		var tableTemp = document.getElementById("playlistTableBody");
+		var rowId = this.parentNode.rowIndex - 1;
+		var rowsNotSelected = tableTemp.getElementsByTagName('tr');
+        for (var row = 0; row < rowsNotSelected.length; row++) {
+            rowsNotSelected[row].style.backgroundColor = "white";
+            rowsNotSelected[row].classList.remove('selected');
+        }
+        var rowSelected = tableTemp.getElementsByTagName('tr')[rowId];
+        rowSelected.style.backgroundColor = "orange";
+        rowSelected.className += "selected";
+		
 		console.log(this.parentNode.rowIndex);
 		fillPlaylistVideos(this.parentNode.rowIndex - 1);
+		
+		document.getElementById("addVideoToPlaylistButton").style.visibility = 'visible';
 	}
 	var element = document.createElement("P");
 	element.innerHTML = rowInput;

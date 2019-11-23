@@ -28,3 +28,7 @@
 .playlistTable td {
 	color: black;
 }
+
+.playlistTable selected {
+	background-color: orange;
+}
