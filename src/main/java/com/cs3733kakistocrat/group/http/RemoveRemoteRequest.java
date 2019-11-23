@@ -13,6 +13,10 @@ public class RemoveRemoteRequest {
 		this.url= url;
 	}
 	
+	public void setUrl (String url) {
+		this.url= url;
+	}
+	
 	public String toString() {
 		return "DeleteRemote(" + url + ")";
 	}

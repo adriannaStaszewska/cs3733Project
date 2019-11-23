@@ -3,12 +3,16 @@ function handleModal(e) {
     document.getElementById("uploadModal").style.visibility = 'visible';
     document.getElementById("uploadModalContent").style.visibility = 'visible';
     document.getElementById("fullmodal").style.visibility = 'visible';
+    document.getElementById("uploadModal").style.zIndex = '1';
+    document.getElementById("fullmodal").style.zIndex = '3';
 }
 
 function closeModal(e){
     document.getElementById("uploadModal").style.visibility = 'hidden';
     document.getElementById("uploadModalContent").style.visibility = 'hidden';
     document.getElementById("fullmodal").style.visibility = 'hidden';
+    document.getElementById("uploadModal").style.zIndex = '-1';
+    document.getElementById("fullmodal").style.zIndex = '-1';
 }
 
 function handleUploadClip(e) {
@@ -16,6 +20,8 @@ function handleUploadClip(e) {
     document.getElementById("uploadModal").style.visibility = 'hidden';
     document.getElementById("uploadModalContent").style.visibility = 'hidden';
     document.getElementById("fullmodal").style.visibility = 'hidden';
+    document.getElementById("uploadModal").style.zIndex = '-1';
+    document.getElementById("fullmodal").style.zIndex = '-1';
     uploadClip();
 }
 

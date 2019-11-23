@@ -10,7 +10,7 @@ function getRemotes() {
 		   console.log ("XHR:" + xhr.responseText);
 		   processRemoteList(xhr.responseText);
 	   } else {
-		   processVideoList("N/A");
+		   processRemoteList("N/A");
 	   }
    };
 }
@@ -39,4 +39,24 @@ function insertRemoteRow(rowInput) {
 	
 	td.appendChild(element);
 	
+	var td = document.createElement("td");
+	td = tr.insertCell();
+	var trash = document.createElement("input");
+	trash.setAttribute("type", "button");
+	trash.setAttribute("value", "Trash");
+	trash.onclick = function (){
+		var id = document.getElementById("remoteTable").rows[this.parentNode.parentNode.rowIndex].cells[0].innerText;
+		removeRemote(id);
+	}
+	td.appendChild(trash);
+	
+}
+
+function clearRemotes(){
+	var tableHeaderRowCount = 1;
+	var table = document.getElementById("remoteTable");
+	var rowCount = table.rows.length;
+	for (var i = tableHeaderRowCount; i < rowCount; i++) {
+	    table.deleteRow(tableHeaderRowCount);
+	}
 }

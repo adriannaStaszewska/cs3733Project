@@ -62,7 +62,8 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 		System.out.println("Here5");
 		//in S3 bucket
 		try {
-		PutObjectResult res = s3.putObject(new PutObjectRequest("3733kakistocrat", "videos/" + name, bais, omd));
+			PutObjectResult res = s3.putObject(new PutObjectRequest("3733kakistocrat", "videos/" + name + ".ogg", bais, omd));
+		
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
 			return false;

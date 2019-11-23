@@ -17,6 +17,7 @@ public class CreateRemoteHandler implements RequestHandler<CreateRemoteRequest,C
 		CreateRemoteResponse response;
 		
 		try {
+			System.out.println(input.getUrl());
 			if (createRemoteSite(input.getUrl())) {
 				response = new CreateRemoteResponse(input.getUrl());
 			} else {

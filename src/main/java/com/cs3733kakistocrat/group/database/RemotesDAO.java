@@ -59,6 +59,7 @@ public class RemotesDAO {
 				resultSet.close();
 				return false;
 			}
+			System.out.println(remote.getUrl());
 			ps = conn.prepareStatement("INSERT INTO remote_url (url) values(?);");
 			ps.setString(1, remote.getUrl());
 			ps.execute();
@@ -91,7 +92,7 @@ public class RemotesDAO {
     }
     public boolean removeRemote(RemoteSite remote) throws Exception{
    	 try {
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist WHERE playlistName = ?;");
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM remote_url WHERE url = ?;");
             ps.setString(1, remote.getUrl());
             int numAffected = ps.executeUpdate();
             ps.close();

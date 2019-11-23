@@ -3,12 +3,16 @@ function handlePlaylistModal(e) {
     document.getElementById("playlistModal").style.visibility = 'visible';
     document.getElementById("playlistModalContent").style.visibility = 'visible';
     document.getElementById("fullmodal").style.visibility = 'visible';
+    document.getElementById("playlistModal").style.zIndex = '1';
+    document.getElementById("fullmodal").style.zIndex = '3';
 }
 
 function closeModal(e){
     document.getElementById("playlistModal").style.visibility = 'hidden';
     document.getElementById("playlistModalContent").style.visibility = 'hidden';
     document.getElementById("fullmodal").style.visibility = 'hidden';
+    document.getElementById("playlistModal").style.zIndex = '-1';
+    document.getElementById("fullmodal").style.zIndex = '-1';
 }
 
 function handleNewPlaylist(e) {
@@ -16,6 +20,8 @@ function handleNewPlaylist(e) {
     document.getElementById("playlistModal").style.visibility = 'hidden';
     document.getElementById("playlistModalContent").style.visibility = 'hidden';
     document.getElementById("fullmodal").style.visibility = 'hidden';
+    document.getElementById("playlistModal").style.zIndex = '-1';
+    document.getElementById("fullmodal").style.zIndex = '-1';
     createPlaylist(document.getElementById("playlistName").value);
     document.getElementById("playlistName").value = "";
 }

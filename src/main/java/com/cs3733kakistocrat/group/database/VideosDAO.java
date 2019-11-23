@@ -101,8 +101,9 @@ public class VideosDAO {
             ps.setString(4,  video.getSentence());
             ps.setString(5,  video.getUrl());
             ps.setBoolean(6, video.isRemotely_accessible());
-            System.out.println("Delete here3");
+            System.out.println("Add here3");
             ps.execute();
+            System.out.println("Add here4");
             return true;
 
         } catch (Exception e) {

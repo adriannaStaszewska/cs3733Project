@@ -12,12 +12,13 @@
         <link rel="stylesheet" type="text/css" href="../css/nav.css">
         <link rel="stylesheet" type="text/css" href="../css/uploadPopUp.css">
         <link rel="stylesheet" type="text/css" href="../css/modal.css">
-        <link rel="stylesheet" type="text/css" href="../css/videoTable.css">
+        <link rel="stylesheet" type="text/css" href="../css/remoteTable.css">
+        
         <script type="text/javascript" src="../js/api.js"></script>
         <script type="text/javascript" src="../js/getVideos.js"></script>
         <script type="text/javascript" src="../js/getRemotes.js"></script>
-        
         <script type="text/javascript" src="../js/registerRemote.js"></script>
+        <script type="text/javascript" src="../js/removeRemote.js"></script>
         
         <script type="text/javascript">
 			function initialize() {  
@@ -43,7 +44,7 @@
                     <form name="registerRemoteForm">
                         <input type="button" id="popUpClose2" value="X" onClick="JavaScript:closeModal(this)"><br>
                         URL:
-                        <input type="text" name="url"><br>
+                        <input type="text" name="url" id="urlField"><br>
                         <input type="button" value="Register" onClick="JavaScript:handleRegisterRemoteSite(this)">
                     </form>
                 </div>

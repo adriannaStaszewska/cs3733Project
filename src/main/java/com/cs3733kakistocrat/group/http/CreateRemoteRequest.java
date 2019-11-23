@@ -9,8 +9,12 @@ public class CreateRemoteRequest {
 	public CreateRemoteRequest() {
 	}
 	
-	public CreateRemoteRequest (String remote) {
-		this.url = remote;
+	public CreateRemoteRequest (String url) {
+		this.url = url;
+	}
+	
+	public void setUrl (String url) {
+		this.url = url;
 	}
 	
 	public String toString() {

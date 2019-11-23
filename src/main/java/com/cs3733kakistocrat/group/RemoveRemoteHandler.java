@@ -32,7 +32,7 @@ public class RemoveRemoteHandler implements RequestHandler<RemoveRemoteRequest,R
 				response = new RemoveRemoteResponse(req.getUrl(), 422, "Unable to delete remote site.");
 			}
 		} catch (Exception e) {
-			response = new RemoveRemoteResponse(req.getUrl(), 403, "Unable to delete playlist: " + req.getUrl() + "(" + e.getMessage() + ")");
+			response = new RemoveRemoteResponse(req.getUrl(), 403, "Unable to delete remote site: " + req.getUrl() + "(" + e.getMessage() + ")");
 		}
 
 		return response;
