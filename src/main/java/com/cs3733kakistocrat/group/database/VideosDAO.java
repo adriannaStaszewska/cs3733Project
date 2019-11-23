@@ -65,13 +65,16 @@ public class VideosDAO {
 
     public boolean deleteVideo(Video video) throws Exception {
         try {
-        	System.out.println("Delete here1");
             PreparedStatement ps = conn.prepareStatement("DELETE FROM video WHERE video_id = ?;");
             System.out.println("Delete: " + video.getVideoID());
             ps.setString(1, video.getVideoID());
             int numAffected = ps.executeUpdate();
+            
+            PreparedStatement ps2 = conn.prepareStatement("DELETE FROM playlist_video WHERE video_id = ?;");
+            ps.setString(1, video.getVideoID());
+            ps.executeUpdate();
             ps.close();
-            System.out.println("Delete here3");
+            ps.close();
             return (numAffected == 1);
 
         } catch (Exception e) {
@@ -150,6 +153,16 @@ public class VideosDAO {
     		e.printStackTrace();
     		throw new Exception("Failed in searching videos: " + e.getMessage());
     	}
+    }
+    
+    public boolean updateRemote(String videoID, boolean status) throws Exception {
+    	 Video video = null;
+         PreparedStatement ps = conn.prepareStatement("UPDATE video SET remotely_accessible = ? WHERE video_id=?;");
+         ps.setString(1,  videoID);
+         ResultSet resultSet = ps.executeQuery();
+         return true;
+         
+    	
     }
 
 }
