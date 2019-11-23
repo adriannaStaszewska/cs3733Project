@@ -56,10 +56,11 @@ public class VideosDAO {
     private Video generateVideo(ResultSet resultSet) throws Exception {
     	String name  = resultSet.getString("name");
     	String URL = resultSet.getString("url");
-    	String character = resultSet.getString("character");
+    	String character = resultSet.getString("characterName");
     	String sentence = resultSet.getString("sentence");
+    	String videoID = resultSet.getString("video_id");
     	
-    	return new Video (name, URL, character, sentence);
+    	return new Video (videoID, name, URL, character, sentence);
     }
 
     public boolean deleteVideo(Video video) throws Exception {
@@ -80,11 +81,9 @@ public class VideosDAO {
     
     public boolean addVideo(Video video) throws Exception {
         try {
-        	System.out.println("Add here1");
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM video WHERE video_id = ?;");
             ps.setString(1, video.getVideoID());
             ResultSet resultSet = ps.executeQuery();
-            System.out.println("Add: " + video.getVideoID());
             
             // already present?
             while (resultSet.next()) {
@@ -92,18 +91,15 @@ public class VideosDAO {
                 resultSet.close();
                 return false;
             }
-            System.out.println("Add here2");
-            System.out.println(video.getVideoID() + video.getName() + video.getCharacter() + video.getSentence() + video.getUrl() + video.isRemotely_accessible());
-            ps = conn.prepareStatement("INSERT INTO video (video_id, name, character, sentence, url, remotely_accessible) values(?,?,?,?,?,?);");
+
+            ps = conn.prepareStatement("INSERT INTO video (video_id, name, characterName, sentence, url, remotely_accessible) values(?, ?, ?, ?, ?, ?);");
             ps.setString(1,  video.getVideoID());
             ps.setString(2,  video.getName());
             ps.setString(3,  video.getCharacter());
             ps.setString(4,  video.getSentence());
             ps.setString(5,  video.getUrl());
             ps.setBoolean(6, video.isRemotely_accessible());
-            System.out.println("Add here3");
             ps.execute();
-            System.out.println("Add here4");
             return true;
 
         } catch (Exception e) {

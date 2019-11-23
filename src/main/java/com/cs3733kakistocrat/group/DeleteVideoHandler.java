@@ -22,7 +22,7 @@ public class DeleteVideoHandler implements RequestHandler<DeleteVideoRequest,Del
 		logger.log(req.toString());
 
 		VideosDAO dao = new VideosDAO();
-		Video video = new Video(req.getName(), req.getVideo_id());
+		Video video = new Video(req.getName(), req.getVideoID());
 		
 		try {
 			if (dao.deleteVideo(video)) {

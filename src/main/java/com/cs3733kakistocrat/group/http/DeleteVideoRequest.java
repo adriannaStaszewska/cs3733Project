@@ -2,21 +2,21 @@ package com.cs3733kakistocrat.group.http;
 
 public class DeleteVideoRequest {
 	String name;
-	String video_id;
+	String videoID;
 	
 	public String getName( ) { return name; }
 	public void setName(String name) { this.name = name; }
 	
-	public String getVideo_id() {
-		return video_id;
+	public String getVideoID() {
+		return videoID;
 	}
-	public void setVideo_id(String video_id) {
-		this.video_id = video_id;
+	public void setVideoID(String videoID) {
+		this.videoID = videoID;
 	}
 	public DeleteVideoRequest() {
 	}
 	
-	public DeleteVideoRequest (String name, String video_id) {
+	public DeleteVideoRequest (String name, String videoID) {
 		this.name = name;
 	}
 	

@@ -11,6 +11,14 @@ public class Video {
 	String videoID;
 	boolean remotely_accessible;
 	
+	public Video(String videoID, String name, String url, String character, String sentence) {
+		this.name = name;
+		this.url = url;
+		this.character = character;
+		this.sentence = sentence;
+		this.remotely_accessible = false;
+		this.videoID = videoID;
+	}
 	
 	public Video(String name, String url, String character, String sentence) {
 		this.name = name;

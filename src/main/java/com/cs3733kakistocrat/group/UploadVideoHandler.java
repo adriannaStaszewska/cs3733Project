@@ -8,6 +8,7 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
@@ -63,7 +64,8 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 		//in S3 bucket
 		try {
 			PutObjectResult res = s3.putObject(new PutObjectRequest("3733kakistocrat", "videos/" + name + ".ogg", bais, omd));
-		
+			s3.setObjectAcl("3733kakistocrat", "videos/" + name + ".ogg", CannedAccessControlList.PublicRead);
+			
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
 			return false;
