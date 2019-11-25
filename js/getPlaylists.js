@@ -23,7 +23,7 @@ function processPlaylistList(result) {
 	for (var i = 0; i < js.list.length; i++) {
 		var constantJson = js.list[i];
 	    console.log(constantJson);
-	    insertPlaylistRow(constantJson["name"]);
+	    insertPlaylistRow(constantJson["playlistName"]);
 	}
 	
 	
@@ -67,7 +67,7 @@ function processPlaylistVideos(result) {
 	    temp2Array.push("Trash");
 	    temp2Array.push(constantJson["url"])
 	    temp2Array.push(constantJson["videoID"])
-//	    console.log(tempArray);
+//	    console.log(temp2Array);
 	    insertVideoPlaylistRow(temp2Array);
 	}
 	
