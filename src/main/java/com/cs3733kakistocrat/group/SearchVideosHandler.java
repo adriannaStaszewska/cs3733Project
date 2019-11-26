@@ -22,7 +22,6 @@ public class SearchVideosHandler implements RequestHandler<SearchVideosRequest,S
 	
 	@Override
 	public SearchVideosResponse handleRequest(SearchVideosRequest req, Context context) {
-		//search videos handler
 		logger = context.getLogger();
 		logger.log("Loading Java Lambda handler to search videos");
 
