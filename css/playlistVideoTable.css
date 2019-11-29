@@ -1,0 +1,35 @@
+.playlistVideoTable {
+	border: 2px solid black;
+	border-collapse: collapse;
+	bgcolor: white;
+	background-color: white;
+	padding: 8px;
+}
+
+.playlistVideoTable thead {
+	border: 2px solid black;
+	border-collapse: collapse;
+	bg-color: white;
+	background-color: white;
+}
+
+.playlistVideoTable tbody {
+	border: 2px solid black;
+	border-collapse: collapse;
+	bg-color: white;
+	background-color: white;
+}
+
+.playlistVideoTable th {
+	border: 2px solid black;
+	border-collapse: collapse;
+	color: black;
+	padding: 8px;
+}
+
+.playlistVideoTable td {
+	border: 2px solid black;
+	border-collapse: collapse;
+	color: black;
+	padding: 8px;
+}

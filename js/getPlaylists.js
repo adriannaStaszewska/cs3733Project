@@ -77,29 +77,7 @@ function processPlaylistVideos(result) {
 function insertVideoPlaylistRow(inArray) {
 	var table = document.getElementById("videosTablePBody");
 	var tr = table.insertRow(table.rows.length);
-	
-//	var td = document.createElement("td");
-//	td = tr.insertCell(0);
-//	
-//	td.onclick = function (){
-//
-//	}
-//	var element = document.createElement("P");
-//	element.innerHTML = rowInput;
-//	td.appendChild(element);
-//	
-//	var td = document.createElement("td");
-//	td = tr.insertCell(1);
-//	var trash = document.createElement("input");
-//	trash.setAttribute("type", "button");
-//	trash.setAttribute("value", "Trash");
-//	trash.onclick = function (){
-//		var name = document.getElementById("playlistsTable").rows[this.parentNode.parentNode.rowIndex].cells[0].innerText;
-//		handleDeletePlaylist(name);
-//	}
-//	td.appendChild(trash);
-	
-	//--------------------------------------
+
 	for(var c = 0; c < inArray.length; c++){
 		var td = document.createElement("td");
 		
@@ -161,12 +139,15 @@ function insertPlaylistRow(rowInput) {
 		var rowId = this.parentNode.rowIndex - 1;
 		var rowsNotSelected = tableTemp.getElementsByTagName('tr');
         for (var row = 0; row < rowsNotSelected.length; row++) {
-            rowsNotSelected[row].style.backgroundColor = "white";
+//            rowsNotSelected[row].style.backgroundColor = "white";
+        	rowsNotSelected[row].bgColor = "white";
             rowsNotSelected[row].classList.remove('selected');
         }
         var rowSelected = tableTemp.getElementsByTagName('tr')[rowId];
-        rowSelected.style.backgroundColor = "orange";
-        rowSelected.className += "selected";
+//        rowSelected.style.backgroundColor = "orange";
+        rowSelected.bgColor = "orange";
+        rowSelected.classList.add("selected");
+//        rowSelected.className += " selected";
 		
 		console.log(this.parentNode.rowIndex);
 		fillPlaylistVideos(this.parentNode.rowIndex - 1);
