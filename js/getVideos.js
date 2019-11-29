@@ -54,6 +54,7 @@ function insertRow(rowArray) {
 			}
 			td.appendChild(trash);
 		} else if(c == 4){
+			td.style = "visibility:hidden;display:none;";
 			var url = document.createElement("P");
 			var url2 = document.createTextNode(rowArray[c]);
 			url.append(url2);
@@ -62,6 +63,7 @@ function insertRow(rowArray) {
 			url.style = "display:none;";
 			td.appendChild(url);
 		}  else if(c == 5){
+			td.style = "visibility:hidden;display:none;";
 			var id = document.createElement("P");
 			var id2 = document.createTextNode(rowArray[c]);
 			id.append(id2);

@@ -65,6 +65,7 @@ function insertRow(rowArray) {
 			trash.setAttribute("value", "Trash");
 			td.appendChild(trash);
 		} else if(c == 5){
+			td.style = "visibility:hidden;display:none;";
 			var url = document.createElement("P");
 			var url2 = document.createTextNode(rowArray[c]);
 			url.append(url2);
