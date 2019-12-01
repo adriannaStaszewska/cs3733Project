@@ -58,17 +58,21 @@ function processPlaylistVideos(result) {
 	var js = JSON.parse(result);
 //	console.log("Length: " + js.list.length);
 	for (var i = 0; i < js.list.length; i++) {
-		var constantJson = js.list[i];
-//	    console.log(constantJson);
-	    var temp2Array = [];
-	    temp2Array.push(constantJson["name"]);
-	    temp2Array.push(constantJson["character"]);
-	    temp2Array.push(constantJson["sentence"]);
-	    temp2Array.push("Trash");
-	    temp2Array.push(constantJson["url"])
-	    temp2Array.push(constantJson["videoID"])
-//	    console.log(temp2Array);
-	    insertVideoPlaylistRow(temp2Array);
+		try {
+			var constantJson = js.list[i];
+//		    console.log(constantJson);
+		    var temp2Array = [];
+		    temp2Array.push(constantJson["name"]);
+		    temp2Array.push(constantJson["character"]);
+		    temp2Array.push(constantJson["sentence"]);
+		    temp2Array.push("Trash");
+		    temp2Array.push(constantJson["url"])
+		    temp2Array.push(constantJson["videoID"])
+	//	    console.log(temp2Array);
+		    insertVideoPlaylistRow(temp2Array);
+		} catch(error) {
+			console.error("Error: " + error);
+		}
 	}
 	
 	
