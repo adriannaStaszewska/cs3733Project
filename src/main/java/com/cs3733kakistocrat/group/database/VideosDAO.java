@@ -162,7 +162,7 @@ public class VideosDAO {
         }
     }
     
-    public List<Video> searchVideos(String search) throws Exception {
+    public List<Video> searchVideos(String search, boolean character, boolean sentence) throws Exception {
     	try {
     		List<Video> videos = new ArrayList<>();
     		
@@ -172,8 +172,18 @@ public class VideosDAO {
 
             while (resultSet.next()) {
                 Video v = generateVideo(resultSet);
-                if(v.getCharacter().equals(search) || v.getSentence().contains(search)){
-                	videos.add(v);
+                if(character && sentence) {
+                	if(v.getCharacter().contains(search) || v.getSentence().contains(search)){
+                    	videos.add(v);
+                    }
+                }else if(character) {
+                	if(v.getCharacter().contains(search)){
+                    	videos.add(v);
+                    }
+                }else if(sentence) {
+                	if(v.getSentence().contains(search)){
+                    	videos.add(v);
+                    }
                 }
             }
             resultSet.close();
@@ -182,7 +192,7 @@ public class VideosDAO {
     		return videos;
     	} catch (Exception e) {
     		e.printStackTrace();
-    		throw new Exception("Failed in searching videos: " + e.getMessage());
+    		throw new Exception("Failed in searching characters: " + e.getMessage());
     	}
     }
     
