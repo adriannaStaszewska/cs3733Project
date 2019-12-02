@@ -24,7 +24,7 @@ public class AllRemoteSegmentsResponse {
 	
 	public String toString() {
 		if (segments == null) { return "NoVideos"; }
-		return "AllVideos(" + segments.size() + ")";
+		return "AllRemoteSegs(" + segments.size() + ")";
 	}
 
 }

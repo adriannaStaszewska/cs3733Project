@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cs3733kakistocrat.group.model.Segment;
 import com.cs3733kakistocrat.group.model.Video;
 
 
@@ -52,6 +53,27 @@ public class VideosDAO {
     	}
     }
     
+    public List<Segment> getAllRemoteSegments() throws Exception {
+    	try {
+    		List<Segment> segments = new ArrayList<>();
+            
+    		Statement statement = conn.createStatement();
+            String query = "SELECT * FROM video WHERE remotely_accessible = 1";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                Segment s = generateSegment(resultSet);
+                segments.add(s);
+            }
+            resultSet.close();
+            statement.close();
+    		
+    		return segments;
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		throw new Exception("Failed in getting all remotely accessible segments: " + e.getMessage());
+    	}
+    }
     
     private Video generateVideo(ResultSet resultSet) throws Exception {
     	String name  = resultSet.getString("name");
@@ -62,7 +84,16 @@ public class VideosDAO {
     	
     	return new Video (videoID, name, URL, character, sentence);
     }
+    
+    private Segment generateSegment(ResultSet resultSet) throws Exception {
+    	String url = resultSet.getString("url");
+    	String character = resultSet.getString("characterName");
+    	String text = resultSet.getString("sentence");
+    	
+    	return new Segment (url, text, character);
+    }
 
+    
     public boolean deleteVideo(Video video) throws Exception {
         try {
             PreparedStatement ps = conn.prepareStatement("DELETE FROM video WHERE video_id = ?;");
