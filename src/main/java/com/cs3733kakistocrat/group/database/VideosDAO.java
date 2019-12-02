@@ -189,7 +189,8 @@ public class VideosDAO {
     public boolean updateRemote(String videoID, boolean status) throws Exception {
     	 Video video = null;
          PreparedStatement ps = conn.prepareStatement("UPDATE video SET remotely_accessible = ? WHERE video_id=?;");
-         ps.setString(1,  videoID);
+         ps.setBoolean(1,  status);
+         ps.setString(2,  videoID);
          ResultSet resultSet = ps.executeQuery();
          return true;
          
