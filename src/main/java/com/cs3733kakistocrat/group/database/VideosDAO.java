@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.String;
 
 import com.cs3733kakistocrat.group.model.Segment;
 import com.cs3733kakistocrat.group.model.Video;
@@ -164,6 +165,8 @@ public class VideosDAO {
     
     public List<Video> searchVideos(String charSearch, String sentSearch) throws Exception {
     	try {
+    		if(charSearch.equals("") && sentSearch.equals("")) return getAllVideos();
+    		
     		List<Video> videos = new ArrayList<>();
     		
     		Statement statement = conn.createStatement();
@@ -172,16 +175,19 @@ public class VideosDAO {
 
             while (resultSet.next()) {
                 Video v = generateVideo(resultSet);
+                String character = v.getCharacter().toLowerCase();
+                String sentence = v.getSentence().toLowerCase();
+                
                 if(!charSearch.equals("") && !sentSearch.equals("")) {
-                	if(v.getCharacter().contains(charSearch) || v.getSentence().contains(sentSearch)){
+                	if(character.contains(charSearch.toLowerCase()) || sentence.contains(sentSearch.toLowerCase())){
                     	videos.add(v);
                     }
                 }else if(!charSearch.equals("")) {
-                	if(v.getCharacter().contains(charSearch)){
+                	if(character.contains(charSearch.toLowerCase())){
                     	videos.add(v);
                     }
                 }else if(!sentSearch.equals("")) {
-                	if(v.getSentence().contains(sentSearch)){
+                	if(sentence.contains(sentSearch.toLowerCase())){
                     	videos.add(v);
                     }
                 }
