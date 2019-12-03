@@ -29,6 +29,7 @@ function processVideoList(result) {
 	    tempArray.push(constantJson["remotelyAccessible"]);
 	    tempArray.push("Trash");
 	    tempArray.push(constantJson["url"])
+	    tempArray.push(constantJson["videoID"])
 	    insertRow(tempArray);
 	}
 	
@@ -60,14 +61,14 @@ function insertRow(rowArray) {
 			}
 			
 			td.onclick = function (){
-				
+				console.log(document.getElementById("videosTable").rows[this.parentNode.rowIndex].getElementsByTagName("p")[4].innerHTML);
 				if(this.getElementsByTagName("input")[0].value == 2){
 					this.getElementsByTagName("input")[0].value = 1;
+					updateRemoteAval(true, document.getElementById("videosTable").rows[this.parentNode.rowIndex].getElementsByTagName("p")[4].innerHTML);
 				} else {
 					this.getElementsByTagName("input")[0].value = 2;
+					updateRemoteAval(false, document.getElementById("videosTable").rows[this.parentNode.rowIndex].getElementsByTagName("p")[4].innerHTML);
 				}
-				
-				updateRemoteAval(this.getElementsByTagName("input")[0].value);
 			}
 			
 			td.appendChild(check);
@@ -75,6 +76,10 @@ function insertRow(rowArray) {
 			var trash = document.createElement("input");
 			trash.setAttribute("type", "button");
 			trash.setAttribute("value", "Trash");
+			trash.onclick = function (){
+				var id = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].getElementsByTagName("p")[4].innerHTML;
+				handleDeleteVideo(id);
+			}
 			td.appendChild(trash);
 		} else if(c == 5){
 			td.style = "visibility:hidden;display:none;";
@@ -85,6 +90,15 @@ function insertRow(rowArray) {
 //			url.innerHTML = rowArray[c];
 			url.style = "display:none;";
 			td.appendChild(url);
+		} else if(c == 6){
+			td.style = "visibility:hidden;display:none;";
+			var id = document.createElement("P");
+			var id2 = document.createTextNode(rowArray[c]);
+			id.append(id2);
+			id.setAttribute("id", "par");
+//			url.innerHTML = rowArray[c];
+			id.style = "display:none;";
+			td.appendChild(id);
 		} else {
 			
 			td.onclick = function (){
@@ -100,6 +114,41 @@ function insertRow(rowArray) {
 	}
 }
 
-function updateRemoteAval(newValue){
+function updateRemoteAval(newValue, id){
 	console.log("Checkbox changed to: " + newValue);
+	
+	var data = {};
+	data["videoName"] = id;
+	data["status"] = newValue;
+	
+	var js = JSON.stringify(data);
+	console.log(js);
+    
+//    var xhr = new XMLHttpRequest();
+//    xhr.open("POST", searchVideosURL, true);
+//    
+//    xhr.send(js);
+// 	   
+//    console.log("sent search request");
+// 	   
+//    xhr.onloadend = function () {
+//    	if (xhr.readyState == XMLHttpRequest.DONE) {
+//    		console.log ("XHR:" + xhr.responseText);
+//    		clearVideos();
+//    		processSearch(xhr.responseText);
+////    		processVideoList(xhr.responseText);
+//    	} else {
+////    		processVideoList("N/A");
+//    		console.log("error searching local videos");
+//		}
+//    };
+}
+
+function clearVideos(){
+	var tableHeaderRowCount = 1;
+	var table = document.getElementById("videosTable");
+	var rowCount = table.rows.length;
+	for (var i = tableHeaderRowCount; i < rowCount; i++) {
+	    table.deleteRow(tableHeaderRowCount);
+	}
 }
