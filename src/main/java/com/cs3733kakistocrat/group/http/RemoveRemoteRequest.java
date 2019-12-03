@@ -10,14 +10,12 @@ public class RemoveRemoteRequest {
 	public void setApi_key(String api_key) {
 		this.api_key = api_key;
 	}
-	public String getUrl() { return url; }
-	public void setPlaylistName(String playlistName) { this.url = url; }
 	
 	public RemoveRemoteRequest() {
 	}
 	
 	public RemoveRemoteRequest (String url, String api_key) {
-		this.url= url;
+		this.url = url;
 		this.api_key = api_key;
 	}
 	
@@ -25,6 +23,10 @@ public class RemoveRemoteRequest {
 		this.url= url;
 	}
 	
+	
+	public String getUrl() {
+		return url;
+	}
 	public String toString() {
 		return "DeleteRemote(" + url + ")";
 	}

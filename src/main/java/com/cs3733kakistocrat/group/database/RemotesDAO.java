@@ -61,8 +61,9 @@ public class RemotesDAO {
 				return false;
 			}
 			System.out.println(remote.getUrl());
-			ps = conn.prepareStatement("INSERT INTO remote_url (url) values(?);");
+			ps = conn.prepareStatement("INSERT INTO remote_url (url, api_key) values(?, ?);");
 			ps.setString(1, remote.getUrl());
+			ps.setString(2, remote.getApi_key());
 			ps.execute();
 			return true;
 
