@@ -57,7 +57,7 @@ public class DBTests {
 		
 		try {
 			dao.getAllRemotes();
-	    	RemoteSite rs = new RemoteSite("Some test link");
+	    	RemoteSite rs = new RemoteSite("Some test link", "Some api");
 	    	boolean b = dao.addRemote(rs);
 	    	System.out.println("add remote site: " + b);
 	    	RemoteSite rs2 = dao.getRemote(rs.getUrl());

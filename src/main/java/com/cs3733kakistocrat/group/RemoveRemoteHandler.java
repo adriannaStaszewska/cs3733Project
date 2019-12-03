@@ -24,15 +24,15 @@ public class RemoveRemoteHandler implements RequestHandler<RemoveRemoteRequest,R
 		RemotesDAO dao = new RemotesDAO();
 
 		
-		RemoteSite remote = new RemoteSite(req.getUrl());
+		RemoteSite remote = new RemoteSite(req.getUrl(), req.getApi_key());
 		try {
 			if (dao.removeRemote(remote)) {
-				response = new RemoveRemoteResponse(req.getUrl(), 200);
+				response = new RemoveRemoteResponse(req.getUrl(), req.getApi_key(), 200);
 			} else {
-				response = new RemoveRemoteResponse(req.getUrl(), 422, "Unable to delete remote site.");
+				response = new RemoveRemoteResponse(req.getUrl(), req.getApi_key(), 422, "Unable to delete remote site.");
 			}
 		} catch (Exception e) {
-			response = new RemoveRemoteResponse(req.getUrl(), 403, "Unable to delete remote site: " + req.getUrl() + "(" + e.getMessage() + ")");
+			response = new RemoveRemoteResponse(req.getUrl(), req.getApi_key(), 403, "Unable to delete remote site: " + req.getUrl() + "(" + e.getMessage() + ")");
 		}
 
 		return response;
