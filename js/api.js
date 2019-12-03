@@ -10,3 +10,4 @@ var removePlaylistURL = base_url + "/deletePlaylist";
 var deleteVideoURL = base_url + "/deleteVideo";
 var addRemoteURL = base_url + "/addRemoteSource";
 var removeRemoteURL = base_url + "/removeRemoteSource";
+var searchVideosURL = base_url + "/videoSearch";
