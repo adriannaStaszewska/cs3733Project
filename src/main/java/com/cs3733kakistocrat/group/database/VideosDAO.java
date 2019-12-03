@@ -97,15 +97,15 @@ public class VideosDAO {
     
     public boolean deleteVideo(Video video) throws Exception {
         try {
+        	 PreparedStatement ps2 = conn.prepareStatement("DELETE FROM playlist_video WHERE video_id = ?;");
+             ps2.setString(1, video.getVideoID());
+             ps2.executeUpdate();
+             ps2.close();
             PreparedStatement ps = conn.prepareStatement("DELETE FROM video WHERE video_id = ?;");
             System.out.println("Delete: " + video.getVideoID());
             ps.setString(1, video.getVideoID());
             int numAffected = ps.executeUpdate();
             ps.close();
-            PreparedStatement ps2 = conn.prepareStatement("DELETE FROM playlist_video WHERE video_id = ?;");
-            ps2.setString(1, video.getVideoID());
-            ps2.executeUpdate();
-            ps2.close();
             return (numAffected == 1);
 
         } catch (Exception e) {
