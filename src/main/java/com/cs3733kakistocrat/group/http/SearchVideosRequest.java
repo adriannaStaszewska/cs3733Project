@@ -12,7 +12,7 @@ public class SearchVideosRequest {
 	
 	public SearchVideosRequest() {
 	}
-	
+	 
 	public SearchVideosRequest (String charSearch, String sentSearch, boolean local, boolean remote) {
 		this.charSearch = charSearch;
 		this.sentSearch = sentSearch;

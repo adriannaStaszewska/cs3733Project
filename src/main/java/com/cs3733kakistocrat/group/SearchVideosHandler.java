@@ -19,7 +19,7 @@ public class SearchVideosHandler implements RequestHandler<SearchVideosRequest,S
 		
 		return dao.searchVideos(charSearch, sentSearch);
 	}
-	
+	 
 	@Override
 	public SearchVideosResponse handleRequest(SearchVideosRequest req, Context context) {
 		logger = context.getLogger();
