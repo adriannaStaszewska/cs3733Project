@@ -58,7 +58,7 @@ public class VideosDAO {
     	try {
     		List<Segment> segments = new ArrayList<>();
     		Statement statement = conn.createStatement();
-    		String query = "SELECT * FROM video WHERE remotely_accessible = 1");
+    		String query = "SELECT * FROM video WHERE remotely_accessible = 1";
     		ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Segment s = generateSegment(resultSet);
