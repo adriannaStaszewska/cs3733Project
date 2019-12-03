@@ -13,11 +13,11 @@ public class SearchVideosHandler implements RequestHandler<SearchVideosRequest,S
 	
 	public LambdaLogger logger;
 	
-	List<Video> findVideos(String search, boolean character, boolean sentence) throws Exception {
+	List<Video> findVideos(String charSearch, String sentSearch) throws Exception {
 		logger.log("in searchVideos");
 		VideosDAO dao = new VideosDAO();
 		
-		return dao.searchVideos(search, character, sentence);
+		return dao.searchVideos(charSearch, sentSearch);
 	}
 	
 	@Override
@@ -29,11 +29,10 @@ public class SearchVideosHandler implements RequestHandler<SearchVideosRequest,S
 		logger.log(req.toString());
 		
 		try {
-			List<Video> list = findVideos(req.getSearch(), req.getCharacter(), req.getSentence());
-			
-			response = new SearchVideosResponse(req.getSearch(),list, 200);
+			List<Video> list = findVideos(req.getCharacterSearch(), req.getSentenceSearch());
+			response = new SearchVideosResponse(req.getCharacterSearch(), req.getSentenceSearch(), list, 200);
 		} catch (Exception e) {
-			response = new SearchVideosResponse(req.getSearch(),403, e.getMessage());
+			response = new SearchVideosResponse(req.getCharacterSearch(), req.getSentenceSearch(),403, e.getMessage());
 		}
 
 		return response;

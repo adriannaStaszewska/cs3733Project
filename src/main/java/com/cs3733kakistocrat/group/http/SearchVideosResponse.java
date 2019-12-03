@@ -6,28 +6,31 @@ import java.util.List;
 import com.cs3733kakistocrat.group.model.Video;
 
 public class SearchVideosResponse {
-	public final String search;
+	public final String charSearch;
+	public final String sentSearch;
 	public final List<Video> list;
 	public final int statusCode;
 	public final String error;
 	
-	public SearchVideosResponse (String search, List<Video> list, int statusCode) {
-		this.search = search;
+	public SearchVideosResponse (String charSearch, String sentSearch, List<Video> list, int statusCode) {
+		this.charSearch = charSearch;
+		this.sentSearch = sentSearch;
 		this.list = list;
 		this.statusCode = statusCode;
 		this.error = "";
 	}
 	
 	// 200 means success
-	public SearchVideosResponse (String search, int statusCode, String errorMessage) {
+	public SearchVideosResponse (String charSearch, String sentSearch, int statusCode, String errorMessage) {
 		this.statusCode = statusCode;
 		this.list = new ArrayList<Video>();
 		this.error = errorMessage;
-		this.search = search;
-	}
+		this.charSearch = charSearch;
+		this.sentSearch = sentSearch;
+	} 
 	
 	public String toString() {
-		if (list == null) { return "Search: " + search + " - NoVideos"; }
-		return "Search: " + search + " - FoundVideos(" + list.size() + ")";
+		if (list == null) { return "Search: " + charSearch + " " + sentSearch + " - NoVideos"; }
+		return "Search: " + charSearch + " " + sentSearch + " - FoundVideos(" + list.size() + ")";
 	}
 }
