@@ -29,6 +29,32 @@ function addVideo(input) {
     document.getElementById("addModal").style.visibility = 'hidden';
     document.getElementById("playlistAddModal").style.zIndex = '-1';
     document.getElementById("addModal").style.zIndex = '-1';
+    
+    var tableTemp = document.getElementById("playlistTableBody");
+	var rowsNotSelected = tableTemp.getElementsByTagName('tr');
+	var selected = -1;
+	for (var row = 0; row < rowsNotSelected.length; row++) {
+	    if(rowsNotSelected[row].classList.contains("selected")){
+	    	selected = row;
+	    }
+	}
+	
+	var playlistName = document.getElementById("playlistTableBody").rows[selected].cells[0].innerText;
+	console.log(playlistName);
+	
+	var tableTemp = document.getElementById("addVideosTableP");
+	var rowsNotSelected = tableTemp.getElementsByTagName('tr');
+	var selected = -1;
+	for (var row = 0; row < rowsNotSelected.length; row++) {
+	    if(rowsNotSelected[row].classList.contains("selected")){
+	    	selected = row;
+	    }
+	}
+	
+	var videoID = document.getElementById("addVideosTableP").rows[selected].cells[4].innerText;
+    console.log(videoID);
+    
+    addVideoToPlaylist(playlistName, videoID);
 }
 
 function closeAddModal(e){
@@ -40,6 +66,9 @@ function closeAddModal(e){
 }
 
 function getAvailableVideos(){
+	
+	clearAvailableVideos();
+	
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", getVideosURL, true);
 	xhr.send();
@@ -123,5 +152,39 @@ function insertRowToAdd(rowArray) {
 			
 			td.appendChild(element);
 		}
+	}
+}
+
+function addVideoToPlaylist(playlist, video){
+	var data = {};
+	data["playlistName"] = playlist;
+	data["videoID"] = video;
+	var js = JSON.stringify(data);
+	console.log(js);
+	
+//	var xhr = new XMLHttpRequest();
+//	console.log(getVideosInPlaylistURL);
+//	xhr.open("POST", addVideoToPlaylistURL, true);
+//	xhr.send(js);
+//	   
+//	console.log("sent append video request");
+//	   
+//	xhr.onloadend = function () {
+//		if (xhr.readyState == XMLHttpRequest.DONE) {
+//			console.log ("XHR:" + xhr.responseText);
+//			clearPlaylistVideos();
+//		   	processPlaylistVideos(xhr.responseText);
+//		} else {
+//			processVideoList("N/A");
+//		}
+//	};
+}
+
+function clearAvailableVideos(){
+	var tableHeaderRowCount = 1;
+	var table = document.getElementById("addVideosTableP");
+	var rowCount = table.rows.length;
+	for (var i = tableHeaderRowCount; i < rowCount; i++) {
+	    table.deleteRow(tableHeaderRowCount);
 	}
 }
