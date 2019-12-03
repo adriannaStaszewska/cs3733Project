@@ -18,7 +18,7 @@ public class CreateRemoteHandler implements RequestHandler<CreateRemoteRequest,C
 		
 		try {
 			System.out.println(input.getUrl());
-			if (createRemoteSite(input.getUrl())) {
+			if (createRemoteSite(input.getUrl(), input.getApi_key())) {
 				response = new CreateRemoteResponse(input.getUrl());
 			} else {
 				response = new CreateRemoteResponse(input.getUrl(), 400);
@@ -29,15 +29,15 @@ public class CreateRemoteHandler implements RequestHandler<CreateRemoteRequest,C
 		return response;
 	}
 	
-	boolean createRemoteSite(String url) throws Exception {
+	boolean createRemoteSite(String url, String api_key) throws Exception {
 		if (logger != null) { logger.log("in createPlaylist"); }
 		RemotesDAO dao = new RemotesDAO();
 		
 		// check if present
 		RemoteSite exist = dao.getRemote(url);
-		RemoteSite playlist = new RemoteSite(url);
+		RemoteSite site = new RemoteSite(url, api_key);
 		if (exist == null) {
-			return dao.addRemote(playlist);
+			return dao.addRemote(site);
 		} else {
 			return false;
 		}

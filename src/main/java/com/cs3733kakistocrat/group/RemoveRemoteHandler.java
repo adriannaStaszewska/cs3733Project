@@ -24,7 +24,7 @@ public class RemoveRemoteHandler implements RequestHandler<RemoveRemoteRequest,R
 		RemotesDAO dao = new RemotesDAO();
 
 		
-		RemoteSite remote = new RemoteSite(req.getUrl());
+		RemoteSite remote = new RemoteSite(req.getUrl(), req.getApi_key());
 		try {
 			if (dao.removeRemote(remote)) {
 				response = new RemoveRemoteResponse(req.getUrl(), 200);
