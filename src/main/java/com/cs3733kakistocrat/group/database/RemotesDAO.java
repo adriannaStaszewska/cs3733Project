@@ -81,7 +81,7 @@ public class RemotesDAO {
             
             while (resultSet.next()) {
                 remote = generateRemoteSite(resultSet);
-            }
+            } 
             resultSet.close();
             ps.close();
             

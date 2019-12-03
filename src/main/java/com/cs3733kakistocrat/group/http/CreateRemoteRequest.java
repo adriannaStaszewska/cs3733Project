@@ -11,7 +11,7 @@ public class CreateRemoteRequest {
 		this.api_key = api_key;
 	}
 	public String getUrl( ) { return url; }
-	public void setPlaylistName(String url) { this.url = url; }
+
 	
 	public CreateRemoteRequest() {
 	}

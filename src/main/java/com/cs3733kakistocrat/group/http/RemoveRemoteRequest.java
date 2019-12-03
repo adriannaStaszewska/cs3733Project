@@ -2,21 +2,12 @@ package com.cs3733kakistocrat.group.http;
 
 public class RemoveRemoteRequest {
 	String url;
-	String api_key;
-	
-	public String getApi_key() {
-		return api_key;
-	}
-	public void setApi_key(String api_key) {
-		this.api_key = api_key;
-	}
 	
 	public RemoveRemoteRequest() {
 	}
 	
 	public RemoveRemoteRequest (String url, String api_key) {
 		this.url = url;
-		this.api_key = api_key;
 	}
 	
 	public void setUrl (String url) {
