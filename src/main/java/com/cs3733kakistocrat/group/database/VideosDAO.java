@@ -200,7 +200,6 @@ public class VideosDAO {
     	 Video video = null;
          PreparedStatement ps = conn.prepareStatement("UPDATE video SET remotely_accessible = ? WHERE video_id=?;");
          ps.setBoolean(1,  status);
-         ps.setString(2,  videoID);
          ResultSet resultSet = ps.executeQuery();
          return true;
          
