@@ -45,7 +45,7 @@ public class VideoToPlaylistDAO {
     
     public boolean appendVideoToPlaylist(Video video, Playlist playlist) throws Exception {
         try {
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO playlist_video (video_id, playlistName, video_position) values(?,?,?);");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO playlist_video (video_id, playlist_name, video_position) values(?,?,?);");
             ps.setString(1,  video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
             ps.setInt(3,  -1); //not used yet, no need 
@@ -62,7 +62,7 @@ public class VideoToPlaylistDAO {
     public boolean removeVideo(Video video, Playlist playlist, int position) throws Exception {
         try {
         	//this removes all videos with videoID in the playlist
-        	PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE video_id = ? AND playlist = ?;");
+        	PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE video_id = ? AND playlist_name = ?;");
             ps.setString(1, video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
             ps.executeUpdate();
