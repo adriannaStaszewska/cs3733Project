@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.cs3733kakistocrat.group.database.PlaylistsDAO;
 import com.cs3733kakistocrat.group.database.RemotesDAO;
+import com.cs3733kakistocrat.group.database.VideoToPlaylistDAO;
 import com.cs3733kakistocrat.group.database.VideosDAO;
 import com.cs3733kakistocrat.group.model.Playlist;
 import com.cs3733kakistocrat.group.model.RemoteSite;
@@ -16,6 +17,7 @@ public class DBTests {
 	
 	@Test
 	public void testCreatePlaylist() {
+		
 		PlaylistsDAO dao = new PlaylistsDAO();
 		
 		try {
@@ -31,7 +33,7 @@ public class DBTests {
 	    	fail ("didn't work:" + e.getMessage());
 	    }
 	}
-	
+	 
 	@Test 
 	public void testCreateVideo() {
 		VideosDAO dao = new VideosDAO();
@@ -65,5 +67,33 @@ public class DBTests {
 	    } catch (Exception e) {
 	    	fail ("didn't work:" + e.getMessage());
 	    }
+	}
+	
+	@Test
+	public void testAddVideoToPlaylist(){
+		PlaylistsDAO PlaylistDao = new PlaylistsDAO();
+		VideosDAO VideoDao = new VideosDAO();
+		VideoToPlaylistDAO VTPDAO = new VideoToPlaylistDAO();
+		
+		try {
+			
+			Video video = new Video("Test", "kakistocrat.com", "Me", "This is a sentence.");
+			Playlist playlist = new Playlist("This is a test");
+			
+			boolean b1 = VTPDAO.appendVideoToPlaylist(video, playlist);
+			System.out.println("wussup");
+			VTPDAO.appendVideoToPlaylist(video, playlist);
+			VTPDAO.appendVideoToPlaylist(video, playlist);
+			VTPDAO.appendVideoToPlaylist(video, playlist);
+			VTPDAO.appendVideoToPlaylist(video, playlist);
+			VTPDAO.appendVideoToPlaylist(video, playlist);
+			System.out.println("Added Video to Playlist: "+b1);
+			VTPDAO.getAllVideos("This is a test");
+			assertTrue (VTPDAO.removeVideo(video, playlist,3));
+			
+		}
+		catch(Exception e) {
+			fail ("didn't work: " +e.getMessage());
+		}
 	}
 }
