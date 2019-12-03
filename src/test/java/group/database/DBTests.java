@@ -19,6 +19,7 @@ public class DBTests {
 		PlaylistsDAO dao = new PlaylistsDAO();
 		
 		try {
+			dao.getAllPlaylists();
 	    	Playlist playlist = new Playlist("Just test");
 	    	boolean p = dao.addPlaylist(playlist);
 	    	System.out.println("add playlist: " + p);
@@ -36,6 +37,7 @@ public class DBTests {
 		VideosDAO dao = new VideosDAO();
 		
 		try {
+			dao.getAllVideos();
 			Video video = new Video("Test", "kakistocrat.com", "Me", "This is a sentence.");
 			boolean b = dao.addVideo(video);
 			Video v2 = dao.getVideo(video.getVideoID());
@@ -52,6 +54,7 @@ public class DBTests {
 		RemotesDAO dao = new RemotesDAO();
 		
 		try {
+			dao.getAllRemotes();
 	    	RemoteSite rs = new RemoteSite("Some test link");
 	    	boolean b = dao.addRemote(rs);
 	    	System.out.println("add remote site: " + b);
