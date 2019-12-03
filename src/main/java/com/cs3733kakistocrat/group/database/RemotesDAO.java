@@ -42,7 +42,8 @@ public class RemotesDAO {
 
 	private RemoteSite generateRemoteSite(ResultSet resultSet) throws Exception {
 		String url = resultSet.getString("url");
-		return new RemoteSite(url);
+		String api_key = resultSet.getString("api_key");
+		return new RemoteSite(url,api_key);
 	}
 
 	public boolean addRemote(RemoteSite remote) throws Exception {
