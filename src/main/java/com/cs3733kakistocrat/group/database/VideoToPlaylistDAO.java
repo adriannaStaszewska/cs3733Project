@@ -32,7 +32,7 @@ public class VideoToPlaylistDAO {
                 Video v = generateVideo(resultSet);
                 videos.add(v);
             }
-            resultSet.close();
+            resultSet.close(); 
             ps.close();
     		
     		 

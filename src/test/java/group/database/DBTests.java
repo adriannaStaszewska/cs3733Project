@@ -15,7 +15,7 @@ import com.cs3733kakistocrat.group.model.Video;
 
 public class DBTests {
 	
-	@Test
+	@Test 
 	public void testCreatePlaylist() {
 		
 		PlaylistsDAO dao = new PlaylistsDAO();
