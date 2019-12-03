@@ -8,6 +8,9 @@ public class RemoteSite {
 		this.url = url;
 		this.api_key = api_key;
 	} 
+	public RemoteSite(String url) {
+		this.url = url;
+	} 
 	public String getUrl() {
 		return this.url; 
 	}

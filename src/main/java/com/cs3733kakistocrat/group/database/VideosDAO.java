@@ -57,11 +57,9 @@ public class VideosDAO {
     public List<Segment> getAllRemoteSegments() throws Exception {
     	try {
     		List<Segment> segments = new ArrayList<>();
-            
     		Statement statement = conn.createStatement();
-            String query = "SELECT * FROM video WHERE remotely_accessible = 1";
-            ResultSet resultSet = statement.executeQuery(query);
-
+    		String query = "SELECT * FROM video WHERE remotely_accessible = 1";
+    		ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Segment s = generateSegment(resultSet);
                 segments.add(s);
@@ -97,15 +95,14 @@ public class VideosDAO {
     
     public boolean deleteVideo(Video video) throws Exception {
         try {
+        	 PreparedStatement ps2 = conn.prepareStatement("DELETE FROM playlist_video WHERE video_id = ?;");
+             ps2.setString(1, video.getVideoID());
+             ps2.executeUpdate();
+             ps2.close();
             PreparedStatement ps = conn.prepareStatement("DELETE FROM video WHERE video_id = ?;");
             System.out.println("Delete: " + video.getVideoID());
             ps.setString(1, video.getVideoID());
             int numAffected = ps.executeUpdate();
-            
-            PreparedStatement ps2 = conn.prepareStatement("DELETE FROM playlist_video WHERE video_id = ?;");
-            ps2.setString(1, video.getVideoID());
-            ps2.executeUpdate();
-            ps2.close();
             ps.close();
             return (numAffected == 1);
 
@@ -206,7 +203,7 @@ public class VideosDAO {
     	 Video video = null;
          PreparedStatement ps = conn.prepareStatement("UPDATE video SET remotely_accessible = ? WHERE video_id=?;");
          ps.setBoolean(1,  status);
-         ResultSet resultSet = ps.executeQuery();
+         ps.executeUpdate();
          return true;
     }
 
