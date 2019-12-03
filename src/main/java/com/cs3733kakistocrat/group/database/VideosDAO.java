@@ -162,7 +162,7 @@ public class VideosDAO {
         }
     }
     
-    public List<Video> searchVideos(String search, boolean character, boolean sentence) throws Exception {
+    public List<Video> searchVideos(String charSearch, String sentSearch) throws Exception {
     	try {
     		List<Video> videos = new ArrayList<>();
     		
@@ -172,16 +172,16 @@ public class VideosDAO {
 
             while (resultSet.next()) {
                 Video v = generateVideo(resultSet);
-                if(character && sentence) {
-                	if(v.getCharacter().contains(search) || v.getSentence().contains(search)){
+                if(!charSearch.equals("") && !sentSearch.equals("")) {
+                	if(v.getCharacter().contains(charSearch) || v.getSentence().contains(sentSearch)){
                     	videos.add(v);
                     }
-                }else if(character) {
-                	if(v.getCharacter().contains(search)){
+                }else if(!charSearch.equals("")) {
+                	if(v.getCharacter().contains(charSearch)){
                     	videos.add(v);
                     }
-                }else if(sentence) {
-                	if(v.getSentence().contains(search)){
+                }else if(!sentSearch.equals("")) {
+                	if(v.getSentence().contains(sentSearch)){
                     	videos.add(v);
                     }
                 }
@@ -203,8 +203,6 @@ public class VideosDAO {
          ps.setString(2,  videoID);
          ResultSet resultSet = ps.executeQuery();
          return true;
-         
-    	
     }
 
 }
