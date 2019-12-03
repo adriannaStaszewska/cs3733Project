@@ -29,10 +29,10 @@ public class SearchVideosHandler implements RequestHandler<SearchVideosRequest,S
 		logger.log(req.toString());
 		
 		try {
-			List<Video> list = findVideos(req.getCharacterSearch(), req.getSentenceSearch());
-			response = new SearchVideosResponse(req.getCharacterSearch(), req.getSentenceSearch(), list, 200);
+			List<Video> list = findVideos(req.getcharSearch(), req.getsentSearch());
+			response = new SearchVideosResponse(req.getcharSearch(), req.getsentSearch(), list, 200);
 		} catch (Exception e) {
-			response = new SearchVideosResponse(req.getCharacterSearch(), req.getSentenceSearch(),403, e.getMessage());
+			response = new SearchVideosResponse(req.getcharSearch(), req.getcharSearch(),403, e.getMessage());
 		}
 
 		return response;
