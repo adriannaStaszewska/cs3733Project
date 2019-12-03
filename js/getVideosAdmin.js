@@ -52,10 +52,22 @@ function insertRow(rowArray) {
 		if(c==3) {
 			var check = document.createElement("input");
 			check.setAttribute("type", "checkbox");
+			check.setAttribute("id", "check");
 			if(rowArray[c] == true){
 				check.setAttribute("value", "1");
 			} else {
 				check.setAttribute("value", "2");
+			}
+			
+			td.onclick = function (){
+				
+				if(this.getElementsByTagName("input")[0].value == 2){
+					this.getElementsByTagName("input")[0].value = 1;
+				} else {
+					this.getElementsByTagName("input")[0].value = 2;
+				}
+				
+				updateRemoteAval(this.getElementsByTagName("input")[0].value);
 			}
 			
 			td.appendChild(check);
@@ -86,4 +98,8 @@ function insertRow(rowArray) {
 			td.appendChild(element);
 		}
 	}
+}
+
+function updateRemoteAval(newValue){
+	console.log("Checkbox changed to: " + newValue);
 }
