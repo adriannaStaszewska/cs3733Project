@@ -26,7 +26,7 @@ function processVideoList(result) {
 	    tempArray.push(constantJson["name"]);
 	    tempArray.push(constantJson["character"]);
 	    tempArray.push(constantJson["sentence"]);
-	    tempArray.push(constantJson["remotelyAccessible"]);
+	    tempArray.push(constantJson["remotely_accessible"]);
 	    tempArray.push("Trash");
 	    tempArray.push(constantJson["url"])
 	    tempArray.push(constantJson["videoID"])
@@ -54,9 +54,11 @@ function insertRow(rowArray) {
 			var check = document.createElement("input");
 			check.setAttribute("type", "checkbox");
 			check.setAttribute("id", "check");
-			if(rowArray[c] == true){
+			if(rowArray[c]){
+				check.checked = true;
 				check.setAttribute("value", "1");
 			} else {
+				check.checked = false;
 				check.setAttribute("value", "2");
 			}
 			
@@ -134,8 +136,8 @@ function updateRemoteAval(newValue, id){
     xhr.onloadend = function () {
     	if (xhr.readyState == XMLHttpRequest.DONE) {
     		console.log ("XHR:" + xhr.responseText);
-//    		clearVideos();
-//    		getVideos();
+    		clearVideos();
+    		getVideos();
 //    		processSearch(xhr.responseText);
 //    		processVideoList(xhr.responseText);
     	} else {
