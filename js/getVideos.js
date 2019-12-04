@@ -49,8 +49,9 @@ function insertRow(rowArray) {
 			trash.setAttribute("type", "button");
 			trash.setAttribute("value", "Trash");
 			trash.onclick = function (){
+				var name = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].cells[0].getElementsByTagName("p")[0].innerHTML;
 				var id = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].cells[5].getElementsByTagName("p")[0].innerHTML
-				handleDeleteVideo(id);
+				handleDeleteVideo(name, id);
 			}
 			td.appendChild(trash);
 		} else if(c == 4){

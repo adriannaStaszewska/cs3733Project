@@ -1,7 +1,8 @@
-function handleDeleteVideo (id) {
+function handleDeleteVideo (name, id) {
 	console.log(id);
 	var data = {};
 	data["videoID"] = id;
+	data["name"] = name;
 	
 	var js = JSON.stringify(data);
 	console.log(js);
@@ -12,7 +13,7 @@ function handleDeleteVideo (id) {
 	
 	 xhr.onloadend = function () {
 		console.log(xhr);
-		console.log(xhr.request);
+//		console.log(xhr.request);
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			 if (xhr.status == 200) {
 		      console.log ("XHR:" + xhr.responseText);
