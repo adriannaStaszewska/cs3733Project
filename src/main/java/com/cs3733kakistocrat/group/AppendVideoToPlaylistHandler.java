@@ -21,7 +21,7 @@ public class AppendVideoToPlaylistHandler implements RequestHandler<AppendVideoR
 		VideosDAO vidDAO = new VideosDAO();
 		PlaylistsDAO plDAO = new PlaylistsDAO();
 		try {
-			Video video = vidDAO.getVideo(input.getVideo_id());
+			Video video = vidDAO.getVideo(input.getVideoID());
 			Playlist playlist = plDAO.getPlaylist(input.getPlaylistName());
 			if (appendVideoToPlaylist(video, playlist)) {
 				response = new Response(input.getPlaylistName());
@@ -29,7 +29,7 @@ public class AppendVideoToPlaylistHandler implements RequestHandler<AppendVideoR
 				response = new Response(input.getPlaylistName(), 400);
 			}
 		}catch (Exception e) {
-			response = new Response("Unable add video"+ input.getVideo_id() + " to playlist: " + input.getPlaylistName()+ " (" + e.getMessage() + ")", 400);
+			response = new Response("Unable add video"+ input.getVideoID() + " to playlist: " + input.getPlaylistName()+ " (" + e.getMessage() + ")", 400);
 		}
 		return response;
 	}

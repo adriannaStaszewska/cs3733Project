@@ -162,22 +162,22 @@ function addVideoToPlaylist(playlist, video){
 	var js = JSON.stringify(data);
 	console.log(js);
 	
-//	var xhr = new XMLHttpRequest();
-//	console.log(getVideosInPlaylistURL);
-//	xhr.open("POST", addVideoToPlaylistURL, true);
-//	xhr.send(js);
-//	   
-//	console.log("sent append video request");
-//	   
-//	xhr.onloadend = function () {
-//		if (xhr.readyState == XMLHttpRequest.DONE) {
-//			console.log ("XHR:" + xhr.responseText);
+	var xhr = new XMLHttpRequest();
+	console.log(getVideosInPlaylistURL);
+	xhr.open("POST", addVideoToPlaylistURL, true);
+	xhr.send(js);
+	   
+	console.log("sent append video request");
+	   
+	xhr.onloadend = function () {
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			console.log ("XHR:" + xhr.responseText);
 //			clearPlaylistVideos();
 //		   	processPlaylistVideos(xhr.responseText);
-//		} else {
+		} else {
 //			processVideoList("N/A");
-//		}
-//	};
+		}
+	};
 }
 
 function clearAvailableVideos(){

@@ -80,8 +80,9 @@ public class VideosDAO {
     	String character = resultSet.getString("characterName");
     	String sentence = resultSet.getString("sentence");
     	String videoID = resultSet.getString("video_id");
+    	Boolean remotely_accessible = resultSet.getBoolean("remotely_accessible");
     	
-    	return new Video (videoID, name, URL, character, sentence);
+    	return new Video (videoID, name, URL, character, sentence, remotely_accessible);
     }
     
     private Segment generateSegment(ResultSet resultSet) throws Exception {

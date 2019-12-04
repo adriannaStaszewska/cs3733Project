@@ -13,3 +13,4 @@ var removeRemoteURL = base_url + "/removeRemoteSource";
 var searchVideosURL = base_url + "/videoSearch";
 var updateRemoteStatusURL = base_url + "/updateRemoteStatus";
 var addVideoToPlaylistURL = base_url + "/appendVideoToPlaylist";
+var removeFromPlaylistURL = base_url + "/";

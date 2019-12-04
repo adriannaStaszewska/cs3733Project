@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cs3733kakistocrat.group.model.Playlist;
+import com.cs3733kakistocrat.group.model.Video;
 
 
 public class PlaylistsDAO {
@@ -104,6 +105,7 @@ public class PlaylistsDAO {
     		throw new Exception("Failed in getting playlist: " + e.getMessage());
     	}
     }
+    
 
     private Playlist generatePlaylist(ResultSet resultSet) throws Exception {
     	String name  = resultSet.getString("playlistName");
