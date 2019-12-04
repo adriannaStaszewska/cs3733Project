@@ -3,6 +3,7 @@ package com.cs3733kakistocrat.group;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.cs3733kakistocrat.group.database.VideoToPlaylistDAO;
 import com.cs3733kakistocrat.group.database.VideosDAO;
 import com.cs3733kakistocrat.group.http.DeleteVideoRequest;
 import com.cs3733kakistocrat.group.http.DeleteVideoResponse;
@@ -22,9 +23,15 @@ public class DeleteVideoHandler implements RequestHandler<DeleteVideoRequest,Del
 		logger.log(req.toString());
 
 		VideosDAO dao = new VideosDAO();
+		VideoToPlaylistDAO playlistDAO = new VideoToPlaylistDAO();
 		Video video = new Video(req.getName(), req.getVideoID());
 		
 		try {
+			
+			if (!playlistDAO.removeVideoFromAllPlaylists(video.getVideoID())) {
+				response = new DeleteVideoResponse(req.getName(), 422, "Unable to delete video.");
+			}
+			
 			if (dao.deleteVideo(video)) {
 				response = new DeleteVideoResponse(req.getName(), 200);
 			} else {
