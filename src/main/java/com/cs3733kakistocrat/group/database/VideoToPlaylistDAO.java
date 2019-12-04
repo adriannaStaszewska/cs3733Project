@@ -62,9 +62,10 @@ public class VideoToPlaylistDAO {
     public boolean removeVideo(Video video, Playlist playlist, int position) throws Exception {
         try {
         	//this removes all videos with videoID in the playlist
-        	PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE video_id = ? AND playlist_name = ?;");
+        	PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE 'video_id' = ? AND 'playlist_name' = ? AND 'video_position' = ?;");
             ps.setString(1, video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
+            ps.setString(3,  String.valueOf(position));
             ps.executeUpdate();
             ps.close();
             return true;
