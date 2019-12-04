@@ -28,7 +28,6 @@ public class DBTests {
 	    	Playlist p2 = dao.getPlaylist(playlist.getPlaylistName());
 	    	System.out.println("Playlist:" + p2.getPlaylistName());
 	    	assertTrue (dao.removePlaylist(p2));
-	    	
 	    } catch (Exception e) {
 	    	fail ("didn't work:" + e.getMessage());
 	    }
@@ -40,10 +39,19 @@ public class DBTests {
 		
 		try {
 			dao.getAllVideos();
-			Video video = new Video("Test", "kakistocrat.com", "Me", "This is a sentence.");
+			Video video = new Video("someID","Test", "kakistocrat.com", "Me", "This is a sentence.");
+			Video video2 = new Video("someID", "Test", "kakistocrat.com", "Me", "This is a sentence");
+			
 			boolean b = dao.addVideo(video);
+			dao.addVideo(video2);
 			Video v2 = dao.getVideo(video.getVideoID());
+			dao.searchVideos("Me", "This is a sentence");
+			dao.searchVideos("me", "");
+			dao.searchVideos("", "this is a sentence");
+			dao.updateRemote("Test", false);
+	    	dao.getAllRemoteSegments();
 			assertTrue (dao.deleteVideo(v2));
+
 	    	
 		} catch (Exception e) {
 	    	fail ("didn't work:" + e.getMessage());
@@ -68,6 +76,7 @@ public class DBTests {
 	    	fail ("didn't work:" + e.getMessage());
 	    }
 	}
+
 	
 	@Test
 	public void testAddVideoToPlaylist(){
@@ -81,6 +90,7 @@ public class DBTests {
 			Playlist playlist = new Playlist("This is");
 			
 			boolean b1 = VTPDAO.appendVideoToPlaylist(video, playlist);
+
 			System.out.println("Added Video to Playlist: "+b1);		
 			VTPDAO.getAllVideos("This is");
 			
