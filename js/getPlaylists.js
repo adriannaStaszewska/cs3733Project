@@ -90,8 +90,9 @@ function insertVideoPlaylistRow(inArray) {
 		if(c==3) {
 			var trash = document.createElement("input");
 			trash.setAttribute("type", "button");
-			trash.setAttribute("value", "Trash");
+			trash.setAttribute("value", "Remove");
 			trash.onclick = function (){
+				
 //				var id = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].cells[5].getElementsByTagName("p")[0].innerHTML
 //				handleDeleteVideo(id);
 			}

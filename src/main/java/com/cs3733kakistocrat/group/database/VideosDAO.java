@@ -58,7 +58,7 @@ public class VideosDAO {
     	try {
     		List<Segment> segments = new ArrayList<>();
     		Statement statement = conn.createStatement();
-    		String query = "SELECT * FROM video WHERE remotely_accessible = 1");
+    		String query = "SELECT * FROM video WHERE remotely_accessible = 1";
     		ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Segment s = generateSegment(resultSet);
@@ -200,10 +200,10 @@ public class VideosDAO {
     }
     
     public boolean updateRemote(String videoID, boolean status) throws Exception {
-    	 Video video = null;
          PreparedStatement ps = conn.prepareStatement("UPDATE video SET remotely_accessible = ? WHERE video_id=?;");
          ps.setBoolean(1,  status);
-         ps.executeQuery();
+         ps.setString(2, videoID);
+         ps.executeUpdate();
          return true;
     }
 

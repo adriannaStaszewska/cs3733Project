@@ -124,24 +124,25 @@ function updateRemoteAval(newValue, id){
 	var js = JSON.stringify(data);
 	console.log(js);
     
-//    var xhr = new XMLHttpRequest();
-//    xhr.open("POST", searchVideosURL, true);
-//    
-//    xhr.send(js);
-// 	   
-//    console.log("sent search request");
-// 	   
-//    xhr.onloadend = function () {
-//    	if (xhr.readyState == XMLHttpRequest.DONE) {
-//    		console.log ("XHR:" + xhr.responseText);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", updateRemoteStatusURL, true);
+    
+    xhr.send(js);
+ 	   
+    console.log("sent update remote status request");
+ 	   
+    xhr.onloadend = function () {
+    	if (xhr.readyState == XMLHttpRequest.DONE) {
+    		console.log ("XHR:" + xhr.responseText);
 //    		clearVideos();
+//    		getVideos();
 //    		processSearch(xhr.responseText);
-////    		processVideoList(xhr.responseText);
-//    	} else {
-////    		processVideoList("N/A");
-//    		console.log("error searching local videos");
-//		}
-//    };
+//    		processVideoList(xhr.responseText);
+    	} else {
+//    		processVideoList("N/A");
+    		console.log("error update remote status");
+		}
+    };
 }
 
 function clearVideos(){
