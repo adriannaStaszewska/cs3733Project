@@ -1,13 +1,18 @@
 package com.cs3733kakistocrat.group.http;
 
 public class AppendVideoRequest {
-	String video_id;
+	String videoID;
 	String playlistName;
 	
-	public AppendVideoRequest(String video_id, String playlistName) {
-		this.video_id = video_id;
+	public AppendVideoRequest(String videoID, String playlistName) {
+		this.videoID = videoID;
 		this.playlistName = playlistName;
 	}
+	
+	public AppendVideoRequest() {
+		
+	}
+	
 	public String getPlaylistName( ) { 
 		return playlistName; 
 	
@@ -16,15 +21,15 @@ public class AppendVideoRequest {
 		this.playlistName = playlistName; 
 	}
 	
-	public String getVideo_id() {
-		return video_id;
+	public String getVideoID() {
+		return videoID;
 	}
-	public void setVideo_id(String video_id) {
-		this.video_id = video_id;
+	public void setVideoID(String video_id) {
+		this.videoID = video_id;
 	}
 	
 	public String toString() {
-		return "AppendVideo(" + video_id + playlistName + ")";
+		return "AppendVideo(" + videoID + playlistName + ")";
 	}
 
 

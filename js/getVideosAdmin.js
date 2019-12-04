@@ -138,8 +138,6 @@ function updateRemoteAval(newValue, id){
     		console.log ("XHR:" + xhr.responseText);
     		clearVideos();
     		getVideos();
-//    		processSearch(xhr.responseText);
-//    		processVideoList(xhr.responseText);
     	} else {
 //    		processVideoList("N/A");
     		console.log("error update remote status");
