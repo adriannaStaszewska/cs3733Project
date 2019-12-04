@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cs3733kakistocrat.group.model.RemoteSite;
+import com.mysql.jdbc.ResultSetMetaData;
 
 public class RemotesDAO {
 
@@ -41,6 +42,17 @@ public class RemotesDAO {
 	}
 
 	private RemoteSite generateRemoteSite(ResultSet resultSet) throws Exception {
+//		ResultSetMetaData rsmd = resultSet.getMetaData();
+//		
+//		int cols= rsmd.getColumnCount();
+//		while(resultSet.next()) {
+//			for(int i=1; i<= 2;i++) {
+//				if(i>1)
+//					System.out.print(", ");
+//				String ColVal = resultSet.getString(i);
+//				System.out.print(ColVal +" "+rsmd.getColumnName(i));
+//			}
+//		}
 		String url = resultSet.getString("url");
 		String api_key = resultSet.getString("api_key");
 		return new RemoteSite(url,api_key);
