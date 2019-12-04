@@ -93,8 +93,28 @@ function insertVideoPlaylistRow(inArray) {
 			trash.setAttribute("value", "Remove");
 			trash.onclick = function (){
 				
-//				var id = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].cells[5].getElementsByTagName("p")[0].innerHTML
+				//video id
+				var id = document.getElementById("videosTableP").rows[this.parentNode.parentNode.rowIndex].cells[5].getElementsByTagName("p")[0].innerHTML;
+				
+				console.log(id);
+				
+				//playlist name
+				var tableTemp = document.getElementById("playlistTableBody");
+				var rowsNotSelected = tableTemp.getElementsByTagName('tr');
+				var selected = -1;
+				for (var row = 0; row < rowsNotSelected.length; row++) {
+				    if(rowsNotSelected[row].classList.contains("selected")){
+				    	selected = row;
+				    }
+				}
+				
+				var playName = document.getElementById("playlistTableBody").rows[selected].cells[0].innerText;
+				
+				//row number
+				var rowNum = this.parentNode.parentNode.rowIndex - 1;
+				
 //				handleDeleteVideo(id);
+				handleRemoveFromPlaylist(id, playName, rowNum);
 			}
 			td.appendChild(trash);
 		} else if(c == 4){
@@ -200,4 +220,29 @@ function clearPlaylistVideos(){
 	for (var i = tableHeaderRowCount; i < rowCount; i++) {
 	    table.deleteRow(tableHeaderRowCount);
 	}
+}
+
+function handleRemoveFromPlaylist(id, playlistName, rowNum){
+	var data = {};
+	data["playlistName"] = playlistName;
+	data["videoID"] = id;
+	data["position"] = rowNum;
+	var js = JSON.stringify(data);
+	
+	var xhr = new XMLHttpRequest();
+	console.log(getVideosInPlaylistURL);
+   xhr.open("POST", removeFromPlaylistURL, true);
+   xhr.send(js);
+	   
+   console.log("sent remove video from playlist request");
+	   
+   xhr.onloadend = function () {
+	   if (xhr.readyState == XMLHttpRequest.DONE) {
+		   console.log ("XHR:" + xhr.responseText);
+//		   clearPlaylistVideos();
+//		   processPlaylistVideos(xhr.responseText);
+	   } else {
+//		   processVideoList("N/A");
+	   }
+   };
 }
