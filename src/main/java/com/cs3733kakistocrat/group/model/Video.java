@@ -20,6 +20,15 @@ public class Video {
 		this.videoID = videoID;
 	}
 	
+	public Video(String videoID, String name, String url, String character, String sentence, Boolean remotely_accessible) {
+		this.name = name;
+		this.url = url;
+		this.character = character;
+		this.sentence = sentence;
+		this.remotely_accessible = remotely_accessible;
+		this.videoID = videoID;
+	}
+	
 	public Video(String name, String url, String character, String sentence) {
 		this.name = name;
 		this.url = url;

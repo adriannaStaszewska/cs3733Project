@@ -118,7 +118,7 @@ function updateRemoteAval(newValue, id){
 	console.log("Checkbox changed to: " + newValue);
 	
 	var data = {};
-	data["videoName"] = id;
+	data["videoID"] = id;
 	data["status"] = newValue;
 	
 	var js = JSON.stringify(data);
