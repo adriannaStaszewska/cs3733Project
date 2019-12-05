@@ -25,6 +25,7 @@ public class CreateRemoteTest extends LambdaTest{
         delReq.toString();
         RemoveRemoteResponse delRes = new RemoveRemoteHandler().handleRequest(delReq, createContext("delete remote url"));
         delRes.toString();
+        RemoveRemoteResponse delResFail = new RemoveRemoteHandler().handleRequest(delReq, createContext("delete remote url 2"));
 	}
 	
 	public void createRemoteTest(String input, CreateRemoteHandler handler) {

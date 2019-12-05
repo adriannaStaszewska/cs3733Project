@@ -33,6 +33,7 @@ public class CreatePlaylistTest extends LambdaTest{
         delReq.toString();
         RemovePlaylistResponse delRes = new RemovePlaylistHandler().handleRequest(delReq, createContext("delete playlist"));
         delRes.toString();
+        RemovePlaylistResponse delRes2Fail = new RemovePlaylistHandler().handleRequest(delReq, createContext("delete playlist"));
 	}
 	
 	public void createPlaylistTest(CreatePlaylistRequest request, CreatePlaylistHandler handler) {
