@@ -58,7 +58,7 @@ public class VideoToPlaylistDAO {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO playlist_video (video_id, playlist_name, video_position) values(?,?,?);");
             ps.setString(1,  video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
-            ps.setInt(3,  rowNum);
+            ps.setInt(3,  -1);
             
             ps.execute();
             ps.close();

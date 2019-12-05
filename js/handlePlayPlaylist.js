@@ -16,21 +16,6 @@ function handlePlayPlaylistModal(){
 	console.log(videosToPlay);
 	document.getElementById("player").src = videosToPlay.pop();
 	
-//	document.getElementById("player").addEventListener('ended',myHandler,false);
-//    function myHandler(e) {
-//        // What you want to do after the event
-//    	if(videosToPlay.length > 0){
-//    		console.log("here");
-//    		console.log(videosToPlay);
-//    		document.getElementById("player").src = videosToPlay.pop();
-//    	} else {
-//    		console.log("closing");
-//    		closePlaylistModal();
-//    	}
-//    }
-//	document.getElementById("player").add
-//	var videoID = document.getElementById("addVideosTableP").rows[selected].cells[4].innerText;
-    
 }
 
 
