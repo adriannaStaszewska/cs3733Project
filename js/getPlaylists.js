@@ -240,8 +240,18 @@ function handleRemoveFromPlaylist(id, playlistName, rowNum){
    xhr.onloadend = function () {
 	   if (xhr.readyState == XMLHttpRequest.DONE) {
 		   console.log ("XHR:" + xhr.responseText);
-//		   clearPlaylistVideos();
-//		   processPlaylistVideos(xhr.responseText);
+		   clearPlaylistVideos();
+		   
+		   var tableTemp = document.getElementById("playlistTableBody");
+			var rowsNotSelected = tableTemp.getElementsByTagName('tr');
+			var selected = -1;
+			for (var row = 0; row < rowsNotSelected.length; row++) {
+			    if(rowsNotSelected[row].classList.contains("selected")){
+			    	selected = row;
+			    }
+			}
+		   console.log(selected);
+		   fillPlaylistVideos(selected);
 	   } else {
 //		   processVideoList("N/A");
 	   }
