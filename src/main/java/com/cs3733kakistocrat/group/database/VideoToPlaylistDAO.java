@@ -46,7 +46,7 @@ public class VideoToPlaylistDAO {
     public boolean appendVideoToPlaylist(Video video, Playlist playlist) throws Exception {
         try {
         	
-        	PreparedStatement ps1 = conn.prepareStatement("SELECT COUNT(*) FROM playlist_video WHERE playlist_name=?;");
+        	PreparedStatement ps1 = conn.prepareStatement("SELECT COUNT(*) FROM playlist_video WHERE playlist_name=? ORDER BY video_position;");
         	ps1.setString(1, playlist.getPlaylistName());
 
         	ps1.execute();
@@ -58,7 +58,7 @@ public class VideoToPlaylistDAO {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO playlist_video (video_id, playlist_name, video_position) values(?,?,?);");
             ps.setString(1,  video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
-            ps.setInt(3,  -1);
+            ps.setInt(3,  rowNum+1);
             
             ps.execute();
             ps.close();
