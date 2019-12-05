@@ -24,11 +24,6 @@ function addVideoToSelectedPlaylist(input) {
 
 function addVideo(input) {
 	console.log("Handle add video to playlist button triggered");
-    document.getElementById("playlistAddModal").style.visibility = 'hidden';
-    document.getElementById("playlistAddModalContent").style.visibility = 'hidden';
-    document.getElementById("addModal").style.visibility = 'hidden';
-    document.getElementById("playlistAddModal").style.zIndex = '-1';
-    document.getElementById("addModal").style.zIndex = '-1';
     
     var tableTemp = document.getElementById("playlistTableBody");
 	var rowsNotSelected = tableTemp.getElementsByTagName('tr');
@@ -37,6 +32,10 @@ function addVideo(input) {
 	    if(rowsNotSelected[row].classList.contains("selected")){
 	    	selected = row;
 	    }
+	}
+	
+	if(selected == -1){
+		return;
 	}
 	
 	var playlistName = document.getElementById("playlistTableBody").rows[selected].cells[0].innerText;
@@ -51,8 +50,18 @@ function addVideo(input) {
 	    }
 	}
 	
+	if(selected == -1){
+    	return;
+    }
+	
 	var videoID = document.getElementById("addVideosTableP").rows[selected].cells[4].innerText;
     console.log(videoID);
+    
+    document.getElementById("playlistAddModal").style.visibility = 'hidden';
+    document.getElementById("playlistAddModalContent").style.visibility = 'hidden';
+    document.getElementById("addModal").style.visibility = 'hidden';
+    document.getElementById("playlistAddModal").style.zIndex = '-1';
+    document.getElementById("addModal").style.zIndex = '-1';
     
     addVideoToPlaylist(playlistName, videoID);
 }
@@ -172,7 +181,9 @@ function addVideoToPlaylist(playlist, video){
 	xhr.onloadend = function () {
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			console.log ("XHR:" + xhr.responseText);
-//			clearPlaylistVideos();
+			clearPlaylistVideos();
+			//here
+			getVideosInPlaylist(playlist);
 //		   	processPlaylistVideos(xhr.responseText);
 		} else {
 //			processVideoList("N/A");
