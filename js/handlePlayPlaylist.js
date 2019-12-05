@@ -9,7 +9,11 @@ function handlePlayPlaylistModal(){
     
     var tableTemp = document.getElementById("videosTablePBody");
 	var rowsNotSelected = tableTemp.getElementsByTagName('tr');
-//	var videosToPlay = []
+
+	if(rowsNotSelected.length <= 0){
+		return;
+	}
+	
 	for (var row = 0; row < rowsNotSelected.length; row++) {
 		videosToPlay.push(rowsNotSelected[row].cells[4].innerText);
 	}

@@ -80,7 +80,8 @@ function insertRow(rowArray) {
 			trash.setAttribute("value", "Trash");
 			trash.onclick = function (){
 				var id = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].getElementsByTagName("p")[4].innerHTML;
-				handleDeleteVideo(id);
+				var name = document.getElementById("videosTable").rows[this.parentNode.parentNode.rowIndex].getElementsByTagName("p")[0].innerHTML;
+				handleDeleteVideo(name, id);
 			}
 			td.appendChild(trash);
 		} else if(c == 5){

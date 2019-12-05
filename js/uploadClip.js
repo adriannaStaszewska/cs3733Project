@@ -46,6 +46,8 @@ function uploadClip(){
 		    if (xhr.readyState == XMLHttpRequest.DONE) {
 		    	 if (xhr.status == 200) {
 			      console.log ("XHR:" + xhr.responseText);
+			      clearVideos();
+			      getVideos();
 			      //processCreateResponse(xhr.responseText);
 		    	 } else {
 		    		 console.log("actual:" + xhr.responseText)
