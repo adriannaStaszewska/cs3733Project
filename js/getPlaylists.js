@@ -228,9 +228,10 @@ function handleRemoveFromPlaylist(id, playlistName, rowNum){
 	data["videoID"] = id;
 	data["position"] = rowNum;
 	var js = JSON.stringify(data);
+	console.log(js);
 	
 	var xhr = new XMLHttpRequest();
-	console.log(getVideosInPlaylistURL);
+	console.log(removeFromPlaylistURL);
    xhr.open("POST", removeFromPlaylistURL, true);
    xhr.send(js);
 	   

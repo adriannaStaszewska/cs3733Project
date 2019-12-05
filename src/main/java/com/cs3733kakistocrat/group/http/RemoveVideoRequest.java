@@ -11,6 +11,10 @@ public class RemoveVideoRequest {
 		this.position = position;
 	}
 	
+	public RemoveVideoRequest() {
+
+	}
+	
 	@Override
 	public String toString() {
 		return "RemoveVideoRequest [videoID=" + videoID + ", playlistName=" + playlistName + ", position=" + position

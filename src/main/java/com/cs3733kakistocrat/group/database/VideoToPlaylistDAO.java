@@ -45,12 +45,23 @@ public class VideoToPlaylistDAO {
     
     public boolean appendVideoToPlaylist(Video video, Playlist playlist) throws Exception {
         try {
+        	
+        	PreparedStatement ps1 = conn.prepareStatement("SELECT COUNT(*) FROM playlist_video WHERE playlist_name=?;");
+        	ps1.setString(1, playlist.getPlaylistName());
+
+        	ps1.execute();
+        	ResultSet results = ps1.getResultSet();
+        	results.next();
+        	int rowNum = results.getInt(1);
+        	ps1.close();
+        	
             PreparedStatement ps = conn.prepareStatement("INSERT INTO playlist_video (video_id, playlist_name, video_position) values(?,?,?);");
             ps.setString(1,  video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
-            ps.setInt(3,  -1); //not used yet, no need 
+            ps.setInt(3,  rowNum);
             
             ps.execute();
+            ps.close();
             return true;
 
         } catch (Exception e) {
@@ -62,22 +73,23 @@ public class VideoToPlaylistDAO {
     public boolean removeVideo(Video video, Playlist playlist, int position) throws Exception {
         try {
         	//this removes all videos with videoID in the playlist
-        	PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE 'video_id' = ? AND 'playlist_name' = ? AND 'video_position' = ?;");
+        	PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE (video_id, playlist_name) = (?, ?);");// AND ('video_position' = ?);");
             ps.setString(1, video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
-            ps.setString(3,  String.valueOf(position));
+//            ps.setInt(3,  position);
             ps.executeUpdate();
             ps.close();
             return true;
 
         } catch (Exception e) {
+        	System.out.println(e.getMessage());
             throw new Exception("Failed to add video to the playlist: " + e.getMessage());
         }
     }
        
     public boolean removeVideoFromAllPlaylists(String videoID) throws Exception{
     	try {
-    		PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist WHERE 'video_id' = ?;");
+    		PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE 'video_id' = ?;");
     		ps.setString(1, videoID);
     		int numAffected = ps.executeUpdate();
     		ps.close();
