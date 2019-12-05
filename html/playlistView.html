@@ -20,6 +20,7 @@
 	    <script type="text/javascript" src="../js/handleCreatePlaylist.js"></script>
 	    <script type="text/javascript" src="../js/handleDeletePlaylist.js"></script>
 	    <script type="text/javascript" src="../js/addVideoToPlaylist.js"></script>
+	    <script type="text/javascript" src="../js/handlePlayPlaylist.js"></script>
 	    
 	    <script type="text/javascript">
 			function initialize() {  
@@ -79,6 +80,7 @@
 	
 	<form name="addVideoToPlaylist">
 		<input id="addVideoToPlaylistButton" type="button" value="+" onClick="JavaScript:addVideoToSelectedPlaylist(this)" style="visibility: hidden;">
+		<input id="playButton" type="button" value="Play" onClick="JavaScript:handlePlayPlaylistModal(this)" style="visibility: hidden;">
 	</form>
 	
 	<div class="fullscreen-modal" id="addModal">
@@ -103,7 +105,33 @@
                 </div>
             </div>
         </div>
-	
+        
+        <div class="fullscreen-modal" id="playPlaylistPlayerModal">
+            <div class="Modal" id="playPlaylistModal">
+                <div class="modal-content" id="playPlaylistModalContent">
+                    <form name="modalForm">
+                        <input type="button" id="popUpClose3" value="X" onClick="JavaScript:closePlaylistModal(this)"><br>
+                    	<video id="player" width="320" height="240" autoplay="true">
+  							<source src="" type="video/ogg">
+						</video>
+                    </form>
+                </div>
+            </div>
+        </div>
+		<script>
+			document.getElementById("player").addEventListener('ended',myHandler,false);
+		    function myHandler(e) {
+		        // What you want to do after the event
+		    	if(videosToPlay.length > 0){
+		    		console.log("here");
+		    		console.log(videosToPlay);
+		    		document.getElementById("player").src = videosToPlay.pop();
+		    	} else {
+		    		console.log("closing");
+		    		closePlaylistModal();
+		    	}
+		    }
+		</script>
 	</body>
 
 </html>

@@ -178,6 +178,7 @@ function insertPlaylistRow(rowInput) {
 		fillPlaylistVideos(this.parentNode.rowIndex - 1);
 		
 		document.getElementById("addVideoToPlaylistButton").style.visibility = 'visible';
+		document.getElementById("playButton").style.visibility = 'visible';
 	}
 	var element = document.createElement("P");
 	element.innerHTML = rowInput;
