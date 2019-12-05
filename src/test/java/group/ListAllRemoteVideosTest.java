@@ -14,6 +14,6 @@ public class ListAllRemoteVideosTest extends LambdaTest{
 		public void getVideosTest() throws IOException{
 		ListAllRemoteSegmentsHandler handler = new ListAllRemoteSegmentsHandler();
 		AllRemoteSegmentsResponse resp = handler.handleRequest(null, createContext("list"));
-	
+		resp.toString();
 	}
 }
