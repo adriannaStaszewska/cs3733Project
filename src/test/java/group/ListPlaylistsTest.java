@@ -12,5 +12,6 @@ public class ListPlaylistsTest extends LambdaTest{
 		public void getVideosTest() throws IOException{
 		ListAllPlaylistsHandler handler = new ListAllPlaylistsHandler();
 		AllPlaylistsResponse resp = handler.handleRequest(null, createContext("list"));
-		}
+		resp.toString();
 	}
+}

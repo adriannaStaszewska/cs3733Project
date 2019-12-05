@@ -12,7 +12,7 @@ public class ListAllRemoteSitesTest extends LambdaTest{
 	public void getVideosTest() throws IOException{
 	ListAllRemoteSitesHandler handler = new ListAllRemoteSitesHandler();
 	AllRemotesResponse resp = handler.handleRequest(null, createContext("list"));
-	
+	resp.toString();
 	}
 
 }

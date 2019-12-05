@@ -14,6 +14,6 @@ public class ListVideosTest extends LambdaTest{
 		public void getVideosTest() throws IOException{
 		ListAllVideosHandler handler = new ListAllVideosHandler();
 		AllVideosResponse resp = handler.handleRequest(null, createContext("list"));
-	
+		resp.toString();
 	}
 }
