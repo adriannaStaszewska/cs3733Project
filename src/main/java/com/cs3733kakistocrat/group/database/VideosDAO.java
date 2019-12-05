@@ -177,7 +177,7 @@ public class VideosDAO {
                 String sentence = v.getSentence().toLowerCase();
                 
                 if(!charSearch.equals("") && !sentSearch.equals("")) {
-                	if(character.contains(charSearch.toLowerCase()) || sentence.contains(sentSearch.toLowerCase())){
+                	if(character.contains(charSearch.toLowerCase()) && sentence.contains(sentSearch.toLowerCase())){
                     	videos.add(v);
                     }
                 }else if(!charSearch.equals("")) {
