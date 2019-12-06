@@ -50,10 +50,10 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 			bucket = "3733kakistocrattests";
 		}
 		
-		if (s3 == null) {
+		if (this.s3 == null) {
 			System.out.println("Create s3");
 //			logger.log("attach to S3 request");
-			s3 = AmazonS3ClientBuilder.standard().withRegion(Regions.US_EAST_2).build();
+			this.s3 = AmazonS3ClientBuilder.standard().withRegion(Regions.US_EAST_2).build();
 			System.out.println("created s3");
 //			logger.log("attach to S3 succeed");
 		}
@@ -63,11 +63,13 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 		omd.setContentLength(contents.length);
 		//in S3 bucket
 		try {
-			PutObjectResult res = s3.putObject(new PutObjectRequest(bucket, "videos/" + name + ".ogg", bais, omd));
-			s3.setObjectAcl(bucket, "videos/" + name + ".ogg", CannedAccessControlList.PublicRead);
+			
+			PutObjectResult res = this.s3.putObject(new PutObjectRequest(bucket, "videos/"+name + ".ogg", bais, omd));
+			s3.setObjectAcl(bucket,  "videos/"+name + ".ogg", CannedAccessControlList.PublicRead);
 			
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
+			e.printStackTrace();
+			System.out.println("Error!!!: " + e.getMessage());
 			return false;
 		}
 
