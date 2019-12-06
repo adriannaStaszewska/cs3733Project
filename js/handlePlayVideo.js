@@ -11,6 +11,7 @@ function handlePlayModal(row) {
 }
 
 function closePlayModal() {
+	document.getElementById("player").pause();
     document.getElementById("videoPlayerModal").style.visibility = 'hidden';
     document.getElementById("playerModal").style.visibility = 'hidden';
     document.getElementById("videoModalContent").style.visibility = 'hidden';
