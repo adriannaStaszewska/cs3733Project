@@ -24,7 +24,7 @@ public class VideoToPlaylistDAO {
     	try {
     		List<Video> videos = new ArrayList<>();
     		
-    		PreparedStatement ps = conn.prepareStatement("SELECT * FROM playlist_video WHERE playlist_name=? ORDER BY video_position;");
+    		PreparedStatement ps = conn.prepareStatement("SELECT * FROM playlist_video WHERE playlist_name=? ORDER BY video_position asc;");
             ps.setString(1,  playlistName);
             ResultSet resultSet = ps.executeQuery();
 
