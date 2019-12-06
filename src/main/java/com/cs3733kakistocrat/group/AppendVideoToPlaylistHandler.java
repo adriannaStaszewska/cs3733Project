@@ -16,23 +16,29 @@ public class AppendVideoToPlaylistHandler implements RequestHandler<AppendVideoR
 	
 	@Override
 	public Response handleRequest(AppendVideoRequest input, Context context) {
-		
 		Response response;
 		VideosDAO vidDAO = new VideosDAO();
 		PlaylistsDAO plDAO = new PlaylistsDAO();
+		Video videoHolder = null;
+	
 		try {
-			Video video = vidDAO.getVideo(input.getVideoID());
+			if(input.isRemote()) {
+				videoHolder = new Video("", input.getUrl(), input.getCharacter(), input.getText());
+			} else {
+				videoHolder = vidDAO.getVideo(input.getVideoID());
+			}
+			
 			Playlist playlist = plDAO.getPlaylist(input.getPlaylistName());
-			if (appendVideoToPlaylist(video, playlist)) {
+			if (appendVideoToPlaylist(videoHolder, playlist)) {
 				response = new Response(input.getPlaylistName());
 			} else {
 				response = new Response(input.getPlaylistName(), 400);
 			}
-		}catch (Exception e) {
-			response = new Response("Unable add video"+ input.getVideoID() + " to playlist: " + input.getPlaylistName()+ " (" + e.getMessage() + ")", 400);
+		} catch (Exception e) {
+			response = new Response("Unable add video"+ videoHolder.getVideoID() + " to playlist: " + input.getPlaylistName()+ " (" + e.getMessage() + ")", 400);
 		}
 		return response;
-	}
+}
 	
 	boolean appendVideoToPlaylist(Video vid, Playlist pl) throws Exception {
 		if (logger != null) { logger.log("in appendVideoToPlaylist"); }
