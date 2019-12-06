@@ -88,6 +88,7 @@
                 <div class="modal-content" id="playlistAddModalContent">
                     <form name="modalForm" id="playlistAddForm">
                         <input type="button" id="popUpClose2" value="X" onClick="JavaScript:closeAddModal(this)"><br>
+                        Local Videos
                         <table id="addVideosTableP" class="videoTable" style="float:left;">
 		 					<thead>
 			  					<tr>
@@ -100,7 +101,16 @@
 			  					
 		 					</tbody>
 						</table>
-                        <input type="button" value="Add" onClick="JavaScript:addVideo(this)">
+						<br>
+						Remote Videos
+						<br>
+						<table id="addRemoteVideosTableP" class="videoTable" style="float:left;">
+		 					<tbody id="addRemoteVideosTablePBody">
+			  					
+		 					</tbody>
+						</table>
+						<br>
+                        <input type="button" value="Add" style="float:left;" onClick="JavaScript:addVideo(this)">
                     	<br>
                     </form>
                     <br>
