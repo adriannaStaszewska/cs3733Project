@@ -35,7 +35,7 @@
     width: 30%; /* Could be more or less, depending on screen size */
     z-index: -1; /* 1 */
     overflow-y: auto;
-	max-height: 600px;
+	max-height: 400px;
 }
 
 /* The Close Button */
