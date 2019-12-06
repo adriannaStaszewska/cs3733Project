@@ -25,6 +25,7 @@ function handlePlayPlaylistModal(){
 
 
 function closePlaylistModal() {
+	document.getElementById("player").pause();
     document.getElementById("playPlaylistPlayerModal").style.visibility = 'hidden';
     document.getElementById("playPlaylistModal").style.visibility = 'hidden';
     document.getElementById("playPlaylistModalContent").style.visibility = 'hidden';
