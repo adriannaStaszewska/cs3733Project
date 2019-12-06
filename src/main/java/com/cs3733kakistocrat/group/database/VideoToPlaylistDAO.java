@@ -40,7 +40,7 @@ public class VideoToPlaylistDAO {
     		e.printStackTrace();
     		throw new Exception("Failed in getting all videos: " + e.getMessage());
     	}
-    }
+    } 
     
     public boolean appendVideoToPlaylist(Video video, Playlist playlist) throws Exception {
         try {
