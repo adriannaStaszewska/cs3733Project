@@ -24,7 +24,7 @@ public class VideoToPlaylistDAO {
     	try {
     		List<Video> videos = new ArrayList<>();
     		
-    		PreparedStatement ps = conn.prepareStatement("SELECT * FROM playlist_video WHERE playlist_name=?;");
+    		PreparedStatement ps = conn.prepareStatement("SELECT * FROM playlist_video WHERE playlist_name=? ORDER BY video_position;");
             ps.setString(1,  playlistName);
             ResultSet resultSet = ps.executeQuery();
 
@@ -58,7 +58,7 @@ public class VideoToPlaylistDAO {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO playlist_video (video_id, playlist_name, video_position) values(?,?,?);");
             ps.setString(1,  video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
-            ps.setInt(3,  rowNum+1);
+            ps.setInt(3,  rowNum);
             
             ps.execute();
             ps.close();
