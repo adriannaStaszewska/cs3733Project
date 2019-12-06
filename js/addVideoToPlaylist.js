@@ -78,6 +78,7 @@ function getAvailableVideos(){
 	
 	clearAvailableVideos();
 	
+	//get local videos
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", getVideosURL, true);
 	xhr.send();
@@ -87,12 +88,82 @@ function getAvailableVideos(){
 			console.log ("XHR:" + xhr.responseText);
 			processVideoListForPlaylist(xhr.responseText);
 		} else {
-			processVideoListForPlaylist("N/A");
+//			processVideoListForPlaylist("N/A");
+		}
+	};
+	
+	//get remote sites
+	var xhr2 = new XMLHttpRequest();
+	xhr2.open("GET", getRemotesURL, true);
+	xhr2.send();
+	   
+	console.log("sent remote URLs request");
+	   
+	xhr2.onloadend = function () {
+		if (xhr2.readyState == XMLHttpRequest.DONE) {
+			console.log ("XHR:" + xhr2.responseText);
+			if (xhr2.status == 200) {
+				var js = JSON.parse(xhr2.responseText);
+				
+				for (var i = 0; i < js.list.length; i++) {
+					var constantJson = js.list[i];
+				    console.log(constantJson);
+				    try {
+				    	getRemotes(constantJson["url"], constantJson["api_key"]);
+				    } catch (e) {
+				    	console.log(e);
+				    }
+				}
+			} else {
+				return;
+			}
+			
+		} else {
+			return;
+//			processRemoteList("N/A");
+		}
+	};
+	
+}
+
+function getRemotes(url, api) {
+	//get videos from remote
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", url, true);
+	xhr.setRequestHeader("x-api-key", api);
+	xhr.send();
+	   
+	xhr.onloadend = function () {
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			console.log ("XHR:" + xhr.responseText);
+			processRemoteVideoListForPlaylist(xhr.responseText);
+		} else {
+//			processVideoListForPlaylist("N/A");
 		}
 	};
 }
 
 //-------------------------
+function processRemoteVideoListForPlaylist(result) {
+	console.log("res:" + result);
+	var js = JSON.parse(result);
+	js = js["segments"];
+	console.log(js);
+	
+	for (var i = 0; i < js.length; i++) {
+		var constantJson = js[i];
+	    console.log(constantJson);
+	    var tempArray = [];
+	    tempArray.push("");
+	    tempArray.push(constantJson["character"]);
+	    tempArray.push(constantJson["text"]);
+	    tempArray.push(constantJson["url"]);
+	    tempArray.push("");//(constantJson["videoID"])
+	    insertRowToAdd(tempArray);
+	}
+	
+	
+}
 
 
 function processVideoListForPlaylist(result) {

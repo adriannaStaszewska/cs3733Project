@@ -4,6 +4,9 @@
 	bgcolor: white;
 	background-color: white;
 	padding: 8px;
+	margin-bottom: 25px;
+	overflow-y: auto;
+	max-height: 75%;
 }
 
 .playlistVideoTable thead {
