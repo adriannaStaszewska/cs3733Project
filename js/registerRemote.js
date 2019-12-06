@@ -21,13 +21,15 @@ function handleRegisterRemoteSite(e) {
     document.getElementById("fullmodal").style.visibility = 'hidden';
     document.getElementById("registerModal").style.zIndex = '-1';
     document.getElementById("fullmodal").style.zIndex = '-1';
-    createRemote(document.getElementById("urlField").value);
+    createRemote(document.getElementById("urlField").value, document.getElementById("apiField").value);
     document.getElementById("urlField").value = "";
+    document.getElementById("apiField").value = "";
 }
 
-function createRemote(url) {
+function createRemote(url, api) {
 	var data = {};
 	data["url"] = url;
+	data["api_key"] = api;
 	
 	var js = JSON.stringify(data);
 	console.log(js);

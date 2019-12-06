@@ -13,7 +13,7 @@ public class ListAllRemoteSitesHandler  implements RequestHandler<Object,AllRemo
 	public LambdaLogger logger;
 	
 	List<RemoteSite> getAllRemotes() throws Exception {
-		logger.log("in getAllVideos");
+		logger.log("in getAllRemotes");
 		RemotesDAO dao = new RemotesDAO();
 		
 		return dao.getAllRemotes();

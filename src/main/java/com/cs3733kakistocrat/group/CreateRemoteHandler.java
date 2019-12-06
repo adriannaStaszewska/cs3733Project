@@ -18,10 +18,11 @@ public class CreateRemoteHandler implements RequestHandler<CreateRemoteRequest,C
 		
 		try {
 			System.out.println(input.getUrl());
+			System.out.println(input.getApi_key());
 			if (createRemoteSite(input.getUrl(), input.getApi_key())) {
-				response = new CreateRemoteResponse(input.getUrl());
+				response = new CreateRemoteResponse(input.getUrl(), input.getApi_key());
 			} else {
-				response = new CreateRemoteResponse(input.getUrl(), 400);
+				response = new CreateRemoteResponse(input.getUrl(), input.getApi_key(), 400);
 			}
 		}catch (Exception e) {
 			response = new CreateRemoteResponse("Unable to create playlist: " + input.getUrl()+ " (" + e.getMessage() + ")", 400);
