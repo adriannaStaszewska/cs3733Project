@@ -10,12 +10,17 @@ import org.apache.commons.codec.binary.Base64;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.cs3733kakistocrat.group.DeleteVideoHandler;
 import com.cs3733kakistocrat.group.UploadVideoHandler;
+import com.cs3733kakistocrat.group.database.VideosDAO;
+import com.cs3733kakistocrat.group.http.DeleteVideoRequest;
+import com.cs3733kakistocrat.group.http.DeleteVideoResponse;
 import com.cs3733kakistocrat.group.http.UploadVideoRequest;
 import com.cs3733kakistocrat.group.http.UploadVideoResponse;
 import com.google.gson.Gson;
 
 public class UploadVideoTest extends LambdaTest {
+	String vidID;
 		
     void testSuccessInput(String incomingJson) throws IOException {
     	UploadVideoHandler handler = new UploadVideoHandler();
@@ -47,6 +52,7 @@ public class UploadVideoTest extends LambdaTest {
     @Test
 	public void uploadVideoTest() {
     	File file = new File(getClass().getClassLoader().getResource("sampleVid.ogg").getFile());
+    	VideosDAO dao = new VideosDAO();
     	UploadVideoHandler handler = new UploadVideoHandler();
 		byte[] fileContent;
 		try {
@@ -54,12 +60,20 @@ public class UploadVideoTest extends LambdaTest {
 			String encode = java.util.Base64.getEncoder().encodeToString(fileContent);
 			UploadVideoRequest req = new UploadVideoRequest("lonely", encode, "McCoy", "Yes, very lonely", false);
 	    	UploadVideoResponse resp = handler.handleRequest(req, createContext("upload video"));
-			Assert.assertEquals(200, resp.httpCode);
+	    	try {
+				vidID= dao.getAllVideos().get(0).getVideoID();
+				Assert.assertEquals(200, resp.httpCode);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("!!!!");
 			e.printStackTrace();
 		}
 	}
+
 
 }

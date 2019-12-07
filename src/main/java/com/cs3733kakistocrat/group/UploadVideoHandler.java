@@ -64,7 +64,7 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 		//in S3 bucket
 		try {
 			
-			PutObjectResult res = this.s3.putObject(new PutObjectRequest(bucket, "videos"+name + ".ogg", bais, omd)
+			PutObjectResult res = this.s3.putObject(new PutObjectRequest(bucket, "videos/"+name + ".ogg", bais, omd)
 			    .withCannedAcl( CannedAccessControlList.PublicRead));
 			
 		} catch (Exception e) {
@@ -83,6 +83,7 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 		
 		return true;
 	}
+	
 	
 
 }
