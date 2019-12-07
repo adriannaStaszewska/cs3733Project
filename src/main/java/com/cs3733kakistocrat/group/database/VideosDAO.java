@@ -112,7 +112,7 @@ public class VideosDAO {
         }
     }
     
-    public boolean addVideo(Video video) throws Exception {
+    public boolean addVideo(Video video, boolean remote) throws Exception {
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM video WHERE video_id = ?;");
             ps.setString(1, video.getVideoID());
@@ -125,13 +125,14 @@ public class VideosDAO {
                 return false;
             }
 
-            ps = conn.prepareStatement("INSERT INTO video (video_id, name, characterName, sentence, url, remotely_accessible) values(?, ?, ?, ?, ?, ?);");
+            ps = conn.prepareStatement("INSERT INTO video (video_id, name, characterName, sentence, url, remotely_accessible, remote) values(?, ?, ?, ?, ?, ?, ?);");
             ps.setString(1,  video.getVideoID());
             ps.setString(2,  video.getName());
             ps.setString(3,  video.getCharacter());
             ps.setString(4,  video.getSentence());
             ps.setString(5,  video.getUrl());
             ps.setBoolean(6, video.isRemotely_accessible());
+            ps.setBoolean(7, remote);
             ps.execute();
             return true;
 

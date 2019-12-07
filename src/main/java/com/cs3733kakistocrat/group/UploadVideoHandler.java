@@ -79,7 +79,7 @@ public class UploadVideoHandler implements RequestHandler<UploadVideoRequest,Upl
 			url = "https://3733kakistocrattests.s3.us-east-2.amazonaws.com/videos/" + name + ".ogg";
 		}
 		video.setUrl(url);
-		dao.addVideo(video);
+		dao.addVideo(video, false);
 		
 		return true;
 	}
