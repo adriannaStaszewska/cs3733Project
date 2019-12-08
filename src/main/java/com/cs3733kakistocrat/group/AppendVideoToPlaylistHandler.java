@@ -24,9 +24,9 @@ public class AppendVideoToPlaylistHandler implements RequestHandler<AppendVideoR
 		try {
 			if(input.isRemote()) {
 				videoHolder = new Video("", input.getUrl(), input.getCharacter(), input.getText());
+				vidDAO.addVideo(videoHolder, true);
 			} else {
 				videoHolder = vidDAO.getVideo(input.getVideoID());
-				vidDAO.addVideo(videoHolder, true);
 			}
 			
 			Playlist playlist = plDAO.getPlaylist(input.getPlaylistName());

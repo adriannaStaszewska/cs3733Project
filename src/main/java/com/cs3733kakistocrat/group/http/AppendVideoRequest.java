@@ -22,6 +22,15 @@ public class AppendVideoRequest {
 		this.text = text;
 	}
 	
+	public AppendVideoRequest(String playlistName, boolean remote, String character, String url, String text) {
+		//this.videoID = videoID;
+		this.playlistName = playlistName;
+		this.remote = remote;
+		this.character = character;
+		this.url = url;
+		this.text = text;
+	}
+	
 	public AppendVideoRequest() {
 		
 	}
