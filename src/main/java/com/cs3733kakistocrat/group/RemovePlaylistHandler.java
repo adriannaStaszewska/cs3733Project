@@ -30,7 +30,7 @@ public class RemovePlaylistHandler implements RequestHandler<RemovePlaylistReque
 			if (dao.removePlaylist(playlist)) {
 				response = new RemovePlaylistResponse(req.getPlaylistName(), 200);
 			} else {
-				response = new RemovePlaylistResponse(req.getPlaylistName(), 422, "Unable to delete playlist because duplicate name found");
+				response = new RemovePlaylistResponse(req.getPlaylistName(), 422, "No playlist found");
 			}
 		} catch (Exception e) {
 			response = new RemovePlaylistResponse(req.getPlaylistName(), 400, "Unable to delete playlist: " + req.getPlaylistName() + "(" + e.getMessage() + ")");

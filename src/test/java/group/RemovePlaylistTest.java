@@ -15,7 +15,7 @@ import com.cs3733kakistocrat.group.http.RemovePlaylistRequest;
 import com.cs3733kakistocrat.group.http.RemovePlaylistResponse;
 import com.google.gson.Gson;
 
-public class DeletePlaylistTest extends LambdaTest{
+public class RemovePlaylistTest extends LambdaTest{
 
 	void testSuccessInput(String incomingJson) throws IOException {
 		RemovePlaylistHandler handler = new RemovePlaylistHandler();
