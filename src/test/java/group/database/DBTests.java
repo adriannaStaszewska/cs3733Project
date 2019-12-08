@@ -42,8 +42,8 @@ public class DBTests {
 			Video video = new Video("someID","Test", "kakistocrat.com", "Me", "This is a sentence.");
 			Video video2 = new Video("someID", "Test", "kakistocrat.com", "Me", "This is a sentence");
 			
-			boolean b = dao.addVideo(video);
-			dao.addVideo(video2);
+			boolean b = dao.addVideo(video, false);
+			dao.addVideo(video2, false);
 			Video v2 = dao.getVideo(video.getVideoID());
 			dao.searchVideos("Me", "This is a sentence");
 			dao.searchVideos("me", "");
