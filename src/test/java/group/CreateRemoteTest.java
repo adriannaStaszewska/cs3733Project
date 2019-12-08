@@ -65,7 +65,7 @@ public class CreateRemoteTest extends LambdaTest{
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
 	}
-	
+/*
 	public void createRemoteTest(String input, CreateRemoteHandler handler) {
 		CreateRemoteRequest request = new Gson().fromJson(input, CreateRemoteRequest.class);
 		request.toString();
@@ -80,4 +80,5 @@ public class CreateRemoteTest extends LambdaTest{
         if(resp.httpCode == 200) flag = false;
         Assert.assertTrue(flag);
 	}
+	*/
 }

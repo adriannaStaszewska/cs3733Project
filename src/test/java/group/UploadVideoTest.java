@@ -22,14 +22,15 @@ import com.google.gson.Gson;
 public class UploadVideoTest extends LambdaTest {
 	String vidID;
 		
-    void testSuccessInput(String incomingJson) throws IOException {
+   /* void testSuccessInput(String incomingJson) throws IOException {
     	UploadVideoHandler handler = new UploadVideoHandler();
     	UploadVideoRequest req = new Gson().fromJson(incomingJson, UploadVideoRequest.class);
        
         UploadVideoResponse resp = handler.handleRequest(req, createContext("create"));
         Assert.assertEquals(200, resp.httpCode);
     }
-    
+    */
+	
     void testFailureInput(String incomingJson, int errorCode) throws IOException {
     	UploadVideoHandler handler = new UploadVideoHandler();
     	UploadVideoRequest req = new Gson().fromJson(incomingJson, UploadVideoRequest.class);

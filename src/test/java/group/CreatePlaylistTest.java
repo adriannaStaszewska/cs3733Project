@@ -81,6 +81,7 @@ public class CreatePlaylistTest extends LambdaTest{
         }
 	}
 	
+	/*
 	public void createPlaylistTest(CreatePlaylistRequest request, CreatePlaylistHandler handler) {
 		//CreatePlaylistRequest request = new Gson().fromJson(input, CreatePlaylistRequest.class);
 		request.toString();
@@ -96,5 +97,6 @@ public class CreatePlaylistTest extends LambdaTest{
         if(resp.httpCode == 200) flag = false;
         Assert.assertTrue(flag);
 	}
+	*/
 
 }
