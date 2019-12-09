@@ -71,12 +71,12 @@ public class VideoToPlaylistDAO {
     
     public boolean removeVideo(Video video, Playlist playlist, int position) throws Exception {
         try {
-            PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM video WHERE video_id = ? AND remote = 1;");
+            PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM video WHERE 'video_id' = ? AND 'remote' = 1;");
             ps2.setString(1, video.getVideoID());
             ResultSet resultSet = ps2.executeQuery();
             
             VideosDAO vidDAO = new VideosDAO();
-            // already present?
+            //is remote
             while (resultSet.next()) {
                 Video v = generateVideo(resultSet);
                 resultSet.close();
