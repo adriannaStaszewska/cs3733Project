@@ -32,4 +32,9 @@ public class AppendVideoToPlaylist extends LambdaTest {
 		System.out.println(res.httpCode);
 		assertEquals(res.httpCode, 200);
 	}
+	
+	@Test
+	public void setName() {
+		AppendVideoRequest req = new AppendVideoRequest("44ba50dd-868d-436e-ac13-fc8cdf885b30", "test gateway");
+	}
 }
