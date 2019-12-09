@@ -71,12 +71,10 @@ function addVideo(input) {
 	    	return;
 	    }
 		
-//		document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[4].innerText;
-		
 		console.log("remote video selected");
-		var videoChar = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[1].innerText;
-		var videoText = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[2].innerText;
-		var videoURL = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[3].innerText;
+		var videoChar = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[0].innerText;
+		var videoText = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[1].innerText;
+		var videoURL = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[2].innerText;
 		
 		console.log("text: " + videoText);
 		console.log("char: " + videoChar);
@@ -194,12 +192,11 @@ function processRemoteVideoListForPlaylist(result) {
 		var constantJson = js[i];
 	    console.log(constantJson);
 	    var tempArray = [];
-	    tempArray.push("");
+//	    tempArray.push("");
 	    tempArray.push(constantJson["character"]);
 	    tempArray.push(constantJson["text"]);
 	    tempArray.push(constantJson["url"]);
-	    tempArray.push("");//(constantJson["videoID"])
-//	    insertRowToAdd(tempArray);
+//	    tempArray.push("");//(constantJson["videoID"])
 	    insertRemoteRowToAdd(tempArray);
 	}
 	
@@ -295,7 +292,7 @@ function insertRemoteRowToAdd(rowArray) {
 		
 		td = tr.insertCell(c);
 		
-		if(c == 3){
+		if(c == 2){
 			td.style = "visibility:hidden;display:none;";
 			var url = document.createElement("P");
 			var url2 = document.createTextNode(rowArray[c]);
@@ -303,15 +300,17 @@ function insertRemoteRowToAdd(rowArray) {
 			url.setAttribute("id", "par");
 			url.style = "display:none;";
 			td.appendChild(url);
-		}  else if(c == 4){
-			td.style = "visibility:hidden;display:none;";
-			var id = document.createElement("P");
-			var id2 = document.createTextNode(rowArray[c]);
-			id.append(id2);
-			id.setAttribute("id", "par");
-			id.style = "display:none;";
-			td.appendChild(id);
-		} else {
+		}
+//		}  else if(c == 3){
+//			td.style = "visibility:hidden;display:none;";
+//			var id = document.createElement("P");
+//			var id2 = document.createTextNode(rowArray[c]);
+//			id.append(id2);
+//			id.setAttribute("id", "par");
+//			id.style = "display:none;";
+//			td.appendChild(id);
+//		} 
+		else {
 			
 			td.onclick = function (){
 //				handlePlayModal(this.parentNode.rowIndex);
