@@ -236,7 +236,8 @@ function insertRemoteRow(rowArray){
 		td = tr.insertCell(c);
 		
 		if(c==3) {
-			var element = document.createElement("P");
+//			var element = document.createElement("P");
+			var element = document.createTextNode("");
 			td.appendChild(element);
 		} else if(c == 4){
 			td.style = "visibility:hidden;display:none;";
