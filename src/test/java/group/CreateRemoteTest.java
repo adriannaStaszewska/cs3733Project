@@ -32,7 +32,9 @@ public class CreateRemoteTest extends LambdaTest{
 	
 	@Test
 	public void createRemote() {
-		CreateRemoteRequest req = new CreateRemoteRequest("TEST Url", "Some API key");
+		CreateRemoteRequest req = new CreateRemoteRequest();
+		req.setApi_key("Some API key");
+		req.setUrl("TEST Url");
 		String input = new Gson().toJson(req); 
 		CreateRemoteResponse resp = new CreateRemoteHandler().handleRequest(req, createContext("create"));	
         RemoveRemoteRequest delReq = new RemoveRemoteRequest("TEST Url", "Some API key");
@@ -48,7 +50,9 @@ public class CreateRemoteTest extends LambdaTest{
 		try {
 			testSuccessInput(SAMPLE_INPUT_JSON);
 			testFailureInput(SAMPLE_INPUT_JSON,422);
-			RemoveRemoteRequest delReq = new RemoveRemoteRequest("Dup test", "API key");
+			RemoveRemoteRequest delReq = new RemoveRemoteRequest();
+			delReq.setApi_key("API key");
+			delReq.setUrl("Dup test");
 			delReq.toString();
 	        RemoveRemoteResponse delRes = new RemoveRemoteHandler().handleRequest(delReq, createContext("delete remote url"));
 	        delRes.toString();

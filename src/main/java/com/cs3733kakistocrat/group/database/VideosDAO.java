@@ -36,7 +36,7 @@ public class VideosDAO {
     		List<Video> videos = new ArrayList<>();
     		
     		Statement statement = conn.createStatement();
-            String query = "SELECT * FROM video";
+            String query = "SELECT * FROM video WHERE remote = 0;";
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
