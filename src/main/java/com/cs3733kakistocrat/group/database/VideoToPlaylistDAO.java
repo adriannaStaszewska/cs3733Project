@@ -71,13 +71,29 @@ public class VideoToPlaylistDAO {
     
     public boolean removeVideo(Video video, Playlist playlist, int position) throws Exception {
         try {
-        	//this removes all videos with videoID in the playlist
+            PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM video WHERE video_id = ? AND remote = 1;");
+            ps2.setString(1, video.getVideoID());
+            ResultSet resultSet = ps2.executeQuery();
+            
+            VideosDAO vidDAO = new VideosDAO();
+            // already present?
+            while (resultSet.next()) {
+                Video v = generateVideo(resultSet);
+                resultSet.close();
+                vidDAO.deleteVideo(v);
+                break;
+            }
+            ps2.close();
+            
+          //this removes all videos with videoID in the playlist
         	PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE (video_id, playlist_name) = (?, ?);");// AND ('video_position' = ?);");
             ps.setString(1, video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
 //            ps.setInt(3,  position);
+            
             ps.executeUpdate();
             ps.close();
+            
             return true;
 
         } catch (Exception e) {
