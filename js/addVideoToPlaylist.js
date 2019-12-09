@@ -55,9 +55,9 @@ function addVideo(input) {
 	
 	console.log("local selected: " + selected);
 	
-	if(selected != -1){
+	if(selected == -1){
 		//check remote video table for selected
-		var tableTemp = document.getElementById("addVideosTableP");
+		var tableTemp = document.getElementById("addRemoteVideosTablePBody");
 		var rowsNotSelected = tableTemp.getElementsByTagName('tr');
 		var selected = -1;
 		for (var row = 0; row < rowsNotSelected.length; row++) {
@@ -66,38 +66,43 @@ function addVideo(input) {
 		    }
 		}
 		
-		console.log("here");
-		var videoID = document.getElementById("addVideosTableP").rows[selected].cells[4].innerText;
-	    console.log(videoID);
-	    
-	    document.getElementById("playlistAddModal").style.visibility = 'hidden';
+		console.log("remote selected: " + selected);
+		if(selected == -1){
+	    	return;
+	    }
+		
+//		document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[4].innerText;
+		
+		console.log("remote video selected");
+		var videoChar = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[1].innerText;
+		var videoText = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[2].innerText;
+		var videoURL = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[3].innerText;
+		
+		console.log("text: " + videoText);
+		console.log("char: " + videoChar);
+		console.log("url: " + videoURL);
+		
+		document.getElementById("playlistAddModal").style.visibility = 'hidden';
 	    document.getElementById("playlistAddModalContent").style.visibility = 'hidden';
 	    document.getElementById("addModal").style.visibility = 'hidden';
 	    document.getElementById("playlistAddModal").style.zIndex = '-1';
 	    document.getElementById("addModal").style.zIndex = '-1';
-	    
-	    addVideoToPlaylist(playlistName, videoID);
+		
+		addRemoteVideoToPlaylist(playlistName, videoText, videoChar, videoURL);
 		return;
 	}
 	
-	console.log("remote selected: " + selected);
-	if(selected == -1){
-    	return;
-    }
-	
-	document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[4].innerText;
-	
-	console.log("remote video selected");
-	var videoChar = document.getElementById("addVideosTableP").rows[selected].cells[1].innerText;
-	var videoText = document.getElementById("addVideosTableP").rows[selected].cells[2].innerText;
-	
-	document.getElementById("playlistAddModal").style.visibility = 'hidden';
+	console.log("here");
+	var videoID = document.getElementById("addVideosTableP").rows[selected].cells[4].innerText;
+    console.log(videoID);
+    
+    document.getElementById("playlistAddModal").style.visibility = 'hidden';
     document.getElementById("playlistAddModalContent").style.visibility = 'hidden';
     document.getElementById("addModal").style.visibility = 'hidden';
     document.getElementById("playlistAddModal").style.zIndex = '-1';
     document.getElementById("addModal").style.zIndex = '-1';
-	
-	addRemoteVideoToPlaylist(playlistName, videoChar, videoText);
+    
+    addVideoToPlaylist(playlistName, videoID);
 
 }
 
@@ -368,13 +373,14 @@ function addVideoToPlaylist(playlist, video){
 	};
 }
 
-function addRemoteVideoToPlaylist(playlist, text, character){
+function addRemoteVideoToPlaylist(playlist, text, character, url){
 	var data = {};
 	data["playlistName"] = playlist;
 	data["videoID"] = "";
 	data["remote"] = true;
 	data["text"] = text;
 	data["character"] = character;
+	data["url"] = url;
 	
 	var js = JSON.stringify(data);
 	console.log(js);
