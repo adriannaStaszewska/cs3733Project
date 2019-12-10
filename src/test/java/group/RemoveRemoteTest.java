@@ -27,6 +27,7 @@ public class RemoveRemoteTest extends LambdaTest{
 		RemoveRemoteRequest req = new Gson().fromJson(incomingJson, RemoveRemoteRequest.class);
 
 		RemoveRemoteResponse resp = handler.handleRequest(req, createContext("remote"));
+		resp.toString();
 		System.out.println("expected: "+errorCode+", but got "+resp.statusCode);
 		Assert.assertEquals(errorCode, resp.statusCode);
 	}

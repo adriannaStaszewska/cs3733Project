@@ -38,7 +38,8 @@ public class CreateRemoteTest extends LambdaTest{
 		req.toString();
 		String input = new Gson().toJson(req); 
 		CreateRemoteResponse resp = new CreateRemoteHandler().handleRequest(req, createContext("create"));	
-        RemoveRemoteRequest delReq = new RemoveRemoteRequest("TEST Url", "Some API key");
+		resp.toString();
+		RemoveRemoteRequest delReq = new RemoveRemoteRequest("TEST Url", "Some API key");
         delReq.toString();
         RemoveRemoteResponse delRes = new RemoveRemoteHandler().handleRequest(delReq, createContext("delete remote url"));
         delRes.toString();
