@@ -1,5 +1,5 @@
 .nav {
-    background-color: red;
+    background-color: #6207ad;/* red; */
     text-align: left;
 }
 
@@ -13,9 +13,9 @@
 }
 
 .nav a:hover {
-    background-color: #636363;
+    background-color: black; /* #636363; */
 }
 
 .active {
-    background-color: black;
+    background-color: #3B0468;
 }

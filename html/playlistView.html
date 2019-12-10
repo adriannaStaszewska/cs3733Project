@@ -34,11 +34,11 @@
 		    <a href="../html/clipsView.html">Clips</a>
 		    <a href="../html/playlistView.html" class="active">Playlists</a>
 		</div>
-		
+		<!-- Create new playlist button -->
 		<form name="newPlaylist">
 			<input type="button" value="+" onClick="JavaScript:handlePlaylistModal(this)">
 		</form>
-		
+		<!-- Modal to create new playlist -->
 		<div class="fullscreen-modal" id="fullmodal">
             <div class="Modal" id="playlistModal">
                 <div class="modal-content" id="playlistModalContent">
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-		
+		<!-- Playlist table -->
 		<table id="playlistsTable" class="playlistTable" style="float:left;">
 			<thead>
 				<tr>
@@ -63,7 +63,7 @@
 			  
 		 	</tbody>
 	</table>
-	
+	<!-- Videos in a playlist table -->
 	<table id="videosTableP" class="playlistVideoTable" style="float:left">
 		 <thead>
 			  <tr>
@@ -77,12 +77,12 @@
 			  
 		 </tbody>
 	</table>
-	
+	<!-- Add video to playlist button -->
 	<form name="addVideoToPlaylist">
 		<input id="addVideoToPlaylistButton" type="button" value="+" onClick="JavaScript:addVideoToSelectedPlaylist(this)" style="visibility: hidden;">
 		<input id="playButton" type="button" value="Play" onClick="JavaScript:handlePlayPlaylistModal(this)" style="visibility: hidden;">
 	</form>
-	
+	<!-- Modal to add videos to a playlist -->
 	<div class="fullscreen-modal" id="addModal">
             <div class="Modal" id="playlistAddModal">
                 <div class="modal-content" id="playlistAddModalContent">
@@ -117,7 +117,7 @@
                 </div>
             </div>
         </div>
-        
+        <!-- Modal to play playlist -->
         <div class="fullscreen-modal" id="playPlaylistPlayerModal">
             <div class="Modal" id="playPlaylistModal">
                 <div class="modal-content" id="playPlaylistModalContent">
@@ -131,6 +131,7 @@
             </div>
         </div>
 		<script>
+			//play next video in the playlist if there is one
 			document.getElementById("player").addEventListener('ended',myHandler,false);
 		    function myHandler(e) {
 		        // What you want to do after the event

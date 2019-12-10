@@ -29,15 +29,16 @@
     </head>
 
     <body onload="initialize()" style="background-color: #1f1f1f;" text="white">
+    <!-- Top Nav -->
         <div class="nav" id="topNav">
             <a href="../html/admin.html">Admin</a>
             <a href="../html/remote.html" class="active">Remotes</a>
         </div>
 
         <br>
-        
+        <!-- Register remote site button -->
         <button id="registerButton" onClick="JavaScript:handleModal(this)">Register Remote</button>
-
+		<!-- Modal for registering remote site -->
         <div class="fullscreen-modal" id="fullmodal">
             <div class="Modal" id="registerModal">
                 <div class="modal-content" id="registerModalContent">
@@ -54,7 +55,7 @@
         </div>
         
         <br>
-        
+        <!-- Remote site table -->
         <table id="remoteTable" class="remoteTable">
 			 <thead>
 				  <tr>
@@ -69,7 +70,5 @@
 		
 		
    </body>
-
-
 
 </html>

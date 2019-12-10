@@ -1,19 +1,15 @@
 function getPlaylists() {
 	var xhr = new XMLHttpRequest();
-	console.log(getPlaylistsURL);
-   xhr.open("GET", getPlaylistsURL, true);
-   xhr.send();
+	xhr.open("GET", getPlaylistsURL, true);
+	xhr.send();
 	   
-   console.log("sent remote URLs request");
-	   
-   xhr.onloadend = function () {
-	   if (xhr.readyState == XMLHttpRequest.DONE) {
-		   console.log ("XHR:" + xhr.responseText);
-		   processPlaylistList(xhr.responseText);
-	   } else {
-		   processVideoList("N/A");
-	   }
-   };
+	xhr.onloadend = function () {
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			console.log ("XHR:" + xhr.responseText);
+			processPlaylistList(xhr.responseText);
+		} else {
+		}
+	};
 }
 
 function processPlaylistList(result) {
