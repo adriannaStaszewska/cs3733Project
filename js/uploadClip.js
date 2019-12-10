@@ -16,7 +16,6 @@ function closeModal(e){
 }
 
 function handleUploadClip(e) {
-    console.log("Handle Upload clip button triggered");
     document.getElementById("uploadModal").style.visibility = 'hidden';
     document.getElementById("uploadModalContent").style.visibility = 'hidden';
     document.getElementById("fullmodal").style.visibility = 'hidden';
@@ -40,23 +39,18 @@ function uploadClip(){
 	
 	xhr.send(js);
 	
-	 xhr.onloadend = function () {
-		    console.log(xhr);
-		    console.log(xhr.request);
-		    if (xhr.readyState == XMLHttpRequest.DONE) {
-		    	 if (xhr.status == 200) {
-			      console.log ("XHR:" + xhr.responseText);
-			      clearVideos();
-			      getVideos();
-			      //processCreateResponse(xhr.responseText);
-		    	 } else {
-		    		 console.log("actual:" + xhr.responseText)
-					  var js = JSON.parse(xhr.responseText);
-					  var err = js["response"];
-					  alert (err);
-		    	 }
-		    } else {
-		      //processCreateResponse("N/A");
-		    }
-		  };
+	xhr.onloadend = function () {
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			console.log ("XHR:" + xhr.responseText);
+			if (xhr.status == 200) {
+				clearVideos();
+				getVideos();
+			} else {
+				console.log("actual:" + xhr.responseText)
+				var js = JSON.parse(xhr.responseText);
+				var err = js["response"];
+				alert (err);
+			}
+		}
+	};
 }

@@ -1,27 +1,22 @@
 function getRemotes() {
 	var xhr = new XMLHttpRequest();
-   xhr.open("GET", getRemotesURL, true);
-   xhr.send();
-	   
-   console.log("sent remote URLs request");
-	   
-   xhr.onloadend = function () {
-	   if (xhr.readyState == XMLHttpRequest.DONE) {
-		   console.log ("XHR:" + xhr.responseText);
-		   processRemoteList(xhr.responseText);
-	   } else {
-		   processRemoteList("N/A");
-	   }
-   };
+	xhr.open("GET", getRemotesURL, true);
+	xhr.send();
+ 
+	xhr.onloadend = function () {
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			console.log ("XHR:" + xhr.responseText);
+			processRemoteList(xhr.responseText);
+		} else {
+		}
+	};
 }
 
 function processRemoteList(result) {
-	console.log("res:" + result);
 	var js = JSON.parse(result);
 	
 	for (var i = 0; i < js.list.length; i++) {
 		var constantJson = js.list[i];
-	    console.log(constantJson);
 	    insertRemoteRow(constantJson["url"]);
 	}
 	

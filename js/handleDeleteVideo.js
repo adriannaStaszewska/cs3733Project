@@ -1,5 +1,4 @@
 function handleDeleteVideo (name, id) {
-	console.log(id);
 	var data = {};
 	data["videoID"] = id;
 	data["name"] = name;
@@ -11,20 +10,18 @@ function handleDeleteVideo (name, id) {
 	
 	xhr.send(js);
 	
-	 xhr.onloadend = function () {
-		console.log(xhr);
-//		console.log(xhr.request);
+	xhr.onloadend = function () {
 		if (xhr.readyState == XMLHttpRequest.DONE) {
-			 if (xhr.status == 200) {
-		      console.log ("XHR:" + xhr.responseText);
-		      clearVideos();
-		      getVideos();
-		 } else {
-			 console.log("actual:" + xhr.responseText)
-		  var js = JSON.parse(xhr.responseText);
-		  var err = js["response"];
-				  alert (err);
-			 }
+			console.log ("XHR:" + xhr.responseText);
+			if (xhr.status == 200) {
+				clearVideos();
+				getVideos();
+			} else {
+				console.log("actual:" + xhr.responseText)
+				var js = JSON.parse(xhr.responseText);
+				var err = js["response"];
+				alert (err);
+			}
 		}
-	 };
+	};
 }

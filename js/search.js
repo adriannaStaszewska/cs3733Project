@@ -6,10 +6,6 @@ function handleSearch(e) {
     var local = form.localCheck.checked;
     var remote = form.remoteCheck.checked;
 
-//    console.log(searchTerms);
-    console.log("Local: " + local);
-    console.log("Remote: " + remote);
-    
     clearVideos();
     
     //search local server
@@ -32,23 +28,18 @@ function searchLocal(sentence, character) {
 	data["charSearch"] = character;
 	
 	var js = JSON.stringify(data);
-	console.log(js);
     
     var xhr = new XMLHttpRequest();
     xhr.open("POST", searchVideosURL, true);
     
     xhr.send(js);
- 	   
-    console.log("sent search request");
- 	   
+
     xhr.onloadend = function () {
     	if (xhr.readyState == XMLHttpRequest.DONE) {
     		console.log ("XHR:" + xhr.responseText);
     		clearVideos();
     		processSearch(xhr.responseText);
-//    		processVideoList(xhr.responseText);
     	} else {
-//    		processVideoList("N/A");
     		console.log("error searching local videos");
 		}
     };
@@ -58,15 +49,12 @@ function searchRemote(sentence, character) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", getRemotesURL, true);
 	xhr.send();
-	   
-	console.log("sent remote URLs request");
-	   
+	 
 	xhr.onloadend = function () {
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			console.log ("XHR:" + xhr.responseText);
 			processRemoteList(xhr.responseText, sentence, character);
 		} else {
-//			processRemoteList("N/A");
 		}
 	};
 }
@@ -77,16 +65,13 @@ function processRemoteList(result, sentence, character) {
 	
 	for (var i = 0; i < js.list.length; i++) {
 		var constantJson = js.list[i];
-	    console.log(constantJson);
 	    getRemotes(constantJson["url"], constantJson["api_key"], sentence, character);
-//	    insertRemoteRow(constantJson["url"]);
 	}
 	
 	
 }
 
 function getRemotes(url, apiKey, sentence, character) {
-	
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", url, true);
 	xhr.setRequestHeader("x-api-key", apiKey);
@@ -96,21 +81,17 @@ function getRemotes(url, apiKey, sentence, character) {
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			console.log ("XHR:" + xhr.responseText);
 			processRemoteSearch(xhr.responseText, sentence, character);
-//			processRemoteVideoListForPlaylist(xhr.responseText);
 		} else {
-//			processVideoListForPlaylist("N/A");
 		}
 	};
     
 }
 
 function processSearch(result) {
-	console.log("res:" + result);
 	var js = JSON.parse(result);
 	
 	for (var i = 0; i < js.list.length; i++) {
 		var constantJson = js.list[i];
-	    console.log(constantJson);
 	    var tempArray = [];
 	    tempArray.push(constantJson["name"]);
 	    tempArray.push(constantJson["character"]);
@@ -125,12 +106,10 @@ function processSearch(result) {
 }
 
 function processRemoteSearch(result, sentence, character) {
-	console.log("res:" + result);
 	var js = JSON.parse(result);
 	js = js["segments"];
 	for (var i = 0; i < js.length; i++) {
 		var constantJson = js[i];
-	    console.log(constantJson);
 	    
 	    var addFlag = false;
 	    
@@ -174,7 +153,6 @@ function processRemoteSearch(result, sentence, character) {
 }
 
 function insertSearchRow(rowArray){
-	console.log(rowArray);
 	var table = document.getElementById("videosTableBody");
 	var tr = table.insertRow(table.rows.length);
 	
@@ -198,7 +176,6 @@ function insertSearchRow(rowArray){
 			var url2 = document.createTextNode(rowArray[c]);
 			url.append(url2);
 			url.setAttribute("id", "par");
-//			url.innerHTML = rowArray[c];
 			url.style = "display:none;";
 			td.appendChild(url);
 		}  else if(c == 5){
@@ -207,7 +184,6 @@ function insertSearchRow(rowArray){
 			var id2 = document.createTextNode(rowArray[c]);
 			id.append(id2);
 			id.setAttribute("id", "par");
-//			url.innerHTML = rowArray[c];
 			id.style = "display:none;";
 			td.appendChild(id);
 		} else {
@@ -218,8 +194,6 @@ function insertSearchRow(rowArray){
 			
 			var element = document.createElement("P");
 			element.innerHTML = rowArray[c];
-			//element.setAttribute("value", tempArray[c]);
-			
 			td.appendChild(element);
 		}
 	}
@@ -236,7 +210,6 @@ function insertRemoteRow(rowArray){
 		td = tr.insertCell(c);
 		
 		if(c==3) {
-//			var element = document.createElement("P");
 			var element = document.createTextNode("");
 			td.appendChild(element);
 		} else if(c == 4){
@@ -245,7 +218,6 @@ function insertRemoteRow(rowArray){
 			var url2 = document.createTextNode(rowArray[c]);
 			url.append(url2);
 			url.setAttribute("id", "par");
-//			url.innerHTML = rowArray[c];
 			url.style = "display:none;";
 			td.appendChild(url);
 		}  else if(c == 5){
@@ -254,7 +226,6 @@ function insertRemoteRow(rowArray){
 			var id2 = document.createTextNode(rowArray[c]);
 			id.append(id2);
 			id.setAttribute("id", "par");
-//			url.innerHTML = rowArray[c];
 			id.style = "display:none;";
 			td.appendChild(id);
 		} else {
@@ -265,8 +236,6 @@ function insertRemoteRow(rowArray){
 			
 			var element = document.createElement("P");
 			element.innerHTML = rowArray[c];
-			//element.setAttribute("value", tempArray[c]);
-			
 			td.appendChild(element);
 		}
 	}

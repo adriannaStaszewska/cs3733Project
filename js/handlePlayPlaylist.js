@@ -18,7 +18,6 @@ function handlePlayPlaylistModal(){
 	for (var row = 0; row < rowsNotSelected.length; row++) {
 		videosToPlay.push(rowsNotSelected[row].cells[4].innerText);
 	}
-	console.log(videosToPlay);
 	document.getElementById("player").src = videosToPlay.shift();
 	
 }

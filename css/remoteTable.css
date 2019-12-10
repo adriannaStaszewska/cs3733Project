@@ -23,7 +23,7 @@
 
 .remoteTable tbody tr:hover {
 	background-color: grey;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .remoteTable th {

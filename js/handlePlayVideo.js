@@ -6,8 +6,6 @@ function handlePlayModal(row) {
     document.getElementById("videoPlayerModal").style.zIndex = '1';
     document.getElementById("videoModalContent").style.zIndex = '3';
 
-//    console.log(document.getElementById("videosTable").rows[row].getElementsByTagName("p"));
-//    console.log(document.getElementById("videosTable").rows[row].getElementsByTagName("p")[3].innerHTML);
     document.getElementById("player").src = document.getElementById("videosTable").rows[row].getElementsByTagName("p")[3].innerHTML;
 }
 
