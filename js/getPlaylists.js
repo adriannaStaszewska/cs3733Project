@@ -1,3 +1,4 @@
+//send request to get playlists
 function getPlaylists() {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", getPlaylistsURL, true);
@@ -13,12 +14,10 @@ function getPlaylists() {
 }
 
 function processPlaylistList(result) {
-	console.log("res:" + result);
 	var js = JSON.parse(result);
 	
 	for (var i = 0; i < js.list.length; i++) {
 		var constantJson = js.list[i];
-	    console.log(constantJson);
 	    insertPlaylistRow(constantJson["playlistName"]);
 	}
 	
@@ -32,31 +31,24 @@ function getVideosInPlaylist(name) {
 	
 	var xhr = new XMLHttpRequest();
 	console.log(getVideosInPlaylistURL);
-   xhr.open("POST", getVideosInPlaylistURL, true);
-   xhr.send(js);
-	   
-   console.log("sent get videos in playlist request");
-	   
-   xhr.onloadend = function () {
-	   if (xhr.readyState == XMLHttpRequest.DONE) {
-		   console.log ("XHR:" + xhr.responseText);
-		   clearPlaylistVideos();
-		   processPlaylistVideos(xhr.responseText);
-	   } else {
-		   processVideoList("N/A");
-	   }
-   };
+	xhr.open("POST", getVideosInPlaylistURL, true);
+	xhr.send(js);
+	
+	xhr.onloadend = function () {
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			console.log ("XHR:" + xhr.responseText);
+			clearPlaylistVideos();
+			processPlaylistVideos(xhr.responseText);
+		} else {
+		}
+	};
 }
 
 function processPlaylistVideos(result) {
-	console.log("Process videos in playlist");
-	console.log("res:" + result);
 	var js = JSON.parse(result);
-//	console.log("Length: " + js.list.length);
 	for (var i = 0; i < js.list.length; i++) {
 		try {
 			var constantJson = js.list[i];
-//		    console.log(constantJson);
 		    var temp2Array = [];
 		    temp2Array.push(constantJson["name"]);
 		    temp2Array.push(constantJson["character"]);
@@ -64,7 +56,6 @@ function processPlaylistVideos(result) {
 		    temp2Array.push("Trash");
 		    temp2Array.push(constantJson["url"])
 		    temp2Array.push(constantJson["videoID"])
-	//	    console.log(temp2Array);
 		    insertVideoPlaylistRow(temp2Array);
 		} catch(error) {
 			console.error("Error: " + error);
@@ -92,8 +83,6 @@ function insertVideoPlaylistRow(inArray) {
 				//video id
 				var id = document.getElementById("videosTableP").rows[this.parentNode.parentNode.rowIndex].cells[5].getElementsByTagName("p")[0].innerHTML;
 				
-				console.log(id);
-				
 				//playlist name
 				var tableTemp = document.getElementById("playlistTableBody");
 				var rowsNotSelected = tableTemp.getElementsByTagName('tr');
@@ -109,7 +98,6 @@ function insertVideoPlaylistRow(inArray) {
 				//row number
 				var rowNum = this.parentNode.parentNode.rowIndex - 1;
 				
-//				handleDeleteVideo(id);
 				handleRemoveFromPlaylist(id, playName, rowNum);
 			}
 			td.appendChild(trash);
@@ -119,7 +107,6 @@ function insertVideoPlaylistRow(inArray) {
 			var url2 = document.createTextNode(inArray[c]);
 			url.append(url2);
 			url.setAttribute("id", "par");
-//			url.innerHTML = rowArray[c];
 			url.style = "display:none;";
 			td.appendChild(url);
 		}  else if(c == 5){
@@ -128,19 +115,12 @@ function insertVideoPlaylistRow(inArray) {
 			var id2 = document.createTextNode(inArray[c]);
 			id.append(id2);
 			id.setAttribute("id", "par");
-//			url.innerHTML = rowArray[c];
 			id.style = "display:none;";
 			td.appendChild(id);
 		} else {
 			
-			td.onclick = function (){
-//				handlePlayModal(this.parentNode.rowIndex);
-			}
-			
 			var element = document.createElement("P");
 			element.innerHTML = inArray[c];
-			//element.setAttribute("value", tempArray[c]);
-			
 			td.appendChild(element);
 		}
 	
@@ -160,17 +140,13 @@ function insertPlaylistRow(rowInput) {
 		var rowId = this.parentNode.rowIndex - 1;
 		var rowsNotSelected = tableTemp.getElementsByTagName('tr');
         for (var row = 0; row < rowsNotSelected.length; row++) {
-//            rowsNotSelected[row].style.backgroundColor = "white";
         	rowsNotSelected[row].bgColor = "white";
             rowsNotSelected[row].classList.remove('selected');
         }
         var rowSelected = tableTemp.getElementsByTagName('tr')[rowId];
-//        rowSelected.style.backgroundColor = "orange";
         rowSelected.bgColor = "orange";
         rowSelected.classList.add("selected");
-//        rowSelected.className += " selected";
-		
-		console.log(this.parentNode.rowIndex);
+
 		fillPlaylistVideos(this.parentNode.rowIndex - 1);
 		
 		document.getElementById("addVideoToPlaylistButton").style.visibility = 'visible';
@@ -196,7 +172,6 @@ function insertPlaylistRow(rowInput) {
 
 function fillPlaylistVideos(row) {
 	var name = document.getElementById("playlistTableBody").rows[row].cells[0].innerText;
-	console.log(name);
 	getVideosInPlaylist(name)
 }
 
@@ -229,17 +204,15 @@ function handleRemoveFromPlaylist(id, playlistName, rowNum){
 	
 	var xhr = new XMLHttpRequest();
 	console.log(removeFromPlaylistURL);
-   xhr.open("POST", removeFromPlaylistURL, true);
-   xhr.send(js);
-	   
-   console.log("sent remove video from playlist request");
-	   
-   xhr.onloadend = function () {
-	   if (xhr.readyState == XMLHttpRequest.DONE) {
-		   console.log ("XHR:" + xhr.responseText);
-		   clearPlaylistVideos();
+	xhr.open("POST", removeFromPlaylistURL, true);
+	xhr.send(js);
+	
+	xhr.onloadend = function () {
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			console.log ("XHR:" + xhr.responseText);
+			clearPlaylistVideos();
 		   
-		   var tableTemp = document.getElementById("playlistTableBody");
+			var tableTemp = document.getElementById("playlistTableBody");
 			var rowsNotSelected = tableTemp.getElementsByTagName('tr');
 			var selected = -1;
 			for (var row = 0; row < rowsNotSelected.length; row++) {
@@ -247,10 +220,8 @@ function handleRemoveFromPlaylist(id, playlistName, rowNum){
 			    	selected = row;
 			    }
 			}
-		   console.log(selected);
 		   fillPlaylistVideos(selected);
-	   } else {
-//		   processVideoList("N/A");
-	   }
-   };
+		} else {
+		}
+	};
 }

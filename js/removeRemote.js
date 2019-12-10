@@ -10,11 +10,9 @@ function removeRemote(remote){
 	xhr.send(js);
 
 	xhr.onloadend = function () {
-		console.log(xhr);
-		console.log(xhr.request);
 		if (xhr.readyState == XMLHttpRequest.DONE) {
+			console.log ("200 XHR:" + xhr.responseText);
 			if (xhr.status == 200) {
-				console.log ("200 XHR:" + xhr.responseText);
 				var js = JSON.parse(xhr.responseText);
 				if(js["statusCode"] == 200){
 					clearRemotes();

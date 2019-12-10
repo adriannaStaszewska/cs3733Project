@@ -1,27 +1,22 @@
 function getVideos() {
 	var xhr = new XMLHttpRequest();
-   xhr.open("GET", getVideosURL, true);
-   xhr.send();
-	   
-   console.log("sent video request");
-	   
-   xhr.onloadend = function () {
-	   if (xhr.readyState == XMLHttpRequest.DONE) {
-		   console.log ("XHR:" + xhr.responseText);
-		   processVideoList(xhr.responseText);
-	   } else {
-		   processVideoList("N/A");
-	   }
-   };
+	xhr.open("GET", getVideosURL, true);
+	xhr.send();
+	 
+	xhr.onloadend = function () {
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			console.log ("XHR:" + xhr.responseText);
+			processVideoList(xhr.responseText);
+		} else {
+		}
+	};
 }
 
 function processVideoList(result) {
-	console.log("res:" + result);
 	var js = JSON.parse(result);
 	
 	for (var i = 0; i < js.list.length; i++) {
 		var constantJson = js.list[i];
-	    console.log(constantJson);
 	    var tempArray = [];
 	    tempArray.push(constantJson["name"]);
 	    tempArray.push(constantJson["character"]);
@@ -31,8 +26,6 @@ function processVideoList(result) {
 	    tempArray.push(constantJson["videoID"])
 	    insertRow(tempArray);
 	}
-	
-	
 }
 
 function insertRow(rowArray) {
@@ -60,7 +53,6 @@ function insertRow(rowArray) {
 			var url2 = document.createTextNode(rowArray[c]);
 			url.append(url2);
 			url.setAttribute("id", "par");
-//			url.innerHTML = rowArray[c];
 			url.style = "display:none;";
 			td.appendChild(url);
 		}  else if(c == 5){
@@ -69,7 +61,6 @@ function insertRow(rowArray) {
 			var id2 = document.createTextNode(rowArray[c]);
 			id.append(id2);
 			id.setAttribute("id", "par");
-//			url.innerHTML = rowArray[c];
 			id.style = "display:none;";
 			td.appendChild(id);
 		} else {
@@ -80,8 +71,6 @@ function insertRow(rowArray) {
 			
 			var element = document.createElement("P");
 			element.innerHTML = rowArray[c];
-			//element.setAttribute("value", tempArray[c]);
-			
 			td.appendChild(element);
 		}
 	}

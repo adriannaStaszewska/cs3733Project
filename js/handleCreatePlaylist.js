@@ -38,11 +38,9 @@ function createPlaylist(name) {
 	xhr.send(js);
 	
 	 xhr.onloadend = function () {
-		console.log(xhr);
-		console.log(xhr.request);
 		if (xhr.readyState == XMLHttpRequest.DONE) {
+			console.log ("XHR:" + xhr.responseText);
 			 if (xhr.status == 200) {
-		      console.log ("XHR:" + xhr.responseText);
 		      clearPlaylists();
 		      getPlaylists();
 		 } else {

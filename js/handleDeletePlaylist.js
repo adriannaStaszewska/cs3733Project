@@ -10,20 +10,20 @@ function handleDeletePlaylist (name) {
 	
 	xhr.send(js);
 	
-	 xhr.onloadend = function () {
+	xhr.onloadend = function () {
 		console.log(xhr);
 		console.log(xhr.request);
 		if (xhr.readyState == XMLHttpRequest.DONE) {
-			 if (xhr.status == 200) {
-		      console.log ("XHR:" + xhr.responseText);
-		      clearPlaylists();
-		      getPlaylists();
-		 } else {
-			 console.log("actual:" + xhr.responseText)
-		  var js = JSON.parse(xhr.responseText);
-		  var err = js["response"];
-				  alert (err);
+			console.log ("XHR:" + xhr.responseText);
+			if (xhr.status == 200) {
+				clearPlaylists();
+				getPlaylists();
+			} else {
+				console.log("actual:" + xhr.responseText)
+				var js = JSON.parse(xhr.responseText);
+				var err = js["response"];
+				alert (err);
 			 }
 		}
-	 };
+	};
 }
