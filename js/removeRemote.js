@@ -1,3 +1,4 @@
+//send request to remove remote site
 function removeRemote(remote){
 	var data = {};
 	data["url"] = remote;

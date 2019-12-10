@@ -1,3 +1,4 @@
+//request list of videos
 function getVideos() {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", getVideosURL, true);
@@ -12,6 +13,7 @@ function getVideos() {
 	};
 }
 
+//process video return
 function processVideoList(result) {
 	var js = JSON.parse(result);
 	
@@ -28,6 +30,7 @@ function processVideoList(result) {
 	}
 }
 
+//insert video entry into table
 function insertRow(rowArray) {
 	var table = document.getElementById("videosTableBody");
 	var tr = table.insertRow(table.rows.length);
@@ -76,6 +79,7 @@ function insertRow(rowArray) {
 	}
 }
 
+//clear videos table
 function clearVideos(){
 	var tableHeaderRowCount = 1;
 	var table = document.getElementById("videosTable");

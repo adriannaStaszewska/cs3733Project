@@ -13,6 +13,7 @@ function getPlaylists() {
 	};
 }
 
+//process the playlist return
 function processPlaylistList(result) {
 	var js = JSON.parse(result);
 	
@@ -24,13 +25,13 @@ function processPlaylistList(result) {
 	
 }
 
+//request list of videos in a playlist
 function getVideosInPlaylist(name) {
 	var data = {};
 	data["playlistName"] = name;
 	var js = JSON.stringify(data);
 	
 	var xhr = new XMLHttpRequest();
-	console.log(getVideosInPlaylistURL);
 	xhr.open("POST", getVideosInPlaylistURL, true);
 	xhr.send(js);
 	
@@ -44,6 +45,7 @@ function getVideosInPlaylist(name) {
 	};
 }
 
+//process the playlist video return
 function processPlaylistVideos(result) {
 	var js = JSON.parse(result);
 	for (var i = 0; i < js.list.length; i++) {
@@ -65,6 +67,7 @@ function processPlaylistVideos(result) {
 	
 }
 
+//insert playlist video entry into playlist video table
 function insertVideoPlaylistRow(inArray) {
 	var table = document.getElementById("videosTablePBody");
 	var tr = table.insertRow(table.rows.length);
@@ -92,7 +95,6 @@ function insertVideoPlaylistRow(inArray) {
 				    	selected = row;
 				    }
 				}
-				
 				var playName = document.getElementById("playlistTableBody").rows[selected].cells[0].innerText;
 				
 				//row number
@@ -118,7 +120,6 @@ function insertVideoPlaylistRow(inArray) {
 			id.style = "display:none;";
 			td.appendChild(id);
 		} else {
-			
 			var element = document.createElement("P");
 			element.innerHTML = inArray[c];
 			td.appendChild(element);
@@ -128,6 +129,7 @@ function insertVideoPlaylistRow(inArray) {
 	}
 }
 
+//insert playlist entry into playlist table
 function insertPlaylistRow(rowInput) {
 	var table = document.getElementById("playlistTableBody");
 	var tr = table.insertRow(table.rows.length);
@@ -168,14 +170,13 @@ function insertPlaylistRow(rowInput) {
 	td.appendChild(trash);
 }
 
-
-
+//populate videos from a playlist table
 function fillPlaylistVideos(row) {
 	var name = document.getElementById("playlistTableBody").rows[row].cells[0].innerText;
 	getVideosInPlaylist(name)
 }
 
-
+//clear playlist table
 function clearPlaylists(){
 	var tableHeaderRowCount = 1;
 	var table = document.getElementById("playlistsTable");
@@ -185,6 +186,7 @@ function clearPlaylists(){
 	}
 }
 
+//clear playlist videos table
 function clearPlaylistVideos(){
 	var tableHeaderRowCount = 1;
 	var table = document.getElementById("videosTableP");
@@ -194,6 +196,7 @@ function clearPlaylistVideos(){
 	}
 }
 
+//remove requested video from selected playlist
 function handleRemoveFromPlaylist(id, playlistName, rowNum){
 	var data = {};
 	data["playlistName"] = playlistName;
@@ -203,7 +206,6 @@ function handleRemoveFromPlaylist(id, playlistName, rowNum){
 	console.log(js);
 	
 	var xhr = new XMLHttpRequest();
-	console.log(removeFromPlaylistURL);
 	xhr.open("POST", removeFromPlaylistURL, true);
 	xhr.send(js);
 	

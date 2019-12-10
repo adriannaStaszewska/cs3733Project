@@ -1,10 +1,10 @@
+//send request to delete video
 function handleDeleteVideo (name, id) {
 	var data = {};
 	data["videoID"] = id;
 	data["name"] = name;
 	
 	var js = JSON.stringify(data);
-	console.log(js);
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", deleteVideoURL, true);
 	

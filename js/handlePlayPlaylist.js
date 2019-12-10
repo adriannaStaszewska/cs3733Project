@@ -1,5 +1,6 @@
-var videosToPlay = [];
+var videosToPlay = []; //global list of videos to currently play in order
 
+//make video player visible, play playlist
 function handlePlayPlaylistModal(){
 	document.getElementById("playPlaylistPlayerModal").style.visibility = 'visible';
     document.getElementById("playPlaylistModal").style.visibility = 'visible';
@@ -13,7 +14,6 @@ function handlePlayPlaylistModal(){
 	if(rowsNotSelected.length <= 0){
 		return;
 	}
-	console.log(rowsNotSelected);
 	
 	for (var row = 0; row < rowsNotSelected.length; row++) {
 		videosToPlay.push(rowsNotSelected[row].cells[4].innerText);
@@ -22,8 +22,7 @@ function handlePlayPlaylistModal(){
 	
 }
 
-
-
+//make video player invisible
 function closePlaylistModal() {
 	document.getElementById("player").pause();
     document.getElementById("playPlaylistPlayerModal").style.visibility = 'hidden';

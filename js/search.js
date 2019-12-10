@@ -1,3 +1,4 @@
+//handles local and remote search
 function handleSearch(e) {
     var form = document.search;
     var character = form.searchBox.value;
@@ -21,7 +22,7 @@ function handleSearch(e) {
 
 }
 
-
+//search local videos by sentence and character
 function searchLocal(sentence, character) {
     var data = {};
 	data["sentSearch"] = sentence;
@@ -45,6 +46,7 @@ function searchLocal(sentence, character) {
     };
 }
 
+//search remote sites by sentence and character
 function searchRemote(sentence, character) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", getRemotesURL, true);
@@ -59,8 +61,8 @@ function searchRemote(sentence, character) {
 	};
 }
 
+//process return of urls for remote sites
 function processRemoteList(result, sentence, character) {
-	console.log("res:" + result);
 	var js = JSON.parse(result);
 	
 	for (var i = 0; i < js.list.length; i++) {
@@ -71,6 +73,7 @@ function processRemoteList(result, sentence, character) {
 	
 }
 
+//request remote sites
 function getRemotes(url, apiKey, sentence, character) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", url, true);
@@ -87,6 +90,7 @@ function getRemotes(url, apiKey, sentence, character) {
     
 }
 
+//process list of remote videos
 function processSearch(result) {
 	var js = JSON.parse(result);
 	
@@ -105,6 +109,7 @@ function processSearch(result) {
 	
 }
 
+//search through remote videos by sentence and character
 function processRemoteSearch(result, sentence, character) {
 	var js = JSON.parse(result);
 	js = js["segments"];
@@ -152,6 +157,7 @@ function processRemoteSearch(result, sentence, character) {
 	
 }
 
+//insert video entry into table
 function insertSearchRow(rowArray){
 	var table = document.getElementById("videosTableBody");
 	var tr = table.insertRow(table.rows.length);
@@ -199,6 +205,7 @@ function insertSearchRow(rowArray){
 	}
 }
 
+//insert remote video entry into table
 function insertRemoteRow(rowArray){
 	console.log(rowArray);
 	var table = document.getElementById("videosTableBody");
@@ -241,6 +248,7 @@ function insertRemoteRow(rowArray){
 	}
 }
 
+//clear video table
 function clearVideos(){
 	var tableHeaderRowCount = 1;
 	var table = document.getElementById("videosTable");

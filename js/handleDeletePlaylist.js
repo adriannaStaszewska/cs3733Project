@@ -1,18 +1,15 @@
+//send request to delete playlist
 function handleDeletePlaylist (name) {
-	console.log(name);
 	var data = {};
 	data["playlistName"] = name;
 	
 	var js = JSON.stringify(data);
-	console.log(js);
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", removePlaylistURL, true);
 	
 	xhr.send(js);
 	
 	xhr.onloadend = function () {
-		console.log(xhr);
-		console.log(xhr.request);
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			console.log ("XHR:" + xhr.responseText);
 			if (xhr.status == 200) {

@@ -1,6 +1,5 @@
-//add video to a playlist
+//get videos available to add to a playlist
 function addVideoToSelectedPlaylist(input) {
-	
 	document.getElementById("playlistAddModal").style.visibility = 'visible';
 	document.getElementById("playlistAddModalContent").style.visibility = 'visible';
 	document.getElementById("addModal").style.visibility = 'visible';
@@ -21,9 +20,8 @@ function addVideoToSelectedPlaylist(input) {
 	getAvailableVideos();
 }
 
+//find video selected to add video to playlist
 function addVideo(input) {
-	console.log("Handle add video to playlist button triggered");
-    
     var tableTemp = document.getElementById("playlistTableBody");
 	var rowsNotSelected = tableTemp.getElementsByTagName('tr');
 	var selected = -1;
@@ -38,7 +36,6 @@ function addVideo(input) {
 	}
 	
 	var playlistName = document.getElementById("playlistTableBody").rows[selected].cells[0].innerText;
-	console.log(playlistName);
 	
 	//check local video table for selected
 	var tableTemp = document.getElementById("addVideosTableP");
@@ -49,8 +46,6 @@ function addVideo(input) {
 	    	selected = row;
 	    }
 	}
-	
-	console.log("local selected: " + selected);
 	
 	if(selected == -1){
 		//check remote video table for selected
@@ -63,19 +58,13 @@ function addVideo(input) {
 		    }
 		}
 		
-		console.log("remote selected: " + selected);
 		if(selected == -1){
 	    	return;
 	    }
 		
-		console.log("remote video selected");
 		var videoChar = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[0].innerText;
 		var videoText = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[1].innerText;
 		var videoURL = document.getElementById("addRemoteVideosTablePBody").rows[selected].cells[2].innerText;
-		
-		console.log("text: " + videoText);
-		console.log("char: " + videoChar);
-		console.log("url: " + videoURL);
 		
 		document.getElementById("playlistAddModal").style.visibility = 'hidden';
 	    document.getElementById("playlistAddModalContent").style.visibility = 'hidden';
@@ -87,9 +76,7 @@ function addVideo(input) {
 		return;
 	}
 	
-	console.log("here");
 	var videoID = document.getElementById("addVideosTableP").rows[selected].cells[4].innerText;
-    console.log(videoID);
     
     document.getElementById("playlistAddModal").style.visibility = 'hidden';
     document.getElementById("playlistAddModalContent").style.visibility = 'hidden';
@@ -98,9 +85,9 @@ function addVideo(input) {
     document.getElementById("addModal").style.zIndex = '-1';
     
     addVideoToPlaylist(playlistName, videoID);
-
 }
 
+//close the popup
 function closeAddModal(e){
     document.getElementById("playlistAddModal").style.visibility = 'hidden';
     document.getElementById("playlistAddModalContent").style.visibility = 'hidden';
@@ -109,6 +96,7 @@ function closeAddModal(e){
     document.getElementById("addModal").style.zIndex = '-1';
 }
 
+//request local and remote videos available to add to playlist
 function getAvailableVideos(){
 	
 	clearAvailableVideos();

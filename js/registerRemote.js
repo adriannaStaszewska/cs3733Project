@@ -1,3 +1,4 @@
+//make register modal visible
 function handleModal(e) {
     document.getElementById("registerModal").style.visibility = 'visible';
     document.getElementById("registerModalContent").style.visibility = 'visible';
@@ -6,6 +7,7 @@ function handleModal(e) {
     document.getElementById("fullmodal").style.zIndex = '3';
 }
 
+//make register modal invisible
 function closeModal(e){
     document.getElementById("registerModal").style.visibility = 'hidden';
     document.getElementById("registerModalContent").style.visibility = 'hidden';
@@ -14,8 +16,8 @@ function closeModal(e){
     document.getElementById("fullmodal").style.zIndex = '-1';
 }
 
+//register new remote site
 function handleRegisterRemoteSite(e) {
-    console.log("Register remote site button triggered");
     document.getElementById("registerModalContent").style.visibility = 'hidden';
     document.getElementById("fullmodal").style.visibility = 'hidden';
     document.getElementById("registerModal").style.zIndex = '-1';
@@ -27,6 +29,7 @@ function handleRegisterRemoteSite(e) {
     document.getElementById("apiField").value = "";
 }
 
+//send request to register new remote site
 function createRemote(url, api) {
 	var data = {};
 	data["url"] = url;

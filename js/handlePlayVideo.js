@@ -1,5 +1,5 @@
+//make video player visible, play selected video
 function handlePlayModal(row) {
-
     document.getElementById("videoPlayerModal").style.visibility = 'visible';
     document.getElementById("playerModal").style.visibility = 'visible';
     document.getElementById("videoModalContent").style.visibility = 'visible';
@@ -9,6 +9,7 @@ function handlePlayModal(row) {
     document.getElementById("player").src = document.getElementById("videosTable").rows[row].getElementsByTagName("p")[3].innerHTML;
 }
 
+//make video player invisible
 function closePlayModal() {
 	document.getElementById("player").pause();
     document.getElementById("videoPlayerModal").style.visibility = 'hidden';

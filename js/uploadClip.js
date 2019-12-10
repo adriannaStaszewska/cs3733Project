@@ -1,5 +1,5 @@
+//make upload modal visible
 function handleModal(e) {
-    console.log("Modal Upload clip button triggered");
     document.getElementById("uploadModal").style.visibility = 'visible';
     document.getElementById("uploadModalContent").style.visibility = 'visible';
     document.getElementById("fullmodal").style.visibility = 'visible';
@@ -7,6 +7,7 @@ function handleModal(e) {
     document.getElementById("fullmodal").style.zIndex = '3';
 }
 
+//make upload modal invisible
 function closeModal(e){
     document.getElementById("uploadModal").style.visibility = 'hidden';
     document.getElementById("uploadModalContent").style.visibility = 'hidden';
@@ -15,6 +16,7 @@ function closeModal(e){
     document.getElementById("fullmodal").style.zIndex = '-1';
 }
 
+//upload video, make upload modal invisible
 function handleUploadClip(e) {
     document.getElementById("uploadModal").style.visibility = 'hidden';
     document.getElementById("uploadModalContent").style.visibility = 'hidden';
@@ -24,6 +26,7 @@ function handleUploadClip(e) {
     uploadClip();
 }
 
+//send request to upload video
 function uploadClip(){
 	var data = {};
 	data["videoName"] = document.getElementById("uploadName").value;
@@ -33,7 +36,6 @@ function uploadClip(){
 	data["videoFile"] = segments[1];
 	
 	var js = JSON.stringify(data);
-	console.log(js);
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", uploadClipURL, true);
 	

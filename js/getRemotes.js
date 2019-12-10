@@ -1,3 +1,4 @@
+//request list of remote sites
 function getRemotes() {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", getRemotesURL, true);
@@ -12,6 +13,7 @@ function getRemotes() {
 	};
 }
 
+//process remote sites return
 function processRemoteList(result) {
 	var js = JSON.parse(result);
 	
@@ -19,10 +21,9 @@ function processRemoteList(result) {
 		var constantJson = js.list[i];
 	    insertRemoteRow(constantJson["url"]);
 	}
-	
-	
 }
 
+//insert remote entry into row
 function insertRemoteRow(rowInput) {
 	var table = document.getElementById("remoteTableBody");
 	var tr = table.insertRow(table.rows.length);
@@ -47,6 +48,7 @@ function insertRemoteRow(rowInput) {
 	
 }
 
+//clear list of remote sites
 function clearRemotes(){
 	var tableHeaderRowCount = 1;
 	var table = document.getElementById("remoteTable");
