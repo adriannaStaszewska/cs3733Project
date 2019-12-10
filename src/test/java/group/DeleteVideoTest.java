@@ -33,26 +33,27 @@ public class DeleteVideoTest extends LambdaTest {
 		Assert.assertEquals(errorCode, resp.statusCode);
 	}
 
-//	@Test
-//	public void deleteTest() {
-//		VideosDAO dao = new VideosDAO();
-//		Video dad = new Video("dad", "papa", )
-//		try {
-//			Video video = dao.getFirstVideo();
-//			DeleteVideoRequest req = new DeleteVideoRequest(video.getName(), video.getVideoID());
-//			String SAMPLE_INPUT_JSON = new Gson().toJson(req);
-//			System.out.println("id: "+video.getVideoID());
-//			System.out.println("name: "+video.getName());
-//			try {
-//				testSuccessInput(SAMPLE_INPUT_JSON);
-//				testFailureInput(SAMPLE_INPUT_JSON, 422);
-//			} catch (IOException ioe) {
-//				Assert.fail("Invalid:" + ioe.getMessage());
-//			}
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+	@Test
+	public void deleteTest() {
+		VideosDAO dao = new VideosDAO();
+		Video dad = new Video("dad", "papa", "https://3733kakistocrattests.s3.us-east-2.amazonaws.com/videos/DeleteMe.ogg","not MY dad","I love you, son");
+		try {
+			System.out.println("hello");
+			dao.addVideo(dad, false);
+			System.out.println("hello agian");
+			DeleteVideoRequest req = new DeleteVideoRequest("papa", "dad");
+			String SAMPLE_INPUT_JSON = new Gson().toJson(req);
+			System.out.println(SAMPLE_INPUT_JSON);
+			try {
+				testSuccessInput(SAMPLE_INPUT_JSON);
+				testFailureInput(SAMPLE_INPUT_JSON, 422);
+			} catch (IOException ioe) {
+				Assert.fail("Invalid:" + ioe.getMessage());
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

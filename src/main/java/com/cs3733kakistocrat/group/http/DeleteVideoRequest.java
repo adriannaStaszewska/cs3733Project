@@ -18,6 +18,7 @@ public class DeleteVideoRequest {
 	
 	public DeleteVideoRequest (String name, String videoID) {
 		this.name = name;
+		this.videoID=  videoID;
 	}
 	
 	public String toString() {
