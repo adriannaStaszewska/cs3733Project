@@ -31,9 +31,6 @@ public class AppendVideoRequest {
 		this.text = text;
 	}
 	
-	public AppendVideoRequest() {
-		
-	}
 	
 	
 	public boolean isRemote() {

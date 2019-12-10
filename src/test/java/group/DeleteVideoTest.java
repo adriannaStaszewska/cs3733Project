@@ -38,9 +38,7 @@ public class DeleteVideoTest extends LambdaTest {
 		VideosDAO dao = new VideosDAO();
 		Video dad = new Video("dad", "papa", "https://3733kakistocrattests.s3.us-east-2.amazonaws.com/videos/DeleteMe.ogg","not MY dad","I love you, son");
 		try {
-			System.out.println("hello");
 			dao.addVideo(dad, false);
-			System.out.println("hello agian");
 			DeleteVideoRequest req = new DeleteVideoRequest("papa", "dad");
 			String SAMPLE_INPUT_JSON = new Gson().toJson(req);
 			System.out.println(SAMPLE_INPUT_JSON);

@@ -21,7 +21,7 @@ public class UpdateRemoteStatusHandler implements RequestHandler<UpdateRemoteSta
 			if (dao.updateRemote(input.getVideoID(), input.getStatus())) {
 				response = new Response(input.getVideoID());
 			} else {
-				response = new Response(input.getVideoID(), 400);
+				response = new Response(input.getVideoID(), 422);
 			}
 		}catch (Exception e) {
 			response = new Response("Unable to edit ststus: " + input.getVideoID()+ " (" + e.getMessage() + ")", 400);
