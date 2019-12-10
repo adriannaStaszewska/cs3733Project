@@ -13,12 +13,13 @@ function handlePlayPlaylistModal(){
 	if(rowsNotSelected.length <= 0){
 		return;
 	}
+	console.log(rowsNotSelected);
 	
 	for (var row = 0; row < rowsNotSelected.length; row++) {
 		videosToPlay.push(rowsNotSelected[row].cells[4].innerText);
 	}
 	console.log(videosToPlay);
-	document.getElementById("player").src = videosToPlay.pop();
+	document.getElementById("player").src = videosToPlay.shift();
 	
 }
 

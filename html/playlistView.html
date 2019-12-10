@@ -135,11 +135,9 @@
 		    function myHandler(e) {
 		        // What you want to do after the event
 		    	if(videosToPlay.length > 0){
-		    		console.log("here");
 		    		console.log(videosToPlay);
-		    		document.getElementById("player").src = videosToPlay.pop();
+		    		document.getElementById("player").src = videosToPlay.shift();
 		    	} else {
-		    		console.log("closing");
 		    		closePlaylistModal();
 		    	}
 		    }
