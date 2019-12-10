@@ -37,7 +37,8 @@ public class DeleteVideoHandler implements RequestHandler<DeleteVideoRequest,Del
 				response = new DeleteVideoResponse(req.getName(), 422, "Unable to delete video.");
 			}
 			
-			if (dao.deleteVideo(video) && deleteVideoFromTheBucket(req.getName())) {
+			if (dao.deleteVideo(video) ) {
+					//&& deleteVideoFromTheBucket(req.getName())) {
 				response = new DeleteVideoResponse(req.getName(), 200);
 			} else {
 				response = new DeleteVideoResponse(req.getName(), 422, "Unable to delete video.");
