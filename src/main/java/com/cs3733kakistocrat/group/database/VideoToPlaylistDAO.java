@@ -76,6 +76,7 @@ public class VideoToPlaylistDAO {
             ResultSet resultSet = ps2.executeQuery();
             
             VideosDAO vidDAO = new VideosDAO();
+            
             //is remote
             while (resultSet.next()) {
                 Video v = generateVideo(resultSet);

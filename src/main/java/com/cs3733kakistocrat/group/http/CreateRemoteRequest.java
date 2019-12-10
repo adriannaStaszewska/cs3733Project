@@ -26,7 +26,7 @@ public class CreateRemoteRequest {
 	}
 	
 	public String toString() {
-		return "CreatePlaylist(" + url + ")";
+		return "CreateRemoteUrl(" + url + ")";
 	}
 
 }
