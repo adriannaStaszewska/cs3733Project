@@ -86,10 +86,10 @@ public class VideoToPlaylistDAO {
             }
             ps2.close();
 
-        	PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE (video_id, playlist_name) = (?, ?);");// AND ('video_position' = ?);");
+        	PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE (video_id, playlist_name,video_position) = (?, ?, ?);");// AND ('video_position' = ?);");
             ps.setString(1, video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
-//          ps.setInt(3,  position);
+            ps.setInt(3,  position);
 
             
             int numLines = ps.executeUpdate();

@@ -10,12 +10,17 @@ import org.junit.Test;
 import com.cs3733kakistocrat.group.AppendVideoToPlaylistHandler;
 import com.cs3733kakistocrat.group.RemoveRemoteHandler;
 import com.cs3733kakistocrat.group.RemoveVideoFromPlaylistHandler;
+import com.cs3733kakistocrat.group.database.PlaylistsDAO;
+import com.cs3733kakistocrat.group.database.VideoToPlaylistDAO;
 import com.cs3733kakistocrat.group.http.AppendVideoRequest;
 import com.cs3733kakistocrat.group.http.DeleteVideoResponse;
 import com.cs3733kakistocrat.group.http.RemoveVideoRequest;
+import com.cs3733kakistocrat.group.model.Playlist;
+import com.cs3733kakistocrat.group.model.Video;
 import com.google.gson.Gson;
 
-public class RemoveVideoFromPlaylistTest extends LambdaTest{
+public class RemoveVideoFromPlaylistTest extends LambdaTest {
+
 	void testSuccessInput(String incomingJson) throws IOException {
 		RemoveVideoFromPlaylistHandler handler = new RemoveVideoFromPlaylistHandler();
 		RemoveVideoRequest req = new Gson().fromJson(incomingJson, RemoveVideoRequest.class);
@@ -29,32 +34,31 @@ public class RemoveVideoFromPlaylistTest extends LambdaTest{
 		RemoveVideoRequest req = new Gson().fromJson(incomingJson, RemoveVideoRequest.class);
 
 		DeleteVideoResponse resp = handler.handleRequest(req, createContext("remove"));
-		System.out.println("expected: "+errorCode+", but got "+resp.statusCode);
+		System.out.println("expected: " + errorCode + ", but got " + resp.statusCode);
 		Assert.assertEquals(errorCode, resp.statusCode);
 	}
 
 	@Test
 	public void test() {
-		AppendVideoRequest appendReq = new AppendVideoRequest("44ba50dd-868d-436e-ac13-fc8cdf885b30", "TEST Playlist 1");
-		AppendVideoRequest appendReqRemote = new AppendVideoRequest("father123","TEST Playlist 1", true, "Test char", "Some url", "This is a sentence");
-		AppendVideoToPlaylistHandler handler = new AppendVideoToPlaylistHandler();
-		handler.handleRequest(appendReq, createContext("append local video"));
-		handler.handleRequest(appendReqRemote, createContext("append remote video"));
-		RemoveVideoRequest req = new RemoveVideoRequest("44ba50dd-868d-436e-ac13-fc8cdf885b30", "TEST Playlist 1", 0);
-		RemoveVideoRequest reqRemote = new RemoveVideoRequest("father123", "TEST Playlist 1", 1);
-		RemoveVideoRequest reqFake = new RemoveVideoRequest("i am not real", "TEST Playlist 1", 0);
+		PlaylistsDAO PDao = new PlaylistsDAO();
+		VideoToPlaylistDAO VTPDao = new VideoToPlaylistDAO();
+		Playlist test = new Playlist("test");
+		Video vid = new Video("father123", "where is papa?", "idk.com", "not my dad", "I love you", false);
 
-		String SAMPLE_INPUT_JSON_REMOTE = new Gson().toJson(reqRemote);
-		String SAMPLE_INPUT_JSON = new Gson().toJson(req);
-		String SAMPLE_INPUT_JSON_FAKE= new Gson().toJson(reqFake);
-		
 		try {
-//			testSuccessInput(SAMPLE_INPUT_JSON_REMOTE);
-//			testSuccessInput(SAMPLE_INPUT_JSON);
-			testFailureInput(SAMPLE_INPUT_JSON_FAKE,422);
-		}catch(IOException ioe) {
-        	Assert.fail("Invalid:" + ioe.getMessage());
+			PDao.addPlaylist(test);
+			VTPDao.appendVideoToPlaylist(vid, test);
+			RemoveVideoRequest req = new RemoveVideoRequest("father123", "test", 0);
+			String SAMPLE_INPUT_JSON = new Gson().toJson(req);
+			
+			testSuccessInput(SAMPLE_INPUT_JSON);
+			testFailureInput(SAMPLE_INPUT_JSON, 422);
+			PDao.removePlaylist(test);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
 	}
 
 }
