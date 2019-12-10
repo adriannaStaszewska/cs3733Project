@@ -27,16 +27,21 @@ public class RemoveRemoteTest extends LambdaTest{
 		RemoveRemoteRequest req = new Gson().fromJson(incomingJson, RemoveRemoteRequest.class);
 
 		RemoveRemoteResponse resp = handler.handleRequest(req, createContext("remote"));
+		resp.toString();
 		System.out.println("expected: "+errorCode+", but got "+resp.statusCode);
 		Assert.assertEquals(errorCode, resp.statusCode);
 	}
 
 	@Test
 	public void deletePlaylistTest() {
-		CreateRemoteRequest createReq = new CreateRemoteRequest("testing delete", "API Key");
+		CreateRemoteRequest createReq = new CreateRemoteRequest();
+		createReq.setUrl("testing delete");
+		createReq.setApi_key("API Key");
 		CreateRemoteResponse createResp= new CreateRemoteHandler().handleRequest(createReq, createContext("remove"));
 		Assert.assertEquals(200, createResp.httpCode);
-		RemoveRemoteRequest req = new RemoveRemoteRequest("testing delete", "API Key");
+		RemoveRemoteRequest req = new RemoveRemoteRequest("wrong testing delete", "API");
+		req.setUrl("testing delete");
+		req.setApi_key("API Key");
 		String SAMPLE_INPUT_JSON = new Gson().toJson(req);
 		try {
 			testSuccessInput(SAMPLE_INPUT_JSON);

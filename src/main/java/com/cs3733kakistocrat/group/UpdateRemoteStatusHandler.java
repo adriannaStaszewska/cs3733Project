@@ -24,7 +24,7 @@ public class UpdateRemoteStatusHandler implements RequestHandler<UpdateRemoteSta
 				response = new Response(input.getVideoID(), 422);
 			}
 		}catch (Exception e) {
-			response = new Response("Unable to edit ststus: " + input.getVideoID()+ " (" + e.getMessage() + ")", 400);
+			response = new Response("Unable to edit status: " + input.getVideoID()+ " (" + e.getMessage() + ")", 400);
 		}
 		return response;
 		

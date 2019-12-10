@@ -19,7 +19,7 @@ public class RemoveRemoteResponse {
 	}
 	
 	public String toString() {
-		if (statusCode / 100 == 2) {  // too cute?
+		if (statusCode == 200) { 
 			return "DeleteResponse(" + url+ ")";
 		} else {
 			return "ErrorResult(" + url + ", statusCode=" + statusCode + ", err=" + error + ")";

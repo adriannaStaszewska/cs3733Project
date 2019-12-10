@@ -17,24 +17,24 @@ public class UpdateRemoteStatusTest extends LambdaTest{
 		UpdateRemoteStatusRequest req = new UpdateRemoteStatusRequest("d1d77dea-61c9-4021-9730-bd682660e63f", true);
 		UpdateRemoteStatusHandler handler = new UpdateRemoteStatusHandler();
 		successTest(req, handler);
-	}
-	@Test
-	public void invalidParam() {
-		UpdateRemoteStatusRequest req = new UpdateRemoteStatusRequest("invalid ID", false);
-		UpdateRemoteStatusHandler handler = new UpdateRemoteStatusHandler();
-		failTest(req, handler, 422);
+
+		//failTest(req, handler);
+
 	}
 	
 	public void successTest(UpdateRemoteStatusRequest req, UpdateRemoteStatusHandler handler) {
 		Response resp = handler.handleRequest(req, createContext("update remote status"));
 		assertEquals(200, resp.httpCode);
 	}
-	
-	public void failTest(UpdateRemoteStatusRequest req,UpdateRemoteStatusHandler handler, int errorCode) {
-		handler = new UpdateRemoteStatusHandler();
+
+/*	
+	public void failTest(UpdateRemoteStatusRequest req, UpdateRemoteStatusHandler handler) {
+		req.setStatus(false);
+		req.setVideoID("this id does not exist");
+
 		Response resp = handler.handleRequest(req, createContext("update remote status"));
 		assertEquals(errorCode, resp.httpCode);
 	}
 	
-	
+	*/
 }

@@ -13,8 +13,14 @@ public class AppendVideoToPlaylist extends LambdaTest {
 	@Test
 	public void test() {
 		AppendVideoRequest req = new AppendVideoRequest("44ba50dd-868d-436e-ac13-fc8cdf885b30", "test gateway");
-		AppendVideoRequest reqRemote = new AppendVideoRequest("test gateway", true, "Test char", "Some url", "This is a sentence");
+		AppendVideoRequest reqRemote = new AppendVideoRequest();
+		reqRemote.setPlaylistName("test gateway");
+		reqRemote.setRemote(true);
+		reqRemote.setCharacter("Test char");
+		reqRemote.setUrl("Some url");
+		reqRemote.setText("This is a sentence");
 		AppendVideoToPlaylistHandler handler = new AppendVideoToPlaylistHandler();
+		req.toString();
 		append(handler, req);
 		remoteVidTest(handler, reqRemote);
 		//RemoveVideoFromPLaylistRequest delReq = new RemoveVideoFromPLaylistRequest();
@@ -23,7 +29,7 @@ public class AppendVideoToPlaylist extends LambdaTest {
 
 	public void append(AppendVideoToPlaylistHandler handler, AppendVideoRequest req) {
 		Response res = handler.handleRequest(req, createContext("append video"));
-		System.out.println(res.httpCode);
+		res.toString();
 		assertEquals(res.httpCode, 200);
 	}
 	

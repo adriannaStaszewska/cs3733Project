@@ -29,13 +29,14 @@
     </head>
 
     <body onload="initialize()" style="background-color: #1f1f1f;" text="white">
+    	<!-- Top Nav -->
         <div class="nav" id="topNav">
             <a href="../html/clipsView.html" class="active">Clips</a>
             <a href="../html/playlistView.html">Playlists</a>
         </div>
 
         <br>
-
+		<!-- Search Form -->
         <form name="search" method="post">
             <input name="searchBox" value="" placeholder="character"/>
             <input name="searchBox2" value="" placeholder="sentence"/>
@@ -45,12 +46,12 @@
         </form>
 
         <br>
-		
+		<!-- Upload clip button -->
 		<form name="uploadClip">
 			<input type="button" value="+" onClick="JavaScript:handleModal(this)">
 		</form>
 		
-
+		<!-- Modal popup for uploading video -->
         <div class="fullscreen-modal" id="fullmodal">
             <div class="Modal" id="uploadModal">
                 <div class="modal-content" id="uploadModalContent">
@@ -69,7 +70,7 @@
                 </div>
             </div>
         </div>
-        
+        <!-- Vides table -->
         <table id="videosTable" class="videoTable">
 			 <thead>
 				  <tr>
@@ -82,7 +83,7 @@
 			 <tbody id="videosTableBody">
 			 </tbody>
 		</table>
-		
+		<!-- Modal for video player -->
 		<div class="fullscreen-modal" id="videoPlayerModal">
             <div class="Modal" id="playerModal">
                 <div class="modal-content" id="videoModalContent">

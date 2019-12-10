@@ -48,14 +48,14 @@ public class RemovePlaylistTest extends LambdaTest{
         	Assert.fail("Invalid:" + ioe.getMessage());
 		}
 	}
-//	@Test
-//	public void wrongJson() {
-//		String SAMPLE_INPUT_JSON = "{\"sdsd\": \"e3\"}";
-//		try {
-//			testFailureInput(SAMPLE_INPUT_JSON, 400);
-//		}catch(IOException ioe) {
-//        	Assert.fail("Invalid:" + ioe.getMessage());
-//		}
-//	}
+	@Test
+	public void wrongJson() {
+		String SAMPLE_INPUT_JSON = "{\"sdsd\": \"e3\"}";
+		try {
+			testFailureInput(SAMPLE_INPUT_JSON, 422);
+		}catch(IOException ioe) {
+        	Assert.fail("Invalid:" + ioe.getMessage());
+		}
+	}
 
 }

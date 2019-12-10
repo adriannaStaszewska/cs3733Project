@@ -29,30 +29,15 @@
     </head>
 
     <body onload="initialize()" style="background-color: #1f1f1f;" text="white">
+    	<!-- Top Nav -->
         <div class="nav" id="topNav">
             <a href="../html/admin.html" class="active">Admin</a>
             <a href="../html/remote.html">Remotes</a>
         </div>
 
         <br>
-        <!--
-        <button id="registerButton" onClick="JavaScript:handleModal(this)">Register Remote</button>
-
-        <div class="fullscreen-modal" id="fullmodal">
-            <div class="Modal" id="registerModal">
-                <div class="modal-content" id="registerModalContent">
-                    <form name="registerRemoteForm">
-                        <input type="button" id="popUpClose2" value="X" onClick="JavaScript:closeModal(this)"><br>
-                        URL:
-                        <input type="text" name="url"><br>
-                        <input type="button" value="Register" onClick="JavaScript:handleRegisterRemoteSite(this)">
-                    </form>
-                </div>
-            </div>
-        </div>
-        -->
         <br>
-        
+        <!-- Videos table -->
         <table id="videosTable" class="videoTable">
 			 <thead>
 				  <tr>
@@ -63,11 +48,11 @@
 					   <th>Remove?</th>
 				  </tr>
 			 </thead>
-			 <tbody id="videosTableBody">
-				  
+			 <tbody id="videosTableBody"> 
 			 </tbody>
 		</table>
 		
+		<!-- Modal popup for video player -->
 		<div class="fullscreen-modal" id="videoPlayerModal">
             <div class="Modal" id="playerModal">
                 <div class="modal-content" id="videoModalContent">

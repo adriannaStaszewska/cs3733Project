@@ -1,7 +1,5 @@
-var numberOfLocalVideos = 0;
-
+//add video to a playlist
 function addVideoToSelectedPlaylist(input) {
-	console.log("adding video to playlist");
 	
 	document.getElementById("playlistAddModal").style.visibility = 'visible';
 	document.getElementById("playlistAddModalContent").style.visibility = 'visible';
@@ -19,7 +17,6 @@ function addVideoToSelectedPlaylist(input) {
 	}
 	
 	var playlistName = document.getElementById("playlistTableBody").rows[selected].cells[0].innerText;
-	console.log(playlistName);
 	
 	getAvailableVideos();
 }
@@ -124,9 +121,10 @@ function getAvailableVideos(){
 	xhr.onloadend = function () {
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			console.log ("XHR:" + xhr.responseText);
-			processVideoListForPlaylist(xhr.responseText);
+			if (xhr.status == 200) {
+				processVideoListForPlaylist(xhr.responseText);
+			}
 		} else {
-//			processVideoListForPlaylist("N/A");
 		}
 	};
 	
@@ -158,12 +156,12 @@ function getAvailableVideos(){
 			
 		} else {
 			return;
-//			processRemoteList("N/A");
 		}
 	};
 	
 }
 
+//get remote videos given the url and api
 function getRemotes(url, api) {
 	//get videos from remote
 	var xhr = new XMLHttpRequest();
@@ -174,14 +172,15 @@ function getRemotes(url, api) {
 	xhr.onloadend = function () {
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			console.log ("XHR:" + xhr.responseText);
-			processRemoteVideoListForPlaylist(xhr.responseText);
+			if (xhr.status == 200) {
+				processRemoteVideoListForPlaylist(xhr.responseText);
+			}
 		} else {
-//			processVideoListForPlaylist("N/A");
 		}
 	};
 }
 
-//-------------------------
+//process videos from the remote site
 function processRemoteVideoListForPlaylist(result) {
 	console.log("res:" + result);
 	var js = JSON.parse(result);
@@ -192,23 +191,21 @@ function processRemoteVideoListForPlaylist(result) {
 		var constantJson = js[i];
 	    console.log(constantJson);
 	    var tempArray = [];
-//	    tempArray.push("");
 	    tempArray.push(constantJson["character"]);
 	    tempArray.push(constantJson["text"]);
 	    tempArray.push(constantJson["url"]);
-//	    tempArray.push("");//(constantJson["videoID"])
 	    insertRemoteRowToAdd(tempArray);
 	}
 	
 	
 }
 
-
+//process videos from local site
 function processVideoListForPlaylist(result) {
 	console.log("res:" + result);
 	var js = JSON.parse(result);
 	
-	numberOfLocalVideos = js.list.length;
+//	numberOfLocalVideos = js.list.length;
 	for (var i = 0; i < js.list.length; i++) {
 		var constantJson = js.list[i];
 	    console.log(constantJson);
@@ -224,6 +221,7 @@ function processVideoListForPlaylist(result) {
 	
 }
 
+//insert video into table
 function insertRowToAdd(rowArray) {
 	var table = document.getElementById("addVideosTablePBody");
 	var tr = table.insertRow(table.rows.length);
@@ -250,10 +248,8 @@ function insertRowToAdd(rowArray) {
 			id.style = "display:none;";
 			td.appendChild(id);
 		} else {
-			
+			//when clicked, reset selected tag
 			td.onclick = function (){
-//				handlePlayModal(this.parentNode.rowIndex);
-				
 				var tableTemp = document.getElementById("addRemoteVideosTableP");
 				var rowId = this.parentNode.rowIndex;
 				var rowsNotSelected = tableTemp.getElementsByTagName('tr');
@@ -276,13 +272,12 @@ function insertRowToAdd(rowArray) {
 			
 			var element = document.createElement("P");
 			element.innerHTML = rowArray[c];
-			//element.setAttribute("value", tempArray[c]);
-			
 			td.appendChild(element);
 		}
 	}
 }
 
+//insert video into remote table
 function insertRemoteRowToAdd(rowArray) {
 	var table = document.getElementById("addRemoteVideosTablePBody");
 	var tr = table.insertRow(table.rows.length);
@@ -300,21 +295,9 @@ function insertRemoteRowToAdd(rowArray) {
 			url.setAttribute("id", "par");
 			url.style = "display:none;";
 			td.appendChild(url);
-		}
-//		}  else if(c == 3){
-//			td.style = "visibility:hidden;display:none;";
-//			var id = document.createElement("P");
-//			var id2 = document.createTextNode(rowArray[c]);
-//			id.append(id2);
-//			id.setAttribute("id", "par");
-//			id.style = "display:none;";
-//			td.appendChild(id);
-//		} 
-		else {
-			
+		} else {
+			//when clicked, reset selected tag
 			td.onclick = function (){
-//				handlePlayModal(this.parentNode.rowIndex);
-				
 				var tableTemp = document.getElementById("addVideosTableP");
 				var rowId = this.parentNode.rowIndex;
 				var rowsNotSelected = tableTemp.getElementsByTagName('tr');
@@ -337,13 +320,12 @@ function insertRemoteRowToAdd(rowArray) {
 			
 			var element = document.createElement("P");
 			element.innerHTML = rowArray[c];
-			//element.setAttribute("value", tempArray[c]);
-			
 			td.appendChild(element);
 		}
 	}
 }
 
+//send request to add video to a playlist
 function addVideoToPlaylist(playlist, video){
 	var data = {};
 	data["playlistName"] = playlist;
@@ -353,25 +335,22 @@ function addVideoToPlaylist(playlist, video){
 	console.log(js);
 	
 	var xhr = new XMLHttpRequest();
-	console.log(getVideosInPlaylistURL);
 	xhr.open("POST", addVideoToPlaylistURL, true);
 	xhr.send(js);
-	   
-	console.log("sent append video request");
 	   
 	xhr.onloadend = function () {
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			console.log ("XHR:" + xhr.responseText);
-			clearPlaylistVideos();
-			//here
-			getVideosInPlaylist(playlist);
-//		   	processPlaylistVideos(xhr.responseText);
+			if (xhr.status == 200) {
+				clearPlaylistVideos();
+				getVideosInPlaylist(playlist);
+			}
 		} else {
-//			processVideoList("N/A");
 		}
 	};
 }
 
+//send request to add remote video to playlist
 function addRemoteVideoToPlaylist(playlist, text, character, url){
 	var data = {};
 	data["playlistName"] = playlist;
@@ -385,7 +364,6 @@ function addRemoteVideoToPlaylist(playlist, text, character, url){
 	console.log(js);
 	
 	var xhr = new XMLHttpRequest();
-	console.log(getVideosInPlaylistURL);
 	xhr.open("POST", addVideoToPlaylistURL, true);
 	xhr.send(js);
 	   
@@ -394,16 +372,16 @@ function addRemoteVideoToPlaylist(playlist, text, character, url){
 	xhr.onloadend = function () {
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			console.log ("XHR:" + xhr.responseText);
-			clearPlaylistVideos();
-			//here
-			getVideosInPlaylist(playlist);
-//		   	processPlaylistVideos(xhr.responseText);
+			if (xhr.status == 200) {
+				clearPlaylistVideos();
+				getVideosInPlaylist(playlist);
+			}
 		} else {
-//			processVideoList("N/A");
 		}
 	};
 }
 
+//clear all videos from videos to add table
 function clearAvailableVideos(){
 	var tableHeaderRowCount = 1;
 	var table = document.getElementById("addVideosTableP");
