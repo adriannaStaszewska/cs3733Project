@@ -31,39 +31,19 @@ public class UploadVideoRequest {
 		return videoName;
 	}
 
-	public void setVideoName(String videoName) {
-		this.videoName = videoName;
-	}
-
 	public String getVideoFile() {
 		return videoFile;
 	}
-
-	public void setVideoFile(String videoFile) {
-		this.videoFile = videoFile;
-	}
 	public String getCharacter() {
 		return character;
-	}
-
-	public void setCharacter(String character) {
-		this.character = character;
 	}
 
 	public String getSentence() {
 		return sentence;
 	}
 
-	public void setSentence(String sentence) {
-		this.sentence = sentence;
-	}
-
 	public Boolean getRemote() {
 		return remote;
-	}
-
-	public void setRemote(Boolean remote) {
-		this.remote = remote;
 	}
 
 	public String toString() {
