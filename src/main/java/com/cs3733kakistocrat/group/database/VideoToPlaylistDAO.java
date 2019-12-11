@@ -34,7 +34,7 @@ public class VideoToPlaylistDAO {
             }
             resultSet.close(); 
             ps.close();
-    		 
+    		
     		return videos;
     	} catch (Exception e) {
     		e.printStackTrace();
@@ -85,14 +85,30 @@ public class VideoToPlaylistDAO {
                 break;
             }
             ps2.close();
-
+            
+            //deletes video
         	PreparedStatement ps = conn.prepareStatement("DELETE FROM playlist_video WHERE (video_id, playlist_name, video_position) = (?, ?, ?);");
             ps.setString(1, video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
             ps.setInt(3,  position);
 
-            
             int numLines = ps.executeUpdate();
+            
+            //updates ordering
+            PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM playlist_video WHERE (playlist_name) = (?) ORDER BY video_position asc;");
+            ps1.setString(1, playlist.getPlaylistName());
+            ResultSet resultSet1 = ps1.executeQuery();
+            
+            int pos = 0;
+            PreparedStatement ps4 = conn.prepareStatement("UPDATE playlist_video SET video_position = 0;");
+            while (resultSet1.next()) {
+              Video v = generateVideo(resultSet1);
+              ps4 = conn.prepareStatement("UPDATE playlist_video SET video_position = '" + pos + "' WHERE playlist_name = '" + playlist.getPlaylistName() + "' AND video_id = '" + v.getVideoID() + "';");
+              ps4.executeUpdate();
+              pos++;
+            }
+            ps4.close();
+            
             ps.close();
             
             return numLines==1;
