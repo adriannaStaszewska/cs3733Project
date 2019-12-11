@@ -45,17 +45,16 @@ public class VideoToPlaylistDAO {
     
     public boolean appendVideoToPlaylist(Video video, Playlist playlist) throws Exception {
         try {
-        	
+          
         	PreparedStatement ps1 = conn.prepareStatement("SELECT MAX(video_position) FROM playlist_video WHERE playlist_name=?;");
         	ps1.setString(1, playlist.getPlaylistName());
-
         	ps1.execute();
         	ResultSet results = ps1.getResultSet();
         	results.next();
         	int rowNum = results.getInt(1) + 1;
         	ps1.close();
         	
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO playlist_video (video_id, playlist_name, video_position) values(?,?,?);");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO playlist_video (video_id, playlist_name, video_position) VALUES (?,?,?);");
             ps.setString(1,  video.getVideoID());
             ps.setString(2,  playlist.getPlaylistName());
             ps.setInt(3,  rowNum);
