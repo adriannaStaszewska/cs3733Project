@@ -109,16 +109,24 @@ public class VideoToPlaylistDAO {
             }
             
             LinkedList<String> noDuplicates = removeDuplicates(videos);
-            
         	PreparedStatement ps5 = conn.prepareStatement("DELETE FROM playlist_video WHERE (video_id, playlist_name) = (?, ?);");
         	for(String x: noDuplicates) {
         		ps5.setString(1, x);
         		ps5.setString(2, playlist.getPlaylistName());
+        		ps5.executeUpdate();
         	}
         	ps5.close();
         	
-        	
-
+        	int pos = 0;
+        	PreparedStatement ps6 = conn.prepareStatement("INSERT INTO playlist_video (playlist_name,video_id,video_position) VALUES (?, ?, ?);");
+        	for(String x: videos) {
+        		ps6.setString(1, playlist.getPlaylistName());
+        		ps6.setString(2, x);
+        		ps6.setInt(3, pos);
+        		ps6.executeUpdate();
+        		pos++;
+        	}
+        	ps6.close();
             
             /*
             int pos = 0;
@@ -131,11 +139,6 @@ public class VideoToPlaylistDAO {
             }
             ps4.close();
             */
-            
-            //get all video ids in linked list
-            //remove duplicates from linked list
-            //delete from playlis_video table
-            //insert back in in the same order with proper position
             
             return numLines==1;
 
