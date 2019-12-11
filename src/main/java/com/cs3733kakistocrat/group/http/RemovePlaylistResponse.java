@@ -19,7 +19,7 @@ public class RemovePlaylistResponse {
 	}
 	
 	public String toString() {
-		if (statusCode / 100 == 2) {  // too cute?
+		if (statusCode == 200) {  
 			return "DeleteResponse(" + playlistName+ ")";
 		} else {
 			return "ErrorResult(" + playlistName + ", statusCode=" + statusCode + ", err=" + error + ")";

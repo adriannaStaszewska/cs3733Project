@@ -16,6 +16,7 @@ public class ListAllVideosInAPlaylistTest extends LambdaTest{
 		AllVideosInPlaylistRequest testReq = new AllVideosInPlaylistRequest();
 		AllVideosInPlaylistRequest req = new AllVideosInPlaylistRequest("test");
 		req.setPlaylistName("test gateway");
+		req.toString();
 		AllVideosResponse res = handler.handleRequest(req, createContext("get all videos in a playlist"));
 		assertEquals(res.statusCode, 200);
 	}
