@@ -94,7 +94,7 @@ public class DBTests {
 			System.out.println("Added Video to Playlist: "+b1);		
 			VTPDAO.getAllVideos("This is");
 			
-			assertTrue (VTPDAO.removeVideo(video, playlist,0));
+			assertTrue(VTPDAO.removeVideo(video, playlist, 0));
 			
 		}
 		catch(Exception e) {

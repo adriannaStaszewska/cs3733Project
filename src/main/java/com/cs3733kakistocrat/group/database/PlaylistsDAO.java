@@ -77,7 +77,7 @@ public class PlaylistsDAO {
              int numAffected = ps.executeUpdate();
              ps.close();
              
-             PreparedStatement ps1 = conn.prepareStatement("DELETE FROM playlist_video WHERE playlistName = ?;");
+             PreparedStatement ps1 = conn.prepareStatement("DELETE FROM playlist_video WHERE playlist_name = ?;");
              ps1.setString(1, playlist.getPlaylistName());
              ps1.executeUpdate();
              ps1.close();
