@@ -29,6 +29,7 @@ public class DeleteVideoTest extends LambdaTest {
 		DeleteVideoRequest req = new Gson().fromJson(incomingJson, DeleteVideoRequest.class);
 
 		DeleteVideoResponse resp = handler.handleRequest(req, createContext("remote"));
+		resp.toString();
 		System.out.println("expected: " + errorCode + ", but got " + resp.statusCode);
 		Assert.assertEquals(errorCode, resp.statusCode);
 	}
@@ -40,6 +41,7 @@ public class DeleteVideoTest extends LambdaTest {
 		try {
 			dao.addVideo(dad, false);
 			DeleteVideoRequest req = new DeleteVideoRequest("papa", "dad");
+			req.toString();
 			String SAMPLE_INPUT_JSON = new Gson().toJson(req);
 			System.out.println(SAMPLE_INPUT_JSON);
 			try {

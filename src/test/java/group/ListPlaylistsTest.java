@@ -13,5 +13,6 @@ public class ListPlaylistsTest extends LambdaTest{
 		ListAllPlaylistsHandler handler = new ListAllPlaylistsHandler();
 		AllPlaylistsResponse resp = handler.handleRequest(null, createContext("list"));
 		resp.toString();
+		AllPlaylistsResponse codeResp = new AllPlaylistsResponse(404, null);
 	}
 }

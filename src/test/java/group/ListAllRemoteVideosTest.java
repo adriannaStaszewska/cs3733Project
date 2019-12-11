@@ -15,5 +15,6 @@ public class ListAllRemoteVideosTest extends LambdaTest{
 		ListAllRemoteSegmentsHandler handler = new ListAllRemoteSegmentsHandler();
 		AllRemoteSegmentsResponse resp = handler.handleRequest(null, createContext("list"));
 		resp.toString();
+		AllRemoteSegmentsResponse respCode = new AllRemoteSegmentsResponse(400, null); 
 	}
 }

@@ -9,10 +9,11 @@ import com.cs3733kakistocrat.group.http.AllRemotesResponse;
 
 public class ListAllRemoteSitesTest extends LambdaTest{
 	@Test
-	public void getVideosTest() throws IOException{
+	public void getVideosTest() throws IOException {
 	ListAllRemoteSitesHandler handler = new ListAllRemoteSitesHandler();
 	AllRemotesResponse resp = handler.handleRequest(null, createContext("list"));
 	resp.toString();
+	AllRemotesResponse resp2 = new AllRemotesResponse(400, null);
 	}
 
 }

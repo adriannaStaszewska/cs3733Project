@@ -15,5 +15,6 @@ public class ListVideosTest extends LambdaTest{
 		ListAllVideosHandler handler = new ListAllVideosHandler();
 		AllVideosResponse resp = handler.handleRequest(null, createContext("list"));
 		resp.toString();
+		AllVideosResponse codeResp = new AllVideosResponse(404, null);
 	}
 }
