@@ -128,18 +128,6 @@ public class VideoToPlaylistDAO {
         	}
         	ps6.close();
             
-            /*
-            int pos = 0;
-            PreparedStatement ps4 = conn.prepareStatement("UPDATE playlist_video SET video_position = 0;");
-            while (resultSet1.next()) {
-              Video v = generateVideo(resultSet1);
-              ps4 = conn.prepareStatement("UPDATE playlist_video SET video_position = '" + pos + "' WHERE playlist_name = '" + playlist.getPlaylistName() + "' AND video_id = '" + v.getVideoID() + "' AND video_position >= '" + pos + "';");
-              ps4.executeUpdate();
-              pos++;
-            }
-            ps4.close();
-            */
-            
             return numLines==1;
 
         } catch (Exception e) {
