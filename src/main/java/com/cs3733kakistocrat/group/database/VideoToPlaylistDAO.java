@@ -3,6 +3,7 @@ package com.cs3733kakistocrat.group.database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.cs3733kakistocrat.group.model.Playlist;
@@ -93,23 +94,48 @@ public class VideoToPlaylistDAO {
             ps.setInt(3,  position);
 
             int numLines = ps.executeUpdate();
+            ps.close();
             
             //updates ordering
             PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM playlist_video WHERE (playlist_name) = (?) ORDER BY video_position asc;");
             ps1.setString(1, playlist.getPlaylistName());
             ResultSet resultSet1 = ps1.executeQuery();
             
+            LinkedList<String> videos = new LinkedList<String>();
+            
+            while(resultSet1.next()) {
+            	Video v = generateVideo(resultSet1);
+            	videos.add(v.getVideoID());
+            }
+            
+            LinkedList<String> noDuplicates = removeDuplicates(videos);
+            
+        	PreparedStatement ps5 = conn.prepareStatement("DELETE FROM playlist_video WHERE (video_id, playlist_name) = (?, ?);");
+        	for(String x: noDuplicates) {
+        		ps5.setString(1, x);
+        		ps5.setString(2, playlist.getPlaylistName());
+        	}
+        	ps5.close();
+        	
+        	
+
+            
+            /*
             int pos = 0;
             PreparedStatement ps4 = conn.prepareStatement("UPDATE playlist_video SET video_position = 0;");
             while (resultSet1.next()) {
               Video v = generateVideo(resultSet1);
-              ps4 = conn.prepareStatement("UPDATE playlist_video SET video_position = '" + pos + "' WHERE playlist_name = '" + playlist.getPlaylistName() + "' AND video_id = '" + v.getVideoID() + "';");
+              ps4 = conn.prepareStatement("UPDATE playlist_video SET video_position = '" + pos + "' WHERE playlist_name = '" + playlist.getPlaylistName() + "' AND video_id = '" + v.getVideoID() + "' AND video_position >= '" + pos + "';");
               ps4.executeUpdate();
               pos++;
             }
             ps4.close();
+            */
             
-            ps.close();
+            //get all video ids in linked list
+            //remove duplicates from linked list
+            //delete from playlis_video table
+            //insert back in in the same order with proper position
             
             return numLines==1;
 
@@ -133,6 +159,14 @@ public class VideoToPlaylistDAO {
     		throw new Exception("Failed to delete playlist: " + e.getMessage());
 	      	}
  	}
+    
+    private LinkedList<String> removeDuplicates(LinkedList<String> v){
+    	LinkedList<String> removed = new LinkedList<String>();
+    	for(String x : v) {
+    		if(!removed.contains(x)) removed.add(x);
+    	}
+    	return removed;
+    }
     
     private Video generateVideo(ResultSet resultSet) throws Exception {
     	String video_id = resultSet.getString("video_id");
