@@ -87,14 +87,18 @@ public class DBTests {
 		try {
 			
 			Video video = new Video("Test", "kakistocrat.com", "Me", "This is a sentence.");
-			Playlist playlist = new Playlist("This is");
+			Playlist playlist = new Playlist("Test playlist");
+			VideoDao.addVideo(video, false);
+			PlaylistDao.addPlaylist(playlist);
 			
 			boolean b1 = VTPDAO.appendVideoToPlaylist(video, playlist);
 
 			System.out.println("Added Video to Playlist: "+b1);		
-			VTPDAO.getAllVideos("This is");
+			VTPDAO.getAllVideos("Test playlist");
 			
-			assertTrue(VTPDAO.removeVideo(video, playlist, 0));
+			assertTrue(VTPDAO.removeVideo(video, playlist, 1));
+			VideoDao.deleteVideo(video);
+			PlaylistDao.removePlaylist(playlist);
 			
 		}
 		catch(Exception e) {

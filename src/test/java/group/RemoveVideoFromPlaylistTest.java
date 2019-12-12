@@ -12,6 +12,7 @@ import com.cs3733kakistocrat.group.RemoveRemoteHandler;
 import com.cs3733kakistocrat.group.RemoveVideoFromPlaylistHandler;
 import com.cs3733kakistocrat.group.database.PlaylistsDAO;
 import com.cs3733kakistocrat.group.database.VideoToPlaylistDAO;
+import com.cs3733kakistocrat.group.database.VideosDAO;
 import com.cs3733kakistocrat.group.http.AppendVideoRequest;
 import com.cs3733kakistocrat.group.http.DeleteVideoResponse;
 import com.cs3733kakistocrat.group.http.RemoveVideoRequest;
@@ -42,18 +43,21 @@ public class RemoveVideoFromPlaylistTest extends LambdaTest {
 	public void test() {
 		PlaylistsDAO PDao = new PlaylistsDAO();
 		VideoToPlaylistDAO VTPDao = new VideoToPlaylistDAO();
+		VideosDAO videoDAO = new VideosDAO();
 		Playlist test = new Playlist("test");
 		Video vid = new Video("father123", "where is papa?", "idk.com", "not my dad", "I love you", false);
 
 		try {
 			PDao.addPlaylist(test);
+			videoDAO.addVideo(vid, false);
 			VTPDao.appendVideoToPlaylist(vid, test);
-			RemoveVideoRequest req = new RemoveVideoRequest("father123", "test", 0);
+			RemoveVideoRequest req = new RemoveVideoRequest("father123", "test", 1);
 			String SAMPLE_INPUT_JSON = new Gson().toJson(req);
 			
 			testSuccessInput(SAMPLE_INPUT_JSON);
 			testFailureInput(SAMPLE_INPUT_JSON, 422);
 			PDao.removePlaylist(test);
+			videoDAO.deleteVideo(vid);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

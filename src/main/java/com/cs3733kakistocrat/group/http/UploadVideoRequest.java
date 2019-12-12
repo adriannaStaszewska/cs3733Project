@@ -27,10 +27,28 @@ public class UploadVideoRequest {
 		this.sentence = sentence;
 		this.remote = false;
 	}
-	public boolean equals(UploadVideoRequest req) {
-		return (this.remote==req.remote&&this.videoFile.equals(req.videoFile)&&this.videoName.equals(req.videoName)
-				&&this.character.equals(req.character)&&this.sentence.equals(req.sentence));
+
+	
+	public void setVideoName(String videoName) {
+		this.videoName = videoName;
 	}
+
+	public void setVideoFile(String videoFile) {
+		this.videoFile = videoFile;
+	}
+	
+	public void setCharacter(String character) {
+		this.character = character;
+	}
+
+	public void setSentence(String sentence) {
+		this.sentence = sentence;
+	}
+
+	public void setRemote(boolean remote) {
+		this.remote = remote;
+	}
+	
 	public String getVideoName() {
 		return videoName;
 	}
