@@ -10,6 +10,7 @@ import com.cs3733kakistocrat.group.CreateRemoteHandler;
 import com.cs3733kakistocrat.group.RemovePlaylistHandler;
 import com.cs3733kakistocrat.group.RemoveRemoteHandler;
 import com.cs3733kakistocrat.group.UploadVideoHandler;
+import com.cs3733kakistocrat.group.database.PlaylistsDAO;
 import com.cs3733kakistocrat.group.http.CreatePlaylistRequest;
 import com.cs3733kakistocrat.group.http.CreatePlaylistResponse;
 import com.cs3733kakistocrat.group.http.CreateRemoteRequest;
@@ -18,6 +19,7 @@ import com.cs3733kakistocrat.group.http.RemovePlaylistRequest;
 import com.cs3733kakistocrat.group.http.RemovePlaylistResponse;
 import com.cs3733kakistocrat.group.http.RemoveRemoteRequest;
 import com.cs3733kakistocrat.group.http.RemoveRemoteResponse;
+import com.cs3733kakistocrat.group.model.Playlist;
 import com.google.gson.Gson;
 
 
@@ -29,7 +31,7 @@ public class CreatePlaylistTest extends LambdaTest{
     	req.toString();
         CreatePlaylistResponse resp = handler.handleRequest(req, createContext("create"));
         resp.toString();
-        Assert.assertEquals(200, resp.httpCode);
+        Assert.assertEquals(200, resp.httpCode); 
     }
     
     void testFailureInput(String incomingJson, int errorCode) throws IOException {
@@ -43,12 +45,12 @@ public class CreatePlaylistTest extends LambdaTest{
 	@Test
 	public void createPlaylist() {
 		CreatePlaylistRequest req = new CreatePlaylistRequest();
-		req.setPlaylistName("TEST Playlist");
+		req.setPlaylistName("TEST Playlist 1");
 		String input = new Gson().toJson(req); 
 		CreatePlaylistResponse resp = new CreatePlaylistHandler().handleRequest(req, createContext("create"));	
 //		createPlaylistTest(req, handler);
 //		duplicateTest(req, handler);       
-        RemovePlaylistRequest delReq = new RemovePlaylistRequest("TEST Playlist");
+        RemovePlaylistRequest delReq = new RemovePlaylistRequest("TEST Playlist 1");
         delReq.toString();
         RemovePlaylistResponse delRes = new RemovePlaylistHandler().handleRequest(delReq, createContext("delete playlist"));
         delRes.toString();
@@ -58,11 +60,13 @@ public class CreatePlaylistTest extends LambdaTest{
 	
 	@Test
 	public void duplicatePlaylist() {
+		PlaylistsDAO playlistDAO = new PlaylistsDAO();
+		Playlist pl = new Playlist("Dup test");
 		CreatePlaylistRequest req = new CreatePlaylistRequest("Dup test");
 		String SAMPLE_INPUT_JSON = new Gson().toJson(req);
 		try {
-			testSuccessInput(SAMPLE_INPUT_JSON);
-        	testFailureInput(SAMPLE_INPUT_JSON, 422);
+        	testSuccessInput(SAMPLE_INPUT_JSON);
+			testFailureInput(SAMPLE_INPUT_JSON, 422);
         	
         	 RemovePlaylistRequest delReq = new RemovePlaylistRequest("Dup test");
              delReq.toString();

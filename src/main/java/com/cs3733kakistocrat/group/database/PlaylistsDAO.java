@@ -82,7 +82,7 @@ public class PlaylistsDAO {
              ps1.executeUpdate();
              ps1.close();
              
-             return (numAffected == 1);
+             return true;
 
          } catch (Exception e) {
              throw new Exception("Failed to delete playlist: " + e.getMessage());
