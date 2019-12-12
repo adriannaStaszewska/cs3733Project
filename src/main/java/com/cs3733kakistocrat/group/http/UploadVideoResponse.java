@@ -13,7 +13,9 @@ public class UploadVideoResponse {
 		this.response = s;
 		this.httpCode = 200;
 	}
-	
+	public boolean equals(UploadVideoResponse resp) {
+		return (this.response.equals(resp.response)&&this.httpCode==resp.httpCode);
+	}
 	public String toString() {
 		return "Response(" + response + ")";
 	}

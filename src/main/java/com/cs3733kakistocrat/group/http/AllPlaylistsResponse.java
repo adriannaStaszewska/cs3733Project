@@ -21,6 +21,10 @@ public class AllPlaylistsResponse {
 		this.statusCode = code;
 		this.error = errorMessage;
 	}
+	
+	public boolean equals(AllPlaylistsResponse resp) {
+		return (this.statusCode==resp.statusCode&&this.error.equals(resp.error)&&this.list.equals(resp.list));
+	}
 		
 	public String toString() {
 		if (list == null) { return "NoPlaylists"; }

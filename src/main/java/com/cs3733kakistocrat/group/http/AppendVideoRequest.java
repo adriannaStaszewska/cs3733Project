@@ -30,6 +30,11 @@ public class AppendVideoRequest {
 		this.text = text;
 	}
 	
+	public boolean equals(AppendVideoRequest req) {
+		return (this.playlistName.equals(req.playlistName)&&this.remote==req.remote
+				&&this.character.equals(req.character)&&this.url.equals(req.url)&&this.text.contentEquals(req.text));
+	}
+	
 	public AppendVideoRequest() {
 		
 	}

@@ -17,7 +17,9 @@ public class DeleteVideoResponse {
 		this.error = errorMessage;
 		this.name = name;
 	}
-	
+	public boolean equals(DeleteVideoResponse resp) {
+		return (this.name.equals(resp.name)&&this.statusCode==resp.statusCode&&resp.error.equals(resp.error));
+	}
 	public String toString() {
 		if (statusCode == 200) {  
 			return "DeleteResponse(" + name + ")";

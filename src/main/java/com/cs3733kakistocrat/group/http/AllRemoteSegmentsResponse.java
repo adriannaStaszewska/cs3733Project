@@ -22,6 +22,11 @@ public class AllRemoteSegmentsResponse {
 		this.error = errorMessage;
 	}
 	
+	public boolean equals(AllRemoteSegmentsResponse resp) {
+		return (this.statusCode==resp.statusCode&&this.error.equals(resp.error)&&this.segments.equals(resp.segments));
+	}
+	
+	
 	public String toString() {
 		if (segments == null) { return "NoVideos"; }
 		return "AllRemoteSegs(" + segments.size() + ")";

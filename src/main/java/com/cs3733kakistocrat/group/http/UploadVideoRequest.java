@@ -27,6 +27,10 @@ public class UploadVideoRequest {
 		this.sentence = sentence;
 		this.remote = false;
 	}
+	public boolean equals(UploadVideoRequest req) {
+		return (this.remote==req.remote&&this.videoFile.equals(req.videoFile)&&this.videoName.equals(req.videoName)
+				&&this.character.equals(req.character)&&this.sentence.equals(req.sentence));
+	}
 	public String getVideoName() {
 		return videoName;
 	}

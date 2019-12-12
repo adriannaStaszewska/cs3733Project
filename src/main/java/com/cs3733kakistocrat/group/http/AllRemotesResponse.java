@@ -23,6 +23,10 @@ public class AllRemotesResponse {
 		this.error = errorMessage;
 	}
 	
+	public boolean equals(AllRemotesResponse resp) {
+		return (this.statusCode==resp.statusCode&&this.error.equals(resp.error));
+	}
+	
 	public String toString() {
 		if (list == null) { return "NoRemotes"; }
 		return "AllRemotes(" + list.size() + ")";

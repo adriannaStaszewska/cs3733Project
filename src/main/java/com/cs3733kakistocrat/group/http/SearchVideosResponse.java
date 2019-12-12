@@ -28,6 +28,10 @@ public class SearchVideosResponse {
 		this.charSearch = charSearch;
 		this.sentSearch = sentSearch;
 	} 
+	public boolean equals(SearchVideosResponse resp) {
+		return (this.charSearch.equals(resp.charSearch)&&this.sentSearch.equals(resp.sentSearch)
+				&&this.statusCode==resp.statusCode&&this.error.equals(resp.error));
+	}
 	
 	public String toString() {
 		if (list == null) { return "Search: " + charSearch + " " + sentSearch + " - NoVideos"; }

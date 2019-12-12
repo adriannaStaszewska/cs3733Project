@@ -18,6 +18,10 @@ public class RemovePlaylistResponse {
 		this.playlistName = name;
 	}
 	
+	public boolean equals(RemovePlaylistResponse resp) {
+		return (this.error.equals(resp.error)&&this.statusCode==resp.statusCode&&this.playlistName.equals(resp.playlistName));
+	}
+	
 	public String toString() {
 		if (statusCode == 200) {  
 			return "DeleteResponse(" + playlistName+ ")";

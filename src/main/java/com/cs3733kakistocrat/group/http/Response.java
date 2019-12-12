@@ -14,6 +14,9 @@ public class Response {
 		this.response = s;
 		this.httpCode = 200;
 	}
+	public boolean equals(Response resp) {
+		return (this.response.equals(resp.response)&&this.httpCode==resp.httpCode);
+	}
 	
 	public String toString() {
 		return "Response(" + response + ")";
