@@ -116,7 +116,7 @@ public class VideoToPlaylistDAO {
         	}
         	ps5.close();
         	
-        	int pos = 0;
+        	int pos = 1;
         	PreparedStatement ps6 = conn.prepareStatement("INSERT INTO playlist_video (playlist_name,video_id,video_position) VALUES (?, ?, ?);");
         	for(String x: videos) {
         		ps6.setString(1, playlist.getPlaylistName());

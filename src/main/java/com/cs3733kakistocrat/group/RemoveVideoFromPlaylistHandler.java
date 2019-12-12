@@ -22,6 +22,10 @@ public class RemoveVideoFromPlaylistHandler implements RequestHandler<RemoveVide
 
 		VideoToPlaylistDAO dao = new VideoToPlaylistDAO();
 		
+		System.out.println(input.getVideoID());
+		System.out.println(input.getPosition());
+		System.out.println(input.getPlaylistName());
+		
 		Video video = new Video(input.getVideoID());
 		int position = input.getPosition();
 		Playlist pl = new Playlist(input.getPlaylistName());

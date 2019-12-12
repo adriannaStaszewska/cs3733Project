@@ -13,6 +13,12 @@ public class AppendVideoRequest {
 		this.playlistName = playlistName;
 	}
 	
+	public AppendVideoRequest(String videoID, String playlistName, boolean remote) {
+		this.videoID = videoID;
+		this.playlistName = playlistName;
+		this.remote = remote;
+	}
+	
 
 	
 	public AppendVideoRequest(String playlistName, boolean remote, String character, String url, String text) {
@@ -39,17 +45,39 @@ public class AppendVideoRequest {
 		return url;
 	}
 
-
 	public String getText() {
 		return text;
 	}
 	public String getPlaylistName( ) { 
 		return playlistName; 
-	
 	}
 	
 	public String getVideoID() {
 		return videoID;
+	}
+	
+	public void setVideoID(String videoID) {
+		this.videoID = videoID;
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public void setPlaylistName(String playlistName) {
+		this.playlistName = playlistName;
+	}
+	
+	public void setText(String text) {
+		this.text = text;
+	}
+	
+	public void setRemote(boolean remote) {
+		this.remote = remote;
+	}
+	
+	public void setCharacter(String character) {
+		this.character = character;
 	}
 
 	public String toString() {

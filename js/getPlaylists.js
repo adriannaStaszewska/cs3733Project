@@ -98,7 +98,7 @@ function insertVideoPlaylistRow(inArray) {
 				var playName = document.getElementById("playlistTableBody").rows[selected].cells[0].innerText;
 				
 				//row number
-				var rowNum = this.parentNode.parentNode.rowIndex - 1;
+				var rowNum = this.parentNode.parentNode.rowIndex;// - 1;
 				
 				handleRemoveFromPlaylist(id, playName, rowNum);
 			}

@@ -13,7 +13,10 @@ function handleDeletePlaylist (name) {
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			console.log ("XHR:" + xhr.responseText);
 			if (xhr.status == 200) {
+				document.getElementById("addVideoToPlaylistButton").style.visibility = 'hidden';
+				document.getElementById("playButton").style.visibility = 'hidden';
 				clearPlaylists();
+				clearPlaylistVideos();
 				getPlaylists();
 			} else {
 				console.log("actual:" + xhr.responseText)
